@@ -1,0 +1,40 @@
+
+.map-container{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+  }
+  .map-container iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+  }
+  .tablename{
+    max-height: 272px;
+    max-width: 800px;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+  .btn-data{
+    width: 100px;
+  }
+  .btn-font{
+    font-size: 14px;
+  }
+  .design-modal{
+    background-color: black;
+  }
+  .modal-content{
+    text-align: center;
+  }
+  .adatahref{
+    color: white;
+    
+  }
+  .adatahref:hover{
+    color: white;
+    text-decoration: none;
+  }

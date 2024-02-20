@@ -1,0 +1,75 @@
+body {
+    background-color: #f2f2f2; /* Light background */
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  th, td {
+    border: 1px solid #ddd; /* Subtle border */
+    padding: 8px; /* Adjust padding */
+  }
+  
+  th {
+    text-align: left;
+    background-color: #e0e0e0; /* Header background */
+    font-weight: bold; /* Header weight */
+  }
+  
+  .btn {
+    margin: 1px;
+    width: 200px;
+    padding: 5px 5px;
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer;
+    font-family: sans-serif; /* Sans-serif font */
+  }
+  
+  .btn-green {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+  
+  .btn-blue {
+    background-color: #2196F3; /* Blue */
+    color: white;
+  }
+  
+  .btn-red {
+    background-color: #f44336; /* Red */
+    color: white;
+  }
+  
+  #pagination {
+    text-align: right;
+    margin-top: 10px; /* Spacing */
+  }
+  
+  #prev-button,
+  #next-button {
+    background-color: #ddd; /* Pagination button background */
+    color: black;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #page-info {
+    font-weight: bold; /* Page info weight */
+  }
+  
+  /* Example of icon for status column */
+  .fa-check-circle:before {
+    content: "\e086"; /* FontAwesome checkmark icon */
+    color: green;
+  }
+  
+  /* Example of hover state for buttons */
+  .btn:hover {
+    opacity: 0.8;
+  }
+  

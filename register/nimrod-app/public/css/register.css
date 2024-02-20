@@ -1,0 +1,150 @@
+body {
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    max-width: 500vh; /* Limit the container width */
+    padding: 2%;
+    background-color: rgb(255, 255, 255);
+}
+
+.image {
+    flex: 1;
+    text-align: center;
+}
+
+.image img {
+    max-width: 40vh;
+    height: 40vh;
+}
+
+.info {
+    flex: 2;
+    padding: 10px; /* Reduced padding */
+}
+
+.info h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.info p {
+    margin-bottom: 5px;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 600px;
+    height: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for the button */
+.btn {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.up{
+    padding-top: 20px;
+}
+
+body {
+    background-color: #f2f2f2; /* Light background */
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  th, td {
+    border: 1px solid #ddd; /* Subtle border */
+    padding: 8px; /* Adjust padding */
+  }
+  
+  th {
+    text-align: left;
+    background-color: #e0e0e0; /* Header background */
+    font-weight: bold; /* Header weight */
+  }
+  
+  .btn {
+    margin: 1px;
+    width: 200px;
+    padding: 5px 5px;
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer;
+    font-family: sans-serif; /* Sans-serif font */
+  }
+  
+  .btn-green {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+  
+  .btn-blue {
+    background-color: #2196F3; /* Blue */
+    color: white;
+  }
+  
+  .btn-red {
+    background-color: #f44336; /* Red */
+    color: white;
+  }
+  
+  #pagination {
+    text-align: right;
+    margin-top: 10px; /* Spacing */
+  }
+  
+  #prev-button,
+  #next-button {
+    background-color: #ddd; /* Pagination button background */
+    color: black;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #page-info {
+    font-weight: bold; /* Page info weight */
+  }
+  
+  /* Example of icon for status column */
+  .fa-check-circle:before {
+    content: "\e086"; /* FontAwesome checkmark icon */
+    color: green;
+  }
+  
+  /* Example of hover state for buttons */
+  .btn:hover {
+    opacity: 0.8;
+  }
+  

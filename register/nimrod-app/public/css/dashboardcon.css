@@ -1,0 +1,9 @@
+#content-wrapper {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* Optional: Adjust the padding for better styling */
+#content {
+    padding: 20px; /* Adjust the padding as needed */
+}
