@@ -12,6 +12,57 @@
         <h3>Reporting</h3>
         <button class="btn" onclick="openModal()">+ register</button>
 
+        
+
+        <table>
+            <thead>
+            <tr>
+                    <th>Status</th>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Barangay</th>
+                    <th>Municipality</th>
+                    <th>Province</th>
+                    <th>Contact Number</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Vehicle License</th>
+                    <th>Placard</th>
+                    <th>Color</th>
+                    <th>Date Register</th>
+                   
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($registers as $register)
+            <tr>
+              
+                <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
+                <td>{{ $register->id }}</td>
+                <td>{{ $register->name }}</td>
+                <td>{{ $register->barangay }}</td>
+                <td>{{ $register->municipality }}</td>
+                <td>{{ $register->province }}</td>
+                <td>{{ $register->contactnumber }}</td>
+                <td>{{ $register->brand }}</td>
+                <td>{{ $register->model }}</td>
+                <td>{{ $register->vehiclelicense }}</td>
+                <td>{{ $register->placard }}</td>
+                <td>{{ $register->color }}</td>
+                <td>{{ $register->date }}</td>
+               
+            </tr>
+            @endforeach
+            
+            </tbody>
+        </table>
+        <div id="pagination">
+            <button id="prev-button" class="icon disabled-icon" style = "margin-right: 20px">Prev</button>
+            <span id="page-info" style = "margin-right: 10px"> 1-10 of 9</span>
+            <button id="next-button" class="icon">Next</button>
+        </div>
+
+
 
         <div id="myModal" class="modal">
             <div class="modal-content">
@@ -123,8 +174,6 @@
                         Please enter Date Register.  
                     </div>
                 </div> 	
-                
-
                             <x-primary-button type="submit">{{ __('Create Owner') }}</x-primary-button>
                     </form>    
                     
@@ -136,108 +185,6 @@
 
 
 
-
-
-        <table>
-            <thead>
-            <tr>
-                <th>Status</th>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Plate Number</th>
-                <th>Email</th>
-                <th>Access Level</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                <td>1</td>
-                <td>Jon Snow</td>
-                <td>35</td>
-                <td>(665)121-5454</td>
-                <td>jonsnow@gmail.com</td>
-                <td class="text-center"><!-- Add text-center class to center content -->
-            <button type="button" class="btn btn-primary btn2">COMPLETE</button>
-        </td>
-            </tr>
-            <tr>
-                <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                <td>1</td>
-                <td>Jon Snow</td>
-                <td>35</td>
-                <td>(665)121-5454</td>
-                <td>jonsnow@gmail.com</td>
-                <td class="text-center"><!-- Add text-center class to center content -->
-            <button type="button" class="btn btn-primary btn2">DEPLOYED</button>
-        </td>
-            </tr>
-            <tr>
-                <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                <td>1</td>
-                <td>Jon Snow</td>
-                <td>35</td>
-                <td>(665)121-5454</td>
-                <td>jonsnow@gmail.com</td>
-                <td class="text-center"><!-- Add text-center class to center content -->
-            <button type="button" class="btn btn-primary btn2">UNREAD</button> 
-        </td>
-            </tr>
-            <tr>
-                <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                <td>1</td>
-                <td>Jon Snow</td>
-                <td>35</td>
-                <td>(665)121-5454</td>
-                <td>jonsnow@gmail.com</td>
-                <td class="text-center"><!-- Add text-center class to center content -->
-            <button type="button" class="btn btn-primary btn2">UNREAD</button> 
-        </td>
-            </tr>
-            <tr>
-                <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                <td>1</td>
-                <td>Jon Snow</td>
-                <td>35</td>
-                <td>(665)121-5454</td>
-                <td>jonsnow@gmail.com</td>
-                <td class="text-center"><!-- Add text-center class to center content -->
-            <button type="button" class="btn btn-primary btn2">UNREAD</button> 
-        </td>
-            </tr>
-            <tr>
-                <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                <td>1</td>
-                <td>Jon Snow</td>
-                <td>35</td>
-                <td>(665)121-5454</td>
-                <td>jonsnow@gmail.com</td>
-                <td class="text-center"><!-- Add text-center class to center content -->
-            <button type="button" class="btn btn-primary btn2">UNREAD</button> 
-        </td>
-            </tr>
-            <tr>
-                <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
-                <td>1</td>
-                <td>Jon Snow</td>
-                <td>35</td>
-                <td>(665)121-5454</td>
-                <td>jonsnow@gmail.com</td>
-                <td class="text-center"><!-- Add text-center class to center content -->
-            <button type="button" class="btn btn-primary btn2">UNREAD</button> 
-        </td>
-            </tr>
-            
-            
-            
-            </tbody>
-        </table>
-        <div id="pagination">
-            <button id="prev-button" class="icon disabled-icon" style = "margin-right: 20px">Prev</button>
-            <span id="page-info" style = "margin-right: 10px"> 1-10 of 9</span>
-            <button id="next-button" class="icon">Next</button>
-        </div>
 
 
         <script>
@@ -310,5 +257,6 @@
                     }
                 };
             </script>
+            
         
 </x-app-layout> 

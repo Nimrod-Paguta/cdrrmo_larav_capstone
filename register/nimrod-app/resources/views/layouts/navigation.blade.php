@@ -71,13 +71,7 @@
     </ul>
 
 </nav>
-<!-- <script>
-    $(document).ready(function(){
-        $("#openModalTrigger").click(function(){
-            $("#myModal").modal();
-        });
-    });
-</script>
+
 <!-- Include Bootstrap JS and Popper.js -->
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js" integrity="sha384-XIvfXJJf+kTuHQ5nK8uLszxjb8YDrFvgA+FI8XBxTKtj8nPe9auB8bXM6GrpQo3M" crossorigin="anonymous"></script>

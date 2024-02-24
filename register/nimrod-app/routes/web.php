@@ -33,10 +33,6 @@ Route::get('/reporting', function () {
     return view('reporting');  
 }); 
 
-Route::get('/registerpage', function () {
-    return view('registerpage');  
-}); 
-
 
 Route::prefix('reporting')->group(function () {
     Route::get('/users', function () {
@@ -44,10 +40,21 @@ Route::prefix('reporting')->group(function () {
     });
 });
 
-Route::prefix('users')->group(function (){
-    Route::post("/",[RegisterController::class, 'store'])->name('users.post');   
+Route::prefix('/')->group(function (){
+    
+    Route::post("/registerpage",[RegisterController::class, 'store'])->name('users.post');   
+   
 }); 
 
 });
+
+Route::get('/registerpage', function () {
+    $registers = DB::table('registers')->get();
+    return view('registerpage', [
+        'registers' => $registers
+    ]);
+})->name('registerpage');
+
+
 
 require __DIR__.'/auth.php';

@@ -50,11 +50,42 @@
           
           </tbody>
       </table>
+
+
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Header</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <!-- Modal content goes here -->
+                </div>
+
+                <!-- Modal Footer -->
+              
+
+            </div>
+        </div>
+    </div>
+
+
       <div id="pagination">
         <button id="prev-button" class="icon disabled-icon" style = "margin-right: 20px">Prev</button>
         <span id="page-info" style = "margin-right: 10px"> 1-10 of 9</span>
         <button id="next-button" class="icon">Next</button>
       </div>
+
+         
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 
 
       <script>
@@ -109,5 +140,23 @@
             showPage(currentPage);
           }
         });
+
+             // Your existing JavaScript code
+
+        // Add a click event listener to the buttons
+        const buttons = document.querySelectorAll('.btn2');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Set the modal content here
+                const modalBody = document.querySelector('.modal-body');
+                modalBody.innerHTML = `<p>Button ${button.textContent} clicked!</p>`;
+
+                // Show the modal
+                $('#myModal').modal('show');
+            });
+        });
       </script>
+  
+
 </x-app-layout> 
