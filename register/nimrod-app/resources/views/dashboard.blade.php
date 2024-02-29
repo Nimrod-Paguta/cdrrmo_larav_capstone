@@ -76,9 +76,29 @@
 
                         socket.on('receive_message', function(message) {
                             // Add the received message to the DOM
-                            console.log(message);
-                            accident = "Sender: " + message.sender + "\nDate: " + message.date + "\nMessage: " + message.content
-                            alert(accident);
+                            accident = "Sender: " + message.sender + "\nDate: " + message.date + "\nMessage: " + message.content;
+                            sender = message.sender.replace('+63', '0');
+                            // Send the accident data to a Laravel route using AJAX
+                            const accidentData = {
+                                sender: sender,
+                                date: message.date,
+                                content: message.content
+                            };
+
+                            // Send the accident data to Laravel route for debugging
+                            fetch('/accident', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // If CSRF protection is enabled
+                                },
+                                body: JSON.stringify(accidentData)
+                            })
+                            .then(response => response.json())
+                            .then(data => console.log(data)) // Handle the response if needed
+                            .catch(error => console.error('Error:', error));
+
+                            // Alert the accident data
                         });
 
                     </script>
