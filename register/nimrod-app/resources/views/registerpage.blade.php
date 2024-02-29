@@ -9,11 +9,8 @@
                 </div>
         @endif
         
-        <h3>Reporting</h3>
+        <h3>Register</h3>
         <button class="btn" onclick="openModal()">+ register</button>
-
-        
-
         <table>
             <thead>
             <tr>
@@ -30,13 +27,12 @@
                     <th>Placard</th>
                     <th>Color</th>
                     <th>Date Register</th>
-                   
+                    <th>Action</th>  
             </tr>
             </thead>
             <tbody>
             @foreach($registers as $register)
             <tr>
-              
                 <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
                 <td>{{ $register->id }}</td>
                 <td>{{ $register->name }}</td>
@@ -50,7 +46,11 @@
                 <td>{{ $register->placard }}</td>
                 <td>{{ $register->color }}</td>
                 <td>{{ $register->date }}</td>
-               
+                <td>
+                    <!-- Add any action buttons or links you need -->
+                    <a href="">View</a>
+                    <a href="">Edit</a>
+                </td>
             </tr>
             @endforeach
             
