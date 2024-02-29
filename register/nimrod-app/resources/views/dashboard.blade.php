@@ -24,8 +24,7 @@
     <link href="css/map.css" rel="stylesheet">
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="css/modal.css" rel="stylesheet">
-
-   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>   
 
 </head>
 
@@ -66,6 +65,24 @@
 
     <!-- Modal -->
                 <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                    <script>
+                        const socket = io('ws://192.168.1.239:8765');
+
+                        socket.on('connect', function() {
+                            // Emit a message after the connection is established
+                            socket.emit('send_message', 'Hello from client');
+                        });
+
+                        socket.on('receive_message', function(message) {
+                            // Add the received message to the DOM
+                            console.log(message);
+                            accident = "Sender: " + message.sender + "\nDate: " + message.date + "\nMessage: " + message.content
+                            alert(accident);
+                        });
+
+                    </script>
+
                     <div class="modal-dialog " role="document">
                         <div class="modal-content ">
                             <div class="modal-header ">
@@ -323,7 +340,7 @@
             <div class="card shadow mb-4"  style="height: 400px;">
              <!--Google map-->
                         <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
-                        <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+                        <iframe src="https://maps.google.com/maps?q=malaybalay&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
                             style="border:0" allowfullscreen></iframe>
                         </div>
                         <!--Google Maps-->
