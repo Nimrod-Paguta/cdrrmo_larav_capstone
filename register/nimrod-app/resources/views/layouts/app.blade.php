@@ -21,22 +21,7 @@
 
 </head>
 <body class="font-sans antialiased">
-<script>
-                        const socket = io('ws://192.168.1.239:8765');
 
-                        socket.on('connect', function() {
-                            // Emit a message after the connection is established
-                            socket.emit('send_message', 'Hello from client');
-                        });
-
-                        socket.on('receive_message', function(message) {
-                            // Add the received message to the DOM
-                            console.log(message);
-                            accident = "Sender: " + message.sender + "\nDate: " + message.date + "\nMessage: " + message.content
-                            alert(accident);
-                        });
-
-                    </script>
 
     <div id="wrapper">
 
