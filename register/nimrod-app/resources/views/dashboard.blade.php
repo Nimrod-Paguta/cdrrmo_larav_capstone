@@ -24,7 +24,7 @@
     <link href="css/map.css" rel="stylesheet">
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="css/modal.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>   
+    
 
 </head>
 
@@ -52,7 +52,7 @@
 
 
                     </div>
-
+ 
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1> <a href="" id="openModalTrigger" data-toggle="modal" data-target="#myModal">
                                 <img width="40" height="30" src="https://img.icons8.com/ios/50/alarm--v1.png" alt="alarm--v1"/>
@@ -66,28 +66,13 @@
     <!-- Modal -->
                 <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-                    <script>
-                        const socket = io('ws://192.168.1.239:8765');
-
-                        socket.on('connect', function() {
-                            // Emit a message after the connection is established
-                            socket.emit('send_message', 'Hello from client');
-                        });
-
-                        socket.on('receive_message', function(message) {
-                            // Add the received message to the DOM
-                            console.log(message);
-                            accident = "Sender: " + message.sender + "\nDate: " + message.date + "\nMessage: " + message.content
-                            alert(accident);
-                        });
-
-                    </script>
+            
 
                     <div class="modal-dialog " role="document">
                         <div class="modal-content ">
                             <div class="modal-header ">
                                 <h5 class="modal-title" id="exampleModalLabel">Your Modal Title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Open">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -97,7 +82,6 @@
                                      adipisicing elit. Eius, ea quaerat! Nostrum quaerat voluptate animi 
                                      ab nemo placeat iure cum nisi eaqu molestiae similique, accusamus, est 
                                      odit iusto aliquid neque.</p>
-                               
                             </div>
                             <div >
                                

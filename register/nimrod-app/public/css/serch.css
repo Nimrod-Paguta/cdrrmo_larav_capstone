@@ -1,0 +1,19 @@
+
+.btns {
+    padding: 10px 20px; /* Adjust the padding as needed */
+    font-size: 16px;   /* Adjust the font size as needed */
+    background-color: #3498db; /* Set your preferred background color */
+    color: #fff;       /* Set the text color */
+    border: none;
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+   
+}
+
+.btns:hover {
+    background-color: #2980b9; /* Set the background color on hover */
+}
+.padding{
+    padding-bottom: 3vh;
+}

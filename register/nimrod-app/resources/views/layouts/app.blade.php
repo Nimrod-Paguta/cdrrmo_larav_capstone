@@ -16,10 +16,28 @@
     <link href="{{ asset('css/reporting.css') }}" rel="stylesheet">
     <link href="{{ asset('css/register.css') }}" rel="stylesheet">
     <link href="{{ asset('css/map.css') }}" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>   
 </head>
 
 </head>
 <body class="font-sans antialiased">
+<script>
+                        const socket = io('ws://192.168.1.239:8765');
+
+                        socket.on('connect', function() {
+                            // Emit a message after the connection is established
+                            socket.emit('send_message', 'Hello from client');
+                        });
+
+                        socket.on('receive_message', function(message) {
+                            // Add the received message to the DOM
+                            console.log(message);
+                            accident = "Sender: " + message.sender + "\nDate: " + message.date + "\nMessage: " + message.content
+                            alert(accident);
+                        });
+
+                    </script>
+
     <div id="wrapper">
 
         <!-- Sidebar -->
