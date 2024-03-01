@@ -28,6 +28,13 @@
 
 </head>
 
+<style>
+    .modal-content p {
+        font-size: 18px; /* You can adjust the font size accordingly */
+    }
+</style>
+
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -95,15 +102,62 @@
                                 body: JSON.stringify(accidentData)
                             })
                             .then(response => response.json())
-                            .then(data => console.log(data)) // Handle the response if needed
+                            .then(data => proceed(data, accidentData)) // Handle the response if needed
                             .catch(error => console.error('Error:', error));
 
                             // Alert the accident data
-                        });
+                            function proceed(data, accidentData){
+                                                    // Create a modal element
+                                    const modal = document.createElement('div');
+                                    modal.className = 'modal';
+                                    
+                                    // Create modal content
+                                    const modalContent = document.createElement('div');
+                                  
+                                    modalContent.innerHTML = `
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <i  class="fa-solid fa-triangle-exclamation"></i>
+                                    <p>In the event of an emergency, please note that the ID for ${data.name} is ${data.id}.</p>
+                                <p>${data.name}'s emergency contact information, including their middle name (${data.middlename}), should be considered for prompt communication and support.</p>
+                                <a href="/reporting"> <button type="button" class="btn btn-secondary">Proceed to Reporting</button></a>
+                                    </div>
+                                    <div class="modal-footer">
+                                    
+                                    </div>
+                                    </div>
+                                </div>
+                                    `;
+
+                                    // Append content to the modal
+                                    modal.appendChild(modalContent);
+
+                                    // Append the modal to the document body
+                                    document.body.appendChild(modal);
+
+                                    // Show the modal
+                                    modal.style.display = 'block';
+
+                                    // Close the modal when clicked outside the content
+                                    window.onclick = function(event) {
+                                        if (event.target == modal) {
+                                            modal.style.display = 'none';
+                                            document.body.removeChild(modal); // Remove the modal from the DOM
+                                        }
+                                    };
+                            } 
+                        }); 
 
                     </script>
 
-                    <div class="modal-dialog " role="document">
+                    <!-- <div class="modal-dialog " role="document">
                         <div class="modal-content ">
                             <div class="modal-header ">
                                 <h5 class="modal-title" id="exampleModalLabel">Your Modal Title</h5>
@@ -125,17 +179,10 @@
                                
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
-
-  
-
-
-
-
-                    <!-- Content Row -->
-                    <div class="row">
+              <div class="row">
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
