@@ -84,4 +84,19 @@ class RegisterController extends Controller
     {
         //
     }
+
+    public function getUserInfo(Request $request){
+
+        $number = $request->sender;
+
+        $user = Register::where('contactnumber', $number)->first();
+
+        // You might want to handle cases where the user is not found
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        // Return the user information
+        return response()->json($user);
+    }
 }

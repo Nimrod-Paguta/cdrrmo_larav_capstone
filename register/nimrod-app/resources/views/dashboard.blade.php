@@ -66,7 +66,42 @@
     <!-- Modal -->
                 <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-            
+                    <script>
+                        const socket = io('ws://192.168.1.239:8765');
+
+                        socket.on('connect', function() {
+                            // Emit a message after the connection is established
+                            socket.emit('send_message', 'Hello from client');
+                        });
+
+                        socket.on('receive_message', function(message) {
+                            // Add the received message to the DOM
+                            accident = "Sender: " + message.sender + "\nDate: " + message.date + "\nMessage: " + message.content;
+                            sender = message.sender.replace('+63', '0');
+                            // Send the accident data to a Laravel route using AJAX
+                            const accidentData = {
+                                sender: sender,
+                                date: message.date,
+                                content: message.content
+                            };
+
+                            // Send the accident data to Laravel route for debugging
+                            fetch('/accident', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // If CSRF protection is enabled
+                                },
+                                body: JSON.stringify(accidentData)
+                            })
+                            .then(response => response.json())
+                            .then(data => console.log(data)) // Handle the response if needed
+                            .catch(error => console.error('Error:', error));
+
+                            // Alert the accident data
+                        });
+
+                    </script>
 
                     <div class="modal-dialog " role="document">
                         <div class="modal-content ">
