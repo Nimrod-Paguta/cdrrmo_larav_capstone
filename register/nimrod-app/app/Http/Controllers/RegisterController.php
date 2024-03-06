@@ -12,7 +12,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        //
+       //
     }
 
     /**
@@ -66,23 +66,46 @@ class RegisterController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $registers = Register::findOrFail($id);
+        return view('registerpage.edit', compact('registers'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'middlename' => 'nullable|string',
+            'lastname' => 'required|string',
+            'barangay' => 'required|string',
+            'municipality' => 'required|string',
+            'province' => 'required|string',
+            'contactnumber' => 'required|string',
+            'brand' => 'required|string',
+            'model' => 'required|string',
+            'vehiclelicense' => 'required|string',
+            'placard' => 'required|string',
+            'color' => 'required|string',
+            'date' => 'required|string',
+        ]);
+
+        $registers = Register::findOrFail($id);
+        $registers->update($request->all());
+
+        return redirect()->route('registerpage')->with('success', 'Student updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $registers = Register::findOrFail($id);
+        $registers->delete();
+    
+        return redirect()->route('registerpage')->with('success', 'Student deleted successfully!');
     }
 
     public function getUserInfo(Request $request){

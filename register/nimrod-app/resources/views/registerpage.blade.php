@@ -1,5 +1,6 @@
 <x-app-layout>
     
+
         @if ($errors->any())
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     @foreach ($errors->all() as $error)
@@ -14,48 +15,44 @@
         <table>
             <thead>
             <tr>
-                    <th>Status</th>
+                  
                     <th>Id</th>
-                    <th>Name</th>
-                    <th>Barangay</th>
-                    <th>Municipality</th>
-                    <th>Province</th>
-                    <th>Contact Number</th>
-                    <th>Brand</th>
-                    <th>Model</th>
-                    <th>Vehicle License</th>
-                    <th>Placard</th>
-                    <th>Color</th>
-                    <th>Date Register</th>
+                    <th>Name of Owner:</th>
+                    <th>Address:</th>
+                    <th>Contact Number:</th>
+                    <th>Plate Number:</th>
+                    <th>Vehicle License:</th>
+                    <th>Date Registered:</th>
                     <th>Action</th>  
             </tr>
             </thead>
             <tbody>
             @foreach($registers as $register)
             <tr>
-                <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
+                
                 <td>{{ $register->id }}</td>
-                <td>{{ $register->name }}</td>
-                <td>{{ $register->barangay }}</td>
-                <td>{{ $register->municipality }}</td>
-                <td>{{ $register->province }}</td>
+                <td>{{ $register->name }} {{ $register->middlename }} {{ $register->lastname }}</td>
+                <td>{{ $register->barangay }}, {{ $register->municipality }}, {{ $register->province }}</td>
                 <td>{{ $register->contactnumber }}</td>
-                <td>{{ $register->brand }}</td>
-                <td>{{ $register->model }}</td>
-                <td>{{ $register->vehiclelicense }}</td>
                 <td>{{ $register->placard }}</td>
-                <td>{{ $register->color }}</td>
+                <td>{{ $register->vehiclelicense }} </td> 
                 <td>{{ $register->date }}</td>
                 <td>
-                    <!-- Add any action buttons or links you need -->
-                    <a href="">View</a>
-                    <a href="">Edit</a>
+
+
+                <form action="{{ route('registerpage.destroy', $register->id) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Delete</button>
+                </form>
+                <a  href="{{ route('registerpage.edit', ['id' => $register->id]) }}">edit</a>
+
                 </td>
             </tr>
             @endforeach
             
             </tbody>
-        </table>
+        </table>	
         <div id="pagination">
             <button id="prev-button" class="icon disabled-icon" style = "margin-right: 20px">Prev</button>
             <span id="page-info" style = "margin-right: 10px"> 1-10 of 9</span>
@@ -182,6 +179,7 @@
         <button onclick="closeModal()" class="up">Close Modal</button>
             </div>
         </div>
+        
 
 
 
@@ -257,6 +255,89 @@
                     }
                 };
             </script>
+
+<script>
+    $(document).ready(function () {
+        const table = document.querySelector('table');
+        const tbody = table.querySelector('tbody');
+        const rowsPerPage = 10;
+        const pageInfo = document.getElementById('page-info');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const searchInput = document.getElementById('searchInput');
+        let currentPage = 1;
+        let rows = tbody.querySelectorAll('tr');
+
+        function showPage(page) {
+            const startIndex = (page - 1) * rowsPerPage;
+            const endIndex = startIndex + rowsPerPage;
+
+            for (let i = 0; i < rows.length; i++) {
+                rows[i].style.display = 'none';
+            }
+
+            for (let i = startIndex; i < endIndex && i < rows.length; i++) {
+                rows[i].style.display = '';
+            }
+
+            pageInfo.textContent = `${startIndex + 1}-${endIndex} of ${rows.length}`;
+
+            prevButton.classList.remove('disabled-icon');
+            nextButton.classList.remove('disabled-icon');
+
+            if (page === 1) {
+                prevButton.classList.add('disabled-icon');
+            }
+
+            if (page === Math.ceil(rows.length / rowsPerPage)) {
+                nextButton.classList.add('disabled-icon');
+            }
+        }
+
+        function filterTable() {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            rows = tbody.querySelectorAll('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].querySelectorAll('td');
+                let rowText = '';
+
+                cells.forEach((cell) => {
+                    rowText += cell.textContent.toLowerCase() + ' ';
+                });
+
+                if (rowText.includes(searchTerm)) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+
+            currentPage = 1;
+            showPage(currentPage);
+        }
+
+        showPage(currentPage);
+
+        nextButton.addEventListener('click', () => {
+            if (currentPage < Math.ceil(rows.length / rowsPerPage)) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        });
+
+        prevButton.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        });
+
+        searchInput.addEventListener('input', filterTable);
+    });
+</script>
+
             
         
 </x-app-layout> 

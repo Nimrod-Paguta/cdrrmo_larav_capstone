@@ -58,8 +58,14 @@ Route::get('/registerpage', function () {
         'registers' => $registers
     ]);
 })->name('registerpage');
+Route::get('registerpage/edit/{id}', 'App\Http\Controllers\RegisterController@edit')->name('registerpage.edit');
+Route::put('/registerpage/{id}', [RegisterController::class, 'update'])->name('registerpage.update');
+Route::delete('/registerpage/{id}', [RegisterController::class, 'destroy'])->name('registerpage.destroy'); 
 
 
 
+
+
+ 
 
 require __DIR__.'/auth.php';

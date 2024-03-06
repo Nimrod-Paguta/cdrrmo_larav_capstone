@@ -62,7 +62,7 @@
  
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1> <a href="" id="openModalTrigger" data-toggle="modal" data-target="#myModal">
-                                <img width="40" height="30" src="https://img.icons8.com/ios/50/alarm--v1.png" alt="alarm--v1"/>
+                                <!-- <img width="40" height="30" src="https://img.icons8.com/ios/50/alarm--v1.png" alt="alarm--v1"/> -->
                             </a>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
@@ -74,7 +74,7 @@
                 <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
                     <script>
-                        const socket = io('ws://192.168.1.239:8765');
+                        const socket = io('ws://192.168.1.240:8765');
 
                         socket.on('connect', function() {
                             // Emit a message after the connection is established
