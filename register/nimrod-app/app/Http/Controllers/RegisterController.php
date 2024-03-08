@@ -12,8 +12,16 @@ class RegisterController extends Controller
      */
     public function index()
     {
-       //
+       return view('registerpage.view'); 
     }
+
+    public function getTotalRegistered()
+    {
+        $totalRegistered = Register::count();
+
+        return $totalRegistered;
+    }
+
 
     /**
      * Show the form for creating a new resource.

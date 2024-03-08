@@ -46,6 +46,8 @@
                 <button type="submit">Delete</button>
                 </form>
                 <a  href="{{ route('registerpage.edit', ['id' => $register->id]) }}">edit</a>
+                <a  href="{{ route('registerpage.view', ['id' => $register->id]) }}">edit</a>
+              
 
                 </td>
             </tr>

@@ -61,8 +61,7 @@ Route::get('/registerpage', function () {
 Route::get('registerpage/edit/{id}', 'App\Http\Controllers\RegisterController@edit')->name('registerpage.edit');
 Route::put('/registerpage/{id}', [RegisterController::class, 'update'])->name('registerpage.update');
 Route::delete('/registerpage/{id}', [RegisterController::class, 'destroy'])->name('registerpage.destroy'); 
-
-
+Route::get('/registerpage/view', [RegisterController::class, 'index'])->name('registerpage.view');
 
 
 
