@@ -1,6 +1,16 @@
 <x-app-layout>
 
+<link href="css/serch.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
+
+   <!-- Search form with design -->
+   <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search...">
+        <button id="searchButton" class="search-btn">Search</button>
+    </div>
+
+    
         @if ($errors->any())
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     @foreach ($errors->all() as $error)
@@ -11,55 +21,62 @@
         @endif
         
         <h3>Register</h3>
+        
         <button class="btn" onclick="openModal()">+ register</button>
-        <table id="yourDataTableID" class="table table-striped" style="width:100%">
-            <thead class="table-header">
-            <tr>
-                  
-                    <th>Id</th>
-                    <th>Name of Owner:</th>
-                    <th>Address:</th>
-                    <th>Contact Number:</th>
-                    <th>Plate Number:</th>
-                    <th>Vehicle License:</th>
-                    <th>Date Registered:</th>
-                    <th>Action</th>  
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($registers as $register)
-            <tr>
-                
-                <td>{{ $register->id }}</td>
-                <td>{{ $register->name }} {{ $register->middlename }} {{ $register->lastname }}</td>
-                <td>{{ $register->barangay }}, {{ $register->municipality }}, {{ $register->province }}</td>
-                <td>{{ $register->contactnumber }}</td>
-                <td>{{ $register->placard }}</td>
-                <td>{{ $register->vehiclelicense }} </td> 
-                <td>{{ $register->date }}</td>
-                <td>
-
-
-                <form action="{{ route('registerpage.destroy', $register->id) }}" method="POST" style="display:inline;">
-                @csrf
-                @method('DELETE')
-                <button type="submit">Delete</button>
-                </form>
-                <a class="ahhh"  href="{{ route('registerpage.edit', ['id' => $register->id]) }}">edit</a>
-                <a  href="{{ route('registerpage.view', ['id' => $register->id]) }}">view</a>
-              
-
-                </td>
-            </tr>
-            @endforeach
-            
-            </tbody>
-        </table>	
-
-
-
+        
 
         
+       <!-- Table with Bootstrap classes -->
+<table id="dataTable" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Status</th>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Barangay</th>
+            <th>Municipality</th>
+            <th>Province</th>
+            <th>Contact Number</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Vehicle License</th>
+            <th>Placard</th>
+            <th>Color</th>
+            <th>Date Register</th>
+            <th>Action</th>  
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($registers as $register)
+        <tr>
+            <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
+            <td>{{ $register->id }}</td>
+            <td>{{ $register->name }}</td>
+            <td>{{ $register->barangay }}</td>
+            <td>{{ $register->municipality }}</td>
+            <td>{{ $register->province }}</td>
+            <td>{{ $register->contactnumber }}</td>
+            <td>{{ $register->brand }}</td>
+            <td>{{ $register->model }}</td>
+            <td>{{ $register->vehiclelicense }}</td>
+            <td>{{ $register->placard }}</td>
+            <td>{{ $register->color }}</td>
+            <td>{{ $register->date }}</td>
+            <td>
+                <!-- Add any action buttons or links you need -->
+                <a href="#" class="btn btn-primary">View</a>
+                <a href="#" class="btn btn-secondary">Edit</a>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+        <div id="pagination">
+            <button id="prev-button" class="icon disabled-icon" style = "margin-right: 20px">Prev</button>
+            <span id="page-info" style = "margin-right: 10px"> 1-10 of 9</span>
+            <button id="next-button" class="icon">Next</button>
+        </div>
+
 
 
         <div id="myModal" class="modal">
@@ -180,37 +197,73 @@
         <button onclick="closeModal()" class="up">Close Modal</button>
             </div>
         </div>
-        
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+        <!-- Initialize DataTable -->
+        <script>
+            $(document).ready(function() {
+                $('#dataTable').DataTable();
+            });
+        </script>
 
 
 
-        
-    <!-- Include jQuery -->
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <script>
+            const table = document.querySelector('table');
+            const tbody = table.querySelector('tbody');
+            const rowsPerPage = 10; // Set rows per page
+            const pageInfo = document.getElementById('page-info');
+            const prevButton = document.getElementById('prev-button'); 
+            const nextButton = document.getElementById('next-button');
 
-<!-- Include Bootstrap JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+            let currentPage = 1;
+            let rows = tbody.querySelectorAll('tr');
 
-<!-- Include DataTables JS -->
-<script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+            function showPage(page) {
+            const startIndex = (page - 1) * rowsPerPage;
+            const endIndex = startIndex + rowsPerPage;
 
-<!-- Include Bootstrap CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+            for (let i = 0; i < rows.length; i++) {
+                rows[i].style.display = 'none';
+            }
 
-<!-- Include DataTables CSS -->
-<link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
+            for (let i = startIndex; i < endIndex && i < rows.length; i++) {
+                rows[i].style.display = '';
+            }
 
+            pageInfo.textContent = ${startIndex + 1}-${endIndex} of ${rows.length};
 
+            prevButton.classList.remove('disabled-icon');
+            nextButton.classList.remove('disabled-icon');
 
-<script>
-    $(document).ready(function () {
-        $('#yourDataTableID').DataTable();
-    });
-</script>
+            if (page === 1) {
+                prevButton.classList.add('disabled-icon');
+            }
 
+            if (page === Math.ceil(rows.length / rowsPerPage)) {
+                nextButton.classList.add('disabled-icon');
+            }
+            }
 
+            showPage(currentPage);
 
+            nextButton.addEventListener('click', () => {
+            if (currentPage < Math.ceil(rows.length / rowsPerPage)) {
+                currentPage++;
+                showPage(currentPage);
+            }
+            });
+
+            prevButton.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+            }
+            });
+        </script>
 
         <script>
                 function openModal() {
@@ -228,9 +281,6 @@
                     }
                 };
             </script>
-
-
-
             
         
-</x-app-layout> 
+</x-app-layout>

@@ -53,27 +53,7 @@
 
 
 
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal Header</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal Body -->
-                <div class="modal-body">
-                    <!-- Modal content goes here -->
-                </div>
-
-                <!-- Modal Footer -->
-              
-
-            </div>
-        </div>
-    </div>
 
 
       <div id="pagination">

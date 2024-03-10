@@ -12,7 +12,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-       return view('registerpage.view'); 
+      
     }
 
     public function getTotalRegistered()
@@ -64,11 +64,12 @@ class RegisterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $register = Register::findOrFail($id);
+        return view('registerpage.view', compact('register'));
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      */
