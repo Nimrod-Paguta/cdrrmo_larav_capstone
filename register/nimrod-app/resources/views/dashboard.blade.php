@@ -11,29 +11,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet"> 
-
-    <!-- Custom styles for this template-->
-    <link href="css/map.css" rel="stylesheet">
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="css/modal.css" rel="stylesheet">
-    
+    <title>SB Admin 2 - Dashboard</title>    
 
 </head>
-
-<style>
-    .modal-content p {
-        font-size: 18px; /* You can adjust the font size accordingly */
-    }
-</style>
-
 
 <body id="page-top">
 
@@ -72,90 +52,6 @@
 
     <!-- Modal -->
                 <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-                    <script>
-                        const socket = io('ws://192.168.1.240:8765');
-
-                        socket.on('connect', function() {
-                            // Emit a message after the connection is established
-                            socket.emit('send_message', 'Hello from client');
-                        });
-
-                        socket.on('receive_message', function(message) {
-                            // Add the received message to the DOM
-                            accident = "Sender: " + message.sender + "\nDate: " + message.date + "\nMessage: " + message.content;
-                            sender = message.sender.replace('+63', '0');
-                            // Send the accident data to a Laravel route using AJAX
-                            const accidentData = {
-                                sender: sender,
-                                date: message.date,
-                                content: message.content
-                            };
-
-                            // Send the accident data to Laravel route for debugging
-                            fetch('/accident', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // If CSRF protection is enabled
-                                },
-                                body: JSON.stringify(accidentData)
-                            })
-                            .then(response => response.json())
-                            .then(data => proceed(data, accidentData)) // Handle the response if needed
-                            .catch(error => console.error('Error:', error));
-
-                            // Alert the accident data
-                            function proceed(data, accidentData){
-                                                    // Create a modal element
-                                    const modal = document.createElement('div');
-                                    modal.className = 'modal';
-                                    
-                                    // Create modal content
-                                    const modalContent = document.createElement('div');
-                                  
-                                    modalContent.innerHTML = `
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                    <i  class="fa-solid fa-triangle-exclamation"></i>
-                                    <p>In the event of an emergency, please note that the ID for ${data.name} is ${data.id}.</p>
-                                <p>${data.name}'s emergency contact information, including their middle name (${data.middlename}), should be considered for prompt communication and support.</p>
-                                <a href="/reporting"> <button type="button" class="btn btn-secondary">Proceed to Reporting</button></a>
-                                    </div>
-                                    <div class="modal-footer">
-                                    
-                                    </div>
-                                    </div>
-                                </div>
-                                    `;
-
-                                    // Append content to the modal
-                                    modal.appendChild(modalContent);
-
-                                    // Append the modal to the document body
-                                    document.body.appendChild(modal);
-
-                                    // Show the modal
-                                    modal.style.display = 'block';
-
-                                    // Close the modal when clicked outside the content
-                                    window.onclick = function(event) {
-                                        if (event.target == modal) {
-                                            modal.style.display = 'none';
-                                            document.body.removeChild(modal); // Remove the modal from the DOM
-                                        }
-                                    };
-                            } 
-                        }); 
-
-                    </script>
 
                     <!-- <div class="modal-dialog " role="document">
                         <div class="modal-content ">
