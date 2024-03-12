@@ -11,18 +11,11 @@ class Report extends Model
     protected $table = "reports"; 
 
     protected $fillable = [
-        'name',
-        'middlename',
-        'lastname',
-        'barangay',
-        'municipality',
-        'province',
-        'contactnumber',
-        'brand',
-        'model',
-        'vehiclelicense',
-        'placard', 
-        'color',
+        'registereduserid',
+        'location',
+        'time',
+        'gforce',
+        'status',
         'date',
     ];
 }

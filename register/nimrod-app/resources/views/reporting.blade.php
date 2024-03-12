@@ -5,21 +5,33 @@
           <tr>
             <th>Status</th>
             <th>Id</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Plate Number</th>
-            <th>Email</th>
-            <th>Access Level</th>
+            <th>Registered User ID</th>
+            <th>Location</th>
+            <th>Time</th>
+            <th>Gforce</th>
+            <th>Statux</th>
           </tr>
         </thead>
         <tbody>
         <tr>
             <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
             <td>1</td>
-            <td>Jon Snow</td>
-            <td>35</td>
-            <td>(665)121-5454</td>
-            <td>jonsnow@gmail.com</td>
+            <td>T1253</td>
+            <td>location</td>
+            <td>5pm</td>
+            <td>5G</td>
+            <td class="text-center"><!-- Add text-center class to center content -->
+        <button type="button" class="btn btn-primary btn2">COMPLETE</button>
+      </td>
+          </tr>
+
+          <tr>
+            <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
+            <td>1</td>
+            <td>T1253</td>
+            <td>location</td>
+            <td>5pm</td>
+            <td>5G</td>
             <td class="text-center"><!-- Add text-center class to center content -->
         <button type="button" class="btn btn-primary btn2">COMPLETE</button>
       </td>
@@ -27,27 +39,25 @@
           <tr>
             <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
             <td>1</td>
-            <td>Jon Snow</td>
-            <td>35</td>
-            <td>(665)121-5454</td>
-            <td>jonsnow@gmail.com</td>
+            <td>T1253</td>
+            <td>location</td>
+            <td>5pm</td>
+            <td>5G</td>
             <td class="text-center"><!-- Add text-center class to center content -->
-        <button type="button" class="btn btn-primary btn2">DEPLOYED</button>
+        <button type="button" class="btn btn-primary btn2">COMPLETE</button>
       </td>
           </tr>
           <tr>
             <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
             <td>1</td>
-            <td>Jon Snow</td>
-            <td>35</td>
-            <td>(665)121-5454</td>
-            <td>jonsnow@gmail.com</td>
+            <td>T1253</td>
+            <td>location</td>
+            <td>5pm</td>
+            <td>5G</td>
             <td class="text-center"><!-- Add text-center class to center content -->
-        <button type="button" class="btn btn-primary btn2">UNREAD</button> 
+        <button type="button" class="btn btn-primary btn2">COMPLETE</button>
       </td>
           </tr>
-          
-          
           </tbody>
       </table>
 

@@ -13,18 +13,11 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->string("name"); 
-            $table->string("middlename"); 
-            $table->string("lastname"); 
-            $table->string("barangay");
-            $table->string("municipality");  
-            $table->string("province");
-            $table->string("contactnumber");
-            $table->string("brand");
-            $table->string("model");
-            $table->string("vehiclelicense");
-            $table->string("placard");
-            $table->string("color");
+            $table->string("registereduserid"); 
+            $table->string("location"); 
+            $table->string("time"); 
+            $table->string("gforce");
+            $table->string("status");  
             $table->string("date");      
             $table->timestamps();
         });

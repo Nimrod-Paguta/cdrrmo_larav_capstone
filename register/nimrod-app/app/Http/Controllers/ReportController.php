@@ -28,18 +28,11 @@ class ReportController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string',
-            'middlename' => 'nullable|string',
-            'lastname' => 'required|string',
-            'barangay' => 'required|string',
-            'municipality' => 'required|string',
-            'province' => 'required|string',
-            'contactnumber' => 'required|string',
-            'brand' => 'required|string',
-            'model' => 'required|string',
-            'vehiclelicense' => 'required|string',
-            'placard' => 'required|string',
-            'color' => 'required|string',
+            'registereduserid' => 'required|string',
+            'location' => 'nullable|string',
+            'time' => 'required|string',
+            'gforce' => 'required|string',
+            'status' => 'required|string',
             'date' => 'required|string',
         ]);
 
