@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->string("registereduserid"); 
-            $table->string("location"); 
+            $table->string("latitude"); 
+            $table->string("longitude"); 
             $table->string("time"); 
             $table->string("gforce");
             $table->string("status");  
-            $table->string("date");      
+            $table->string("month");      
             $table->timestamps();
         });
     }

@@ -21,7 +21,6 @@ class ReportController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -29,11 +28,12 @@ class ReportController extends Controller
     {
         $validatedData = $request->validate([
             'registereduserid' => 'required|string',
-            'location' => 'nullable|string',
+            'latitude' => 'nullable|string',
+            'longitude' => 'nullable|string',
             'time' => 'required|string',
             'gforce' => 'required|string',
             'status' => 'required|string',
-            'date' => 'required|string',
+            'month' => 'required|string',
         ]);
 
         $user = Report::create($validatedData);
