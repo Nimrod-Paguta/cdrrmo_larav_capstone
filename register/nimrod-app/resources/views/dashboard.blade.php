@@ -15,6 +15,73 @@
 
 </head>
 
+
+@php
+                        $reportController = new App\Http\Controllers\DashboardController();
+                        $totalCompletedReports = $reportController->getTotalCompletedReports();
+                        @endphp
+
+                        @php
+                        $reportController = new App\Http\Controllers\DashboardController();
+                        $totalJanuary = $reportController->getTotalCompletedReportsJanuary();
+                        @endphp
+
+                        @php
+                        $reportController = new App\Http\Controllers\DashboardController();
+                        $totalfebruary = $reportController->getTotalCompletedReportsFebruay();
+                        @endphp
+
+                        @php
+                        $reportController = new App\Http\Controllers\DashboardController();
+                        $totalMarch = $reportController->getTotalCompletedReportsMarch();
+                        @endphp
+
+                        @php
+                        $reportController = new App\Http\Controllers\DashboardController();
+                        $totalApril = $reportController->getTotalCompletedReportsApril();
+                        @endphp
+
+                        @php
+                        $reportController = new App\Http\Controllers\DashboardController();
+                        $totalMay = $reportController->getTotalCompletedReportsMay();
+                        @endphp
+
+                        @php
+                        $reportController = new App\Http\Controllers\DashboardController();
+                        $totalJune = $reportController->getTotalCompletedReportsJune();
+                        @endphp
+
+                        @php
+                        $reportController = new App\Http\Controllers\DashboardController();
+                        $totalJuly = $reportController->getTotalCompletedReportsJuly();
+                        @endphp
+
+                        @php
+                        $reportController = new App\Http\Controllers\DashboardController();
+                        $totalAug = $reportController->getTotalCompletedReportsAug();
+                        @endphp
+
+                        @php
+                        $reportController = new App\Http\Controllers\DashboardController();
+                        $totalSep = $reportController->getTotalCompletedReportsSep();
+                        @endphp
+
+                        @php
+                        $reportController = new App\Http\Controllers\DashboardController();
+                        $totalOct = $reportController->getTotalCompletedReportsOct();
+                        @endphp
+
+                        @php
+                        $reportController = new App\Http\Controllers\DashboardController();
+                        $totalNovember = $reportController->getTotalCompletedReportsNovember();
+                        @endphp
+
+                        @php
+                        $reportController = new App\Http\Controllers\DashboardController();
+                        $totalDecember = $reportController->getTotalCompletedReportsDecember();
+                        @endphp
+
+
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     
@@ -64,7 +131,7 @@
               <div class="row">
 
               @php
-                $registerController = new App\Http\Controllers\RegisterController();
+                $registerController = new App\Http\Controllers\DashboardController();
                 $totalRegistered = $registerController->getTotalRegistered();
               @endphp
 
@@ -89,7 +156,10 @@
 
 
 
-
+                        @php
+                        $reportController = new App\Http\Controllers\DashboardController();
+                        $totalReported = $reportController->getTotalReported();
+                        @endphp
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
@@ -98,7 +168,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                Total Report</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">125</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($totalReported) }}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -108,25 +178,27 @@
                             </div>
                         </div>
 
+
+
+
+
+
+
+
+
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Lorem Ipsum
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Completed Report
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Lorem Ipsum</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $totalCompletedReports }} </div>
                                                 </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
+                                               
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -166,7 +238,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Lorem Ipsum</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Total Report Every Month</h6>
                                     <div class="dropdown no-arrow">
                                       
                                     </div>
@@ -308,10 +380,69 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+
+
+    <!-- Include Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Data for the chart
+        var chartData = {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: "Total Report",
+                backgroundColor: "rgba(78, 115, 223, 0.05)",
+                borderColor: "rgba(78, 115, 223, 1)",
+                pointRadius: 3,
+                pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointBorderColor: "rgba(78, 115, 223, 1)",
+                pointHoverRadius: 3,
+                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                pointHitRadius: 10,
+                pointBorderWidth: 2,
+                // Replace this data with your actual total report data
+                data: [{{ $totalJanuary }},  {{ $totalfebruary }},  {{ $totalMarch }},  {{ $totalApril }}, {{ $totalMay }}, {{ $totalJune }}, {{ $totalJuly }}, {{ $totalAug }}, {{ $totalSep }}, {{ $totalOct }}, {{ $totalNovember }}, {{ $totalDecember }}] ,
+            }]
+        };
+
+        // Chart configuration
+        var chartConfig = {
+            type: 'line',
+            data: chartData,
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            display: false
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function (value) {
+                                return value; // Display as it is
+                            }
+                        }
+                    }]
+                }
+            }
+        };
+
+        // Get the canvas element
+        var ctx = document.getElementById('myAreaChart').getContext('2d');
+
+        // Create the chart with the provided data and configuration
+        var myLineChart = new Chart(ctx, chartConfig);
+    });
+</script>
+
+
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
 
-    <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
     <script src="js/demo/chart-pie-demo1.js"></script>
     <script src="js/demo/bar-chart.js"></script> 
