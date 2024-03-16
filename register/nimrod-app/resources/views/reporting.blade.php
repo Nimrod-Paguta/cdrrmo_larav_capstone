@@ -68,8 +68,8 @@
                 <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
                 <td>1</td>
                 <td>T1253</td>
-                <td>-18.727286368579076</td>
-                <td>29.30572768356254</td>
+                <td>8.171969</td>
+                <td>125.0960021</td>
                 <td>5pm</td>
                 <td>5G</td>
                 <td class="text-center"><!-- Add text-center class to center content -->
@@ -167,7 +167,7 @@
             const initialLocation = { lat: lat, lng: lng };
             map = new google.maps.Map(document.getElementById("map"), {
                 center: initialLocation,
-                zoom: 8,
+                zoom: 17,
                 scrollwheel: true,
             });
 

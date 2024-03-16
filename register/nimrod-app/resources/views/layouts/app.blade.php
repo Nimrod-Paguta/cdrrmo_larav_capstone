@@ -17,6 +17,7 @@
     <link href="{{ asset('css/register.css') }}" rel="stylesheet">
     <link href="{{ asset('css/map.css') }}" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom fonts for this template-->
@@ -33,6 +34,22 @@
     <style>
         .modal-content p {
             font-size: 18px; /* You can adjust the font size accordingly */
+        }
+
+        .pop {
+            height: 670px;
+        }
+
+        #mudil{
+            display: flex;
+        }
+
+        #mark {
+            color: #C74B3B;
+        }
+
+        #table-accident, #info-accident{
+            width: 450px;
         }
     </style>
 </head>
@@ -74,42 +91,97 @@
 
             // Alert the accident data
             function proceed(data, accidentData){
-                                    // Create a modal element
+
+                const initialLocation = { lat: 8.149849666666666, lng: 125.13129416666666 };
+
+                fetch('/location', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // If CSRF protection is enabled
+                },
+                body: JSON.stringify(initialLocation)
+                })
+                .then(response => response.json())
+                .then(accidentLocation => {
+                    console.log(accidentLocation)
+
+                    // Create a modal element
                     const modal = document.createElement('div');
                     modal.className = 'modal';
                     
                     // Create modal content
                     const modalContent = document.createElement('div');
-                  
+
                     modalContent.innerHTML = `
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                    <i  class="fa-solid fa-triangle-exclamation"></i>
-                    <h3>${data.name} ${data.middlename} ${data.lastname} had an accident</h3>
-                <a href="/reporting"> <button type="button" class="btn btn-secondary">Proceed to Reporting</button></a>
-                    </div>
-                    <div class="modal-footer">
-                    
-                    </div>
-                    </div>
-                </div>
-                    `;
+                        <div class="modal-dialog modal-dialog-centered modal-xl" role="document" >
+                            <div class="modal-dialog modal-content modal-xl pop" >
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">ALERT</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="mudil">
+                                    <div style="margin-right: 50px;">
+                                        <div id="info-accident">
+                                            <i class="fa-solid fa-triangle-exclamation fa-5x" id="mark"></i>
+                                            <h2><b>ACCIDENT ALERT!</b></h2>
+                                            <h5><b>${accidentLocation.display_name}</b></h5>
+                                        </div>
+                                        <div>
+                                            <table id="table-accident" style="margin-top: 30px;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Driver</td>
+                                                        <td><b>${data.name} ${data.middlename} ${data.lastname}</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Address</td>
+                                                        <td><b>${data.barangay}, ${data.municipality} ${data.province}</b></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Car</td>
+                                                        <td><b>${data.color} ${data.brand} ${data.model}</b></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <div id="modal-map" style="height:400px; width: 700px; border-radius: 1vh; box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);" class="my-3">
+                                    </div>                                    
+                                </div>
+                               
+                                <div class="modal-footer">
+                                    <a href="/reporting">
+                                        <button type="button" class="btn btn-danger">Proceed to Reporting</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `                 
 
                     // Append content to the modal
                     modal.appendChild(modalContent);
-
                     // Append the modal to the document body
                     document.body.appendChild(modal);
-
                     // Show the modal
                     modal.style.display = 'block';
+
+                    let map;
+                    let marker;
+                    map = new google.maps.Map(document.getElementById("modal-map"), {
+                        center: initialLocation,
+                        zoom: 18,
+                        scrollwheel: true,
+                    });
+
+                    marker = new google.maps.Marker({
+                        position: initialLocation,
+                        map: map,
+                        draggable: true
+                    });
 
                     // Close the modal when clicked outside the content
                     window.onclick = function(event) {
@@ -118,6 +190,11 @@
                             document.body.removeChild(modal); // Remove the modal from the DOM
                         }
                     };
+                
+                }) // Handle the response if needed
+                .catch(error => console.error('Error:', error));
+
+                    
             } 
         }); 
 
@@ -175,6 +252,9 @@
             <!-- Main Content -->
             <div id="content">
                    <!-- Topbar -->
+
+                        
+                   
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->

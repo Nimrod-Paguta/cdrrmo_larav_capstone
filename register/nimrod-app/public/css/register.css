@@ -60,6 +60,15 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.modal-content-alert {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 1500px;
+  height: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 /* Styles for the button */
 .btn {
     padding: 5px 10px;

@@ -3,8 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\MapController;
 use Illuminate\Support\Facades\DB;
-use \Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 Route::post('/accident',[RegisterController::class, 'getUserInfo']);
-
+Route::post('/location',[MapController::class, 'getMap']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -35,7 +35,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/reporting', function () {
     return view('reporting');  
-}); 
+});
 
 
 Route::prefix('reporting')->group(function () {
