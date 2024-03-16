@@ -15,16 +15,24 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
-        /* Custom CSS styles */
+      body {
+            background-image: url('img/register/login-background.jpg'); /* Specify the path to your image */
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-position: center center; /* Center the image */
+            font-family: Arial, sans-serif; /* Specify the font family */
+            color: #ffffff; /* Text color */
+        }
+       
         .modal-body {
             padding: 40px;
         }
         .login-logo {
             margin-bottom: 30px;
             .login-logo img {
-        width: 50px; /* Set the width as needed */
-        height: auto; /* Let the height adjust automatically to maintain aspect ratio */
-    }
+                width: 50px; /* Set the width as needed */
+                height: auto; /* Let the height adjust automatically to maintain aspect ratio */
+            }
         }
         .login-heading {
             margin-bottom: 20px;
@@ -36,25 +44,46 @@
         .create-account-link {
             margin-top: 10px;
         }
+
+        .primary-button {
+            background-color: #C74B3B; /* Primary color */
+            color: #fff; /* Text color */
+            padding: 10px 20px; /* Adjust padding as needed */
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer;
+            font-size: 16px; /* Adjust font size as needed */
+            width: 410px;
+        }
+
+        /* Custom styling for alternative buttons */
+        .custom-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 410px;
+        }
+        .clickable-heading {
+            color: white;
+         
+            padding: 10px 20px;
+          
+            cursor: pointer;
+            font-size: 20px;
+            width: 200px;
+            text-align: center;
+            display: inline-block;
+            margin-bottom: 10px; /* Adjust margin as needed */
+            text-decoration: none; /* Remove underline */
+        }
+
     </style>
 </head>
 <body>
-
-<div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-            @if (Route::has('login'))
-                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-        </div>
 
 
 
@@ -83,19 +112,30 @@
 
 
 
+    <div>
+        
+    <img src="{{ asset('img/register/new-logo-black.png') }}" class="img-fluid" alt="Logo" style="width: 480px; height: auto; padding-left:20px; padding-top: 5px;">
+    
+    <img src="{{ asset('img/register/Logo_of_Bukidnon_State_University.png') }}" class="img-fluid" alt="Logo" style="width: 105px; height: auto; padding-left:20px; padding-top: 5px;">
+    
+
+
+    <h1 class="clickable-heading">
+       About Us
+    </h1>
+    <h1 class="clickable-heading" >
+        Contact Us
+    </h1>
+    <h1 class="clickable-heading" id="loginButton">
+        Log in
+    </h1>
+    <h1 class="clickable-heading" id="registerButton">
+        Register
+    </h1>
+</div>
 
 
 
-
-
-<!-- Button to trigger modal -->
-<button type="button" class="btn btn-primary" id="loginButton">
-    Login
-</button>
-
-<button type="button" class="btn btn-primary" id="registerButton">
-    Register
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -106,7 +146,7 @@
                     <img src="{{ asset('img/register/logo.png') }}" class="img-fluid" alt="Logo">
                 </div>
                 <div class="text-center login-heading">
-                    <h1 class="h4 text-gray-900">City Disaster Risk Reduction Management Office</h1>
+                    <h1 class="h4 text-gray-900"><b>City Disaster Risk Reduction Management Office</b></h1>
                 </div>
                
         <form class="user login-form" method="POST" action="{{ route('login') }}">
@@ -147,10 +187,12 @@
                 </a>
             @endif
 
-            <x-primary-button>
-                {{ __('Log in') }}
-            </x-primary-button>
+           
         </div>
+        <button class="primary-button">
+    {{ __('Log in') }}
+</button>
+
     </form>
 
 
@@ -173,7 +215,7 @@
                     <img src="{{ asset('img/register/logo.png') }}" class="img-fluid" alt="Logo">
                 </div>
                 <div class="text-center login-heading">
-                    <h1 class="h4 text-gray-900">City Disaster Risk Reduction Management Office</h1>
+                    <h1 class="h4 text-gray-900"><b>City Disaster Risk Reduction Management Office</b></h1>
                 </div>
                
         <form method="POST" action="{{ route('register') }}" >
@@ -207,7 +249,7 @@
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4 form-group">
+        <div class=" form-group">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full block mt-1 w-full form-control form-control-user"
@@ -216,17 +258,11 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
-
-        <div class="flex items-center justify-end mt-4 form-group">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
+        <button class="primary-button">
+    {{ __('Register') }}
+</button>
     </form>
+   
               
             </div>
         </div>
@@ -239,18 +275,12 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<!-- Script to trigger the modal -->
 <script>
     $(document).ready(function(){
         $("#loginButton").click(function(){
             $("#loginModal").modal('show');
         });
-    });
-</script>
 
-<!-- Script to trigger the modal -->
-<script>
-    $(document).ready(function(){
         $("#registerButton").click(function(){
             $("#registerModal").modal('show');
         });
