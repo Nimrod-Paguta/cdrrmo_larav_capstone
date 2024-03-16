@@ -40,7 +40,11 @@
             height: 670px;
         }
 
-        #mudil{
+        .register-modal {
+            height: 800px;
+        }
+
+        #mudil {
             display: flex;
         }
 
@@ -118,9 +122,6 @@
                             <div class="modal-dialog modal-content modal-xl pop" >
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLongTitle">ALERT</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
                                 </div>
                                 <div class="modal-body" id="mudil">
                                     <div style="margin-right: 50px;">

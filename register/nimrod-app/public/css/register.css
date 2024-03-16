@@ -189,6 +189,36 @@ body {
   padding: 10px; /* Header padding */
 }
 
+#line{
+  color: #ffffff;
+}
+
+.first-line{
+  display: flex;
+}
+
+#edit-button {
+  width: 100% !important;
+  margin-top: 20px;
+}
+
+#edit-button-div {
+  width: 100% !important;
+}
+
+#vehicle-update {
+  background-color: #4CAF50;
+  width: 550px;
+}
+
+.vehicle-update-forms {
+  width: 520px;
+}
+
+#update-form-div {
+width: 100%;
+padding: 30px;;
+}
 
 
 

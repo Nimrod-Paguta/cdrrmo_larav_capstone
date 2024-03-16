@@ -18,11 +18,12 @@ class register extends Model
         'municipality',
         'province',
         'contactnumber',
+        'emergencynumber',
+        'medicalcondition',
         'brand',
         'model',
         'vehiclelicense',
-        'placard', 
         'color',
-        'date',
+        'type',
     ];
 }

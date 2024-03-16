@@ -43,13 +43,14 @@ class RegisterController extends Controller
             'barangay' => 'required|string',
             'municipality' => 'required|string',
             'province' => 'required|string',
-            'contactnumber' => 'required|string',
+            'contactnumber' => 'required|numeric',
+            'emergencynumber' => 'required|numeric',
+            'medicalcondition' => 'nullable|string',
             'brand' => 'required|string',
             'model' => 'required|string',
             'vehiclelicense' => 'required|string',
-            'placard' => 'required|string',
             'color' => 'required|string',
-            'date' => 'required|string',
+            'type' => 'required|string',
         ]);
 
         $user = Register::create($validatedData);
@@ -91,13 +92,14 @@ class RegisterController extends Controller
             'barangay' => 'required|string',
             'municipality' => 'required|string',
             'province' => 'required|string',
-            'contactnumber' => 'required|string',
+            'contactnumber' => 'required|numeric',
+            'emergencynumber' => 'required|numeric',
+            'medicalcondition' => 'nullable|string',
             'brand' => 'required|string',
             'model' => 'required|string',
             'vehiclelicense' => 'required|string',
-            'placard' => 'required|string',
             'color' => 'required|string',
-            'date' => 'required|string',
+            'type' => 'required|string',
         ]);
 
         $registers = Register::findOrFail($id);

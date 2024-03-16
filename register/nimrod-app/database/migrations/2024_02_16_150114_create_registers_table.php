@@ -14,18 +14,19 @@ return new class extends Migration
         Schema::create('registers', function (Blueprint $table) {
             $table->id();
             $table->string("name"); 
-            $table->string("middlename"); 
+            $table->string("middlename")->nullable(); 
             $table->string("lastname"); 
             $table->string("barangay");
             $table->string("municipality");  
             $table->string("province");
-            $table->string("contactnumber");
+            $table->unsignedBigInteger("contactnumber");
+            $table->unsignedBigInteger("emergencynumber");
+            $table->string("medicalcondition")->nullable();
             $table->string("brand");
             $table->string("model");
             $table->string("vehiclelicense");
-            $table->string("placard");
             $table->string("color");
-            $table->string("date");      
+            $table->string("type");
             $table->timestamps();
         });
     }

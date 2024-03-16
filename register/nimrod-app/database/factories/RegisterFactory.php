@@ -24,12 +24,14 @@ class RegisterFactory extends Factory
             'municipality' => $this->faker->word,
             'province' => $this->faker->word,
             'contactnumber' => $this->faker->phoneNumber,
+            'emergencynumber' => $this->faker->phoneNumber,
+            'medicalcondition' => $this->faker->word,
             'brand' => $this->faker->word,
             'model' => $this->faker->word,
             'vehiclelicense' => $this->faker->word,
             'placard' => $this->faker->word,
             'color' => $this->faker->colorName,
-            'date' => $this->faker->date,
+            'type' => $this->faker->word,
         ];
     }
 }
