@@ -16,7 +16,7 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
       body {
-            background-image: url('img/register/login-background.jpg'); /* Specify the path to your image */
+            background-image: url('img/register/background-squad.png'); /* Specify the path to your image */
             background-size: cover; /* Cover the entire background */
             background-repeat: no-repeat; /* Do not repeat the image */
             background-position: center center; /* Center the image */
@@ -33,6 +33,7 @@
                 width: 50px; /* Set the width as needed */
                 height: auto; /* Let the height adjust automatically to maintain aspect ratio */
             }
+
         }
         .login-heading {
             margin-bottom: 20px;
@@ -79,6 +80,12 @@
             display: inline-block;
             margin-bottom: 10px; /* Adjust margin as needed */
             text-decoration: none; /* Remove underline */
+        }
+
+        .img-fluid {
+            /* Adjust the width and height as needed */
+            width: 200px;
+            height: auto; /* Maintain aspect ratio */
         }
 
     </style>
@@ -143,7 +150,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="text-center login-logo">
-                    <img src="{{ asset('img/register/logo.png') }}" class="img-fluid" alt="Logo">
+                    <img src="{{ asset('img/register/logo_cdrrmo-new.png') }}" class="img-fluid" alt="Logo">
                 </div>
                 <div class="text-center login-heading">
                     <h1 class="h4 text-gray-900"><b>City Disaster Risk Reduction Management Office</b></h1>
@@ -212,7 +219,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="text-center login-logo">
-                    <img src="{{ asset('img/register/logo.png') }}" class="img-fluid" alt="Logo">
+                    <img src="{{ asset('img/register/logo_cdrrmo-new.png') }}" class="img-fluid" alt="Logo">
                 </div>
                 <div class="text-center login-heading">
                     <h1 class="h4 text-gray-900"><b>City Disaster Risk Reduction Management Office</b></h1>

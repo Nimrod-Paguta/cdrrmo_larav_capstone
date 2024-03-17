@@ -17,21 +17,20 @@ class RegisterFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name,
-            'middlename' => $this->faker->lastName,
+            'name' => $this->faker->firstName,
+            'middlename' => $this->faker->optional()->lastName,
             'lastname' => $this->faker->lastName,
-            'barangay' => $this->faker->word,
-            'municipality' => $this->faker->word,
-            'province' => $this->faker->word,
-            'contactnumber' => $this->faker->phoneNumber,
-            'emergencynumber' => $this->faker->phoneNumber,
-            'medicalcondition' => $this->faker->word,
+            'barangay' => $this->faker->streetName,
+            'municipality' => $this->faker->city,
+            'province' => $this->faker->state,
+            'contactnumber' => $this->faker->numerify('##########'),
+            'emergencynumber' => $this->faker->numerify('##########'),
+            'medicalcondition' => $this->faker->optional()->sentence,
             'brand' => $this->faker->word,
             'model' => $this->faker->word,
-            'vehiclelicense' => $this->faker->word,
-            'placard' => $this->faker->word,
+            'vehiclelicense' => $this->faker->bothify('???###'),
             'color' => $this->faker->colorName,
-            'type' => $this->faker->word,
+            'type' => $this->faker->randomElement(['Private', 'Public']),
         ];
     }
 }

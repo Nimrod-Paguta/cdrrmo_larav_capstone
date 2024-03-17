@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MapController;
 use Illuminate\Support\Facades\DB;
 /*
@@ -62,6 +63,9 @@ Route::get('registerpage/edit/{id}', 'App\Http\Controllers\RegisterController@ed
 Route::put('/registerpage/{id}', [RegisterController::class, 'update'])->name('registerpage.update');
 Route::delete('/registerpage/{id}', [RegisterController::class, 'destroy'])->name('registerpage.destroy'); 
 Route::get('/registerpage/{id}', [RegisterController::class, 'show'])->name('registerpage.view');
+
+
+Route::get('/dashboard', [DashboardController::class, 'recentRegisters'])->name('dashboard');
 
 
 

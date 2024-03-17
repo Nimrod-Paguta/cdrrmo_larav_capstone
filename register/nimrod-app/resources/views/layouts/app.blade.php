@@ -204,49 +204,47 @@
 
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        
-        <ul class="navbar-nav sidecolor sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}" :class="{ 'active': request()->routeIs('dashboard') }">
-                <div class="sidebar-brand-text mx-3"> CDRRMO</div>
-                <div class="sidebar-brand-text mx-3">  <img src="{{ asset('img/register/logo.png') }}" alt="Description of the image" ></div>
-            </a>
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="/dashboard">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Home</span></a>
-            </li>
-
-            <li class="nav-item active">
-                <a class="nav-link" href="/reporting">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Reporting</span></a>
-            </li>
-
-            <li class="nav-item active">
-                <a class="nav-link" href="/registerpage">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Register</span></a>
-            </li>
 
 
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+
+
+
+
+
 
     
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white sidecolor" style="width: 280px; height:127vh; ">
+    <a href="{{ route('dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+ 
+      <div class="sidebar-brand-text mx-3" >  <img src="{{ asset('img/register/logo_cdrrmo-new.png') }}" alt="Description of the image" ></div>
+    </a>
+    <h2 style="text-align: center; "><b>CDRRMO</b></h2>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+        <a href="/dashboard" class="nav-link text-white">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="/reporting" class="nav-link text-white">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          Reporting
+        </a>
+      </li>
+      <li>
+        <a href="/registerpage" class="nav-link text-white">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          Register
+        </a>
+      </li>
+    </ul>
+  </div>
 
-        </ul>
-        <!-- End of Sidebar -->
-    
 
         <div id="content-wrapper" class="d-flex flex-column">
 

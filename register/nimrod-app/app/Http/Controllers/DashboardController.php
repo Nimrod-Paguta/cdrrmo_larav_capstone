@@ -5,6 +5,8 @@ use App\Models\Register;
 use Illuminate\Http\Request;
 use App\Models\Report; 
 
+use Illuminate\Support\Facades\DB;
+
 class DashboardController extends Controller
 {
     /**
@@ -14,6 +16,7 @@ class DashboardController extends Controller
     {
         //
     }
+    
 
     
     public function getTotalReported()
@@ -119,6 +122,21 @@ class DashboardController extends Controller
         return $totalDecember;
     }
 
+    public function getTotalPublicVehicle()
+    {
+        $totalPublicVehicle = Register::where('type', 'Public')->count();
+
+        return $totalPublicVehicle;
+    }
+
+    public function getTotalPrivateVehicle()
+    {
+        $totalPrivateVehicle = Register::where('type', 'Private')->count();
+
+        return $totalPrivateVehicle;
+    }
+
+
     
 
     
@@ -147,6 +165,21 @@ class DashboardController extends Controller
     {
         //
     }
+
+    public function registerpage()
+    {
+        $registers = Register::all(); 
+        return view('dashboard')->with('registers', $registers);
+    }
+
+
+    public function recentRegisters()
+{
+    // Fetch the recent registered users, ordered by their creation date
+    $recentRegisters = Register::orderBy('created_at', 'desc')->take(5)->get();
+    
+    return view('dashboard')->with('recentRegisters', $recentRegisters);
+}
 
     /**
      * Display the specified resource.
