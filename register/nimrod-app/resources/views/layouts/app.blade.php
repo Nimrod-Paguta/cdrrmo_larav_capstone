@@ -73,8 +73,11 @@
             // Add the received message to the DOM
             accident = "Sender: " + message.sender + "\nDate: " + message.date + "\nMessage: " + message.content;
             sender = message.sender.replace('+63', '0');
+            let userid = message.content.split('&%&')[0];
+            let intValue = parseInt(userid);
             // Send the accident data to a Laravel route using AJAX
             const accidentData = {
+                id: intValue,
                 sender: sender,
                 date: message.date,
                 content: message.content

@@ -51,8 +51,6 @@ Route::prefix('/')->group(function (){
    
 }); 
 
-});
-
 Route::get('/registerpage', function () {
     $registers = DB::table('registers')->get();
     return view('registerpage', [
@@ -66,6 +64,10 @@ Route::get('/registerpage/{id}', [RegisterController::class, 'show'])->name('reg
 
 
 Route::get('/dashboard', [DashboardController::class, 'recentRegisters'])->name('dashboard');
+
+});
+
+
 
 
 
