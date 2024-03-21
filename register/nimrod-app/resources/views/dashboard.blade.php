@@ -198,8 +198,8 @@
              data-target="#myModal">
              <!-- <img width="40" height="30" src="https://img.icons8.com/ios/50/alarm--v1.png" alt="alarm--v1"/> -->
          </a>
-         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+         {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
      </div>
 
 
@@ -431,7 +431,7 @@
 
          <!-- Pie Chart -->
          <div class="col-xl-4 col-lg-5">
-             <h6 class="m-0 font-weight-bold text-primary">Recently Added Registered Users</h6>
+             <h6 class="m-0 font-weight-bold text-primary">Recently Added Users</h6>
              <div class="card shadow mb-4">
                  <!-- Card Header - Dropdown -->
                  <div class="table-responsive tablename">
@@ -462,7 +462,7 @@
 
          <!-- Pie Chart -->
          <div class="col-xl-4 col-lg-5">
-             <div class="card shadow mb-4">
+             <div class="card shadow mb-4" style="width: 450px;">
                  <!-- Card Header - Dropdown -->
                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                      <h6 class="m-0 font-weight-bold text-primary">Pie Chart</h6>
@@ -507,28 +507,24 @@
          <!-- Bar Chart -->
 
          <div class="col-xl-4 col-lg-7">
-             <div class="card shadow mb-4">
-                 <canvas id="barChart" style="height: 410px;"></canvas>
+             <div class="card shadow mb-4" style="margin-left: -60px;">
+                 <canvas id="barChart" style="height: 410px; margin-right: 20px;" ></canvas>
              </div>
          </div>
 
          <div class="col-xl-4 col-lg-4">
-             {{-- <div class="card shadow mb-4"  style="height: 400px;">
+            <h6 class="m-0 font-weight-bold text-primary">Recent Accident</h6>
+
+             <div class="card shadow mb-4"  style="height: 400px;">
              <!--Google map-->
-                        <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
+                        {{-- <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 500px">
                         <iframe src="https://maps.google.com/maps?q=malaybalay&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
                             style="border:0" allowfullscreen></iframe>
-                        </div>
+                        </div> --}}
                         <!--Google Maps-->
-            </div> --}}
-             <table>
-                 <tbody>
-                     <tr>
-                         <td>Driver</td>
-                         <td>sdsdfsd</td>
-                     </tr>
-                 </tbody>
-             </table>
+                        <div id="map-container-google-1" class="z-depth-1-half map-container" style="height:500px; border-radius: 1vh; box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);"></div>
+            </div>
+             
          </div>
 
          <!-- Scroll to Top Button-->
@@ -851,6 +847,44 @@
                  }
              });
          </script>
+
+         
+
+         <script>
+            const initialLocation = { lat: 8.149849666666666, lng: 125.13129416666666 };
+            const initialLocation2 = { lat: 8.149834333333333, lng: 125.1315816666667 };
+
+            fetch('/location', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}' // If CSRF protection is enabled
+            },
+            body: JSON.stringify(initialLocation)
+            })
+            .then(response => response.json())
+            .then(accidentLocation => {
+                console.log(accidentLocation)
+            let map;
+            let marker;
+            map = new google.maps.Map(document.getElementById("map-container-google-1"), {
+                center: initialLocation,
+                zoom: 18,
+                scrollwheel: true,
+            });
+
+            marker = new google.maps.Marker({
+                position: initialLocation,
+                map: map,
+                draggable: true
+            });
+
+
+            })
+               
+         </script>
+
+         
 
 
 
