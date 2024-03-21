@@ -16,7 +16,14 @@ class DashboardController extends Controller
     {
         //
     }
+
+      
+    public function getTotalVehicle()
+    {
+        $totalVehicle = Register::whereNotNull('vehiclelicense')->count();
     
+        return $totalVehicle;
+    }
 
     
     public function getTotalReported()

@@ -32,7 +32,7 @@
     <link href="css/modal.css" rel="stylesheet">
     
     <style>
-        .modal-content p {
+        .modal-content p { 
             font-size: 18px; /* You can adjust the font size accordingly */
         }
 
@@ -217,36 +217,38 @@
 
 
     
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-white sidecolor" style="width: 280px; height:127vh; ">
-    <a href="{{ route('dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
- 
-      <div class="sidebar-brand-text mx-3" >  <img src="{{ asset('img/register/logo_cdrrmo-new.png') }}" alt="Description of the image" ></div>
-    </a>
-    <h2 style="text-align: center; "><b>CDRRMO</b></h2>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-        <a href="/dashboard" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          Dashboard
-        </a>
-      </li>
-      <li>
-        <a href="/reporting" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          Reporting
-        </a>
-      </li>
-      <li>
-        <a href="/registerpage" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          Register
-        </a>
-      </li>
-    </ul>
-  </div>
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-white sidecolor" style="width: 280px; height:127vh; ">
+  <a href="{{ route('dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <div class="sidebar-brand-text mx-3"><img src="{{ asset('img/register/logo_cdrrmo-new.png') }}" alt="Description of the image"></div>
+  </a>
+  <h2 style="text-align: center;"><b>CDRRMO</b></h2>
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li style="padding-top: 5px;">
+      <a  href="/dashboard" class="nav-link text-white {{ Request::is('dashboard') ? 'active' : '' }}" >
+        <svg class="bi me-2" width="16" height="9"><use xlink:href="#speedometer2"/></svg>
+        <i class="fa-solid fa-house" style="padding-right: 16px;"></i>
+        Dashboard
+      </a>
+    </li>
+    <li style="padding-top: 10px;">
+      <a href="/reporting" class="nav-link text-white {{ Request::is('reporting') ? 'active' : '' }}">
+        <svg class="bi me-2" width="16" height="9"><use xlink:href="#table"/></svg>
+        <i class="fa-solid fa-phone" style="padding-right: 16px;"></i>
+        Reporting
+      </a>
+    </li>
+    <li style="padding-top: 10px;">
+      <a href="/registerpage" class="nav-link text-white {{ Request::is('registerpage') ? 'active' : '' }}">
+        <svg class="bi me-2" width="16" height="9""><use xlink:href="#grid"/></svg>
+        <i class="fa-regular fa-user" style="padding-right: 16px;"></i>
+        Register
+      </a>
+    </li>
+  </ul>
+</div>
+
+
 
 
         <div id="content-wrapper" class="d-flex flex-column">
@@ -325,6 +327,9 @@
             </div>
         </div>
     </div>
+
+
+    
     
     
 </body>

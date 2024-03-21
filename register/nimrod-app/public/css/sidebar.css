@@ -1,3 +1,19 @@
-.sidecolor{
+.sidecolor {
     background-color: #C74B3B;
+}
+
+.nav-link.active,
+.nav-link.active:hover {
+    color: white !important; /* Ensure white color */
+    background-color: rgba(255, 255, 255, 0.1) !important; /* Slight color change on hover */
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Slight color change on hover */
+}
+
+.nav-link {
+    color: white !important; /* Ensure white color */
+   
+    text-decoration: none; /* Remove underline from links */
 }
