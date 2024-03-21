@@ -11,7 +11,7 @@
         @endif
         
         <h3>Register</h3>
-        <button class="btn" onclick="openModal()">+ register</button>
+        <button class="btn btn-success" onclick="openModal()">+ register</button>
         <table id="yourDataTableID" class="table table-striped" style="width:100%">
             <thead class="table-header">
             <tr>
