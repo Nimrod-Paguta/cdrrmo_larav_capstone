@@ -41,10 +41,10 @@
                 <form action="{{ route('registerpage.destroy', $register->id) }}" method="POST" style="display:inline;">
                 @csrf
                 @method('DELETE')
-                <button type="submit">Delete</button>
+                <button type="submit" class="btn btn-danger actions-buttons">Delete</button>
                 </form>
-                <a class="ahhh"  href="{{ route('registerpage.edit', ['id' => $register->id]) }}">edit</a>
-                <a  href="{{ route('registerpage.view', ['id' => $register->id]) }}">view</a>
+                <a class="ahhh"  href="{{ route('registerpage.edit', ['id' => $register->id]) }}"><button type="submit" class="btn btn-warning actions-buttons">Edit</button></a>
+                <a  href="{{ route('registerpage.view', ['id' => $register->id]) }}"><button type="submit" class="btn btn-secondary actions-buttons">View</button></a>
               
 
                 </td>
