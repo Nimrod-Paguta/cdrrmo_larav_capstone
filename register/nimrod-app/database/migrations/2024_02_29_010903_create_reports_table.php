@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string("gforce");
             $table->string("status");  
             $table->string("month");      
+            $table->string("barangay"); 
+            $table->string("city");  
             $table->timestamps();
         });
     }

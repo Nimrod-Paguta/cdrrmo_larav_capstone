@@ -1,7 +1,13 @@
 <x-app-layout>
+    <style>
+        .hayt{
+            height: 100vh;
+        }
+    </style>
+<div class = "hayt">
+    
 
-
-        @if ($errors->any())
+@if ($errors->any())
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     @foreach ($errors->all() as $error)
                         {{ $error }}
@@ -243,4 +249,5 @@
 
             
         
+</div>
 </x-app-layout> 

@@ -198,8 +198,8 @@
              data-target="#myModal">
              <!-- <img width="40" height="30" src="https://img.icons8.com/ios/50/alarm--v1.png" alt="alarm--v1"/> -->
          </a>
-         {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
+          <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> 
      </div>
 
 
@@ -427,14 +427,6 @@
 
 
 
-
-
-
-
-
-
-
-
          <!-- Pie Chart -->
          <div class="col-xl-4 col-lg-5">
              <h6 class="m-0 font-weight-bold text-primary">Recently Added Users</h6>
@@ -466,9 +458,17 @@
          </div>
 
 
+
+
+
+         
+
+         
+
+
          <!-- Pie Chart -->
          <div class="col-xl-4 col-lg-5">
-             <div class="card shadow mb-4" style="width: 450px;">
+             <div class="card shadow mb-4" style="width: auto;">
                  <!-- Card Header - Dropdown -->
                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                      <h6 class="m-0 font-weight-bold text-primary">Pie Chart</h6>
@@ -513,11 +513,15 @@
          <!-- Bar Chart -->
 
          <div class="col-xl-4 col-lg-7">
-             <div class="card shadow mb-4" style="margin-left: -60px;">
-                 <canvas id="barChart" style="height: 410px; margin-right: 20px;" ></canvas>
+             <div class="card shadow mb-4" >
+                 <canvas id="barChart" style="height: 420px;" ></canvas>
              </div>
          </div>
 
+
+
+
+         
          <div class="col-xl-4 col-lg-4">
             <h6 class="m-0 font-weight-bold text-primary">Recent Accident</h6>
 
@@ -532,6 +536,16 @@
             </div>
              
          </div>
+
+
+
+
+
+
+
+
+
+         
 
          <!-- Scroll to Top Button-->
          <a class="scroll-to-top rounded" href="#page-top">
@@ -809,50 +823,52 @@
          </script>
 
 
-         <script>
-             var ctxB = document.getElementById("barChart").getContext('2d');
-             var myBarChart = new Chart(ctxB, {
-                 type: 'bar',
-                 data: {
-                     labels: ["Registered Driver", "Completed Reports", "Total Reports", "Private Vehicle",
-                         "Public Vehicle",
-                     ],
-                     datasets: [{
-                         label: 'Overall Data',
-                         data: [{{ number_format($totalRegistered) }}, {{ $totalCompletedReports }},
-                             {{ number_format($totalReported) }}, {{ $totalPrivateVehicle }},
-                             {{ $totalPublicVehicle }},
-                         ],
-                         backgroundColor: [
-                             'rgba(255, 99, 132, 0.2)',
-                             'rgba(54, 162, 235, 0.2)',
-                             'rgba(255, 206, 86, 0.2)',
-                             'rgba(75, 192, 192, 0.2)',
-                             'rgba(153, 102, 255, 0.2)',
+@php
+    $topBarangays = App\Models\Report::select('barangay', \DB::raw('COUNT(*) as total'))
+                        ->groupBy('barangay')
+                        ->orderByDesc('total')
+                        ->limit(10)
+                        ->pluck('total', 'barangay');
+@endphp
 
-                         ],
-                         borderColor: [
-                             'rgba(255,99,132,1)',
-                             'rgba(54, 162, 235, 1)',
-                             'rgba(255, 206, 86, 1)',
-                             'rgba(75, 192, 192, 1)',
-                             'rgba(153, 102, 255, 1)',
 
-                         ],
-                         borderWidth: 1
-                     }]
-                 },
-                 options: {
-                     scales: {
-                         yAxes: [{
-                             ticks: {
-                                 beginAtZero: true
-                             }
-                         }]
-                     }
-                 }
-             });
-         </script>
+<script>
+    var ctxB = document.getElementById("barChart").getContext('2d');
+    var myBarChart = new Chart(ctxB, {
+        type: 'bar',
+        data: {
+            labels: {!! json_encode($topBarangays->keys()) !!},
+            datasets: [{
+                label: 'Total Reports by Barangay',
+                data: {!! json_encode($topBarangays->values()) !!},
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
 
          
 

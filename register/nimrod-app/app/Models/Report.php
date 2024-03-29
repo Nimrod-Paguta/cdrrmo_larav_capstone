@@ -16,8 +16,11 @@ class Report extends Model
         'longitude', 
         'time',
         'gforce',
+        'barangay', 
+        'city', 
         'status',
         'month',
         'status', 
     ];
 }
+

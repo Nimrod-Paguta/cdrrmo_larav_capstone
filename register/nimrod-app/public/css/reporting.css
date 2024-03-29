@@ -72,4 +72,6 @@ body {
   .btn:hover {
     opacity: 0.8;
   }
-  
+  .sample{
+    color: #d4777149;
+  }
