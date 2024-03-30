@@ -73,8 +73,14 @@
             // Add the received message to the DOM
             accident = "Sender: " + message.sender + "\nDate: " + message.date + "\nMessage: " + message.content;
             sender = message.sender.replace('+63', '0');
+
             let userid = message.content.split('&%&')[0];
+            let coordinates = message.content.split('&%&')[1];
+            let gforce = message.content.split('&%&')[2];
             let intValue = parseInt(userid);
+            let latitude = coordinates.split('///')[0];
+            let longitude = coordinates.split('///')[1];
+
             // Send the accident data to a Laravel route using AJAX
             const accidentData = {
                 id: intValue,
@@ -99,7 +105,7 @@
             // Alert the accident data
             function proceed(data, accidentData){
 
-                const initialLocation = { lat: 8.149849666666666, lng: 125.13129416666666 };
+                const initialLocation = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
 
                 fetch('/location', {
                 method: 'POST',
