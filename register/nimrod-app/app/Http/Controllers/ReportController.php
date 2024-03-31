@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Report; 
+use App\Models\Register; 
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -50,7 +51,8 @@ class ReportController extends Controller
     public function show($id)
     {
         $report = Report::findOrFail($id);
-        return view('reporting.view', compact('report'));
+        $register = Register::findOrFail($report->id);
+        return view('reporting.view', compact('report', 'register'));
     }
     /**
      * Show the form for editing the specified resource.
