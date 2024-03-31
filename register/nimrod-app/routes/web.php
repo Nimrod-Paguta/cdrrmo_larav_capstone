@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MapController;
 use Illuminate\Support\Facades\DB;
@@ -44,6 +45,10 @@ Route::prefix('reporting')->group(function () {
         // Matches The "/admin/users" URL
     });
 });
+
+Route::get('/reporting', [ReportController::class, 'index'])->name('reporting.index');
+Route::get('/reporting/{id}', [ReportController::class, 'show'])->name('reporting.view');
+
 
 Route::prefix('/')->group(function (){
     
