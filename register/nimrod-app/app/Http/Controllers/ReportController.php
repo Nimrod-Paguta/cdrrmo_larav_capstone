@@ -11,7 +11,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        //
+        $reports = Report::all();
+        return view('reporting', ['reports' => $reports]);
     }
 
     /**
@@ -49,11 +50,11 @@ class ReportController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $report = Report::findOrFail($id);
+        return view('reporting.view', compact('report'));
     }
-
     /**
      * Show the form for editing the specified resource.
      */
