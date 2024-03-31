@@ -12,15 +12,15 @@ class Report extends Model
 
     protected $fillable = [
         'registereduserid',
-        'latitude', 
-        'longitude', 
-        'time',
-        'gforce',
-        'barangay', 
-        'city', 
-        'status',
-        'month',
-        'status', 
+            'latitude',
+            'longitude',
+            'time',
+            'gforce',
+            'status',
+            'month',
+            'barangay',
+            'city',
+            'address'
     ];
 }
 

@@ -22,6 +22,7 @@ class MapController extends Controller
         $response = $client->request('GET', 'https://nominatim.openstreetmap.org/reverse?format=json&lat='.$latitude.'&lon='.$longitude.'&zoom=18&addressdetails=1');
 
         $mapData = json_decode($response->getBody());
+        $mapData->crashwatch_city = env('CRASHWATCH_CITY');
 
         return $mapData;
     }

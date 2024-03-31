@@ -22,6 +22,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/post_report', [ReportController::class, 'store'])->name('reporting.post');
+
 Route::post('/accident',[RegisterController::class, 'getUserInfo']);
 Route::post('/location',[MapController::class, 'getMap']);
 
@@ -49,19 +51,13 @@ Route::prefix('reporting')->group(function () {
 Route::get('/reporting', [ReportController::class, 'index'])->name('reporting.index');
 Route::get('/reporting/{id}', [ReportController::class, 'show'])->name('reporting.view');
 
-
 Route::prefix('/')->group(function (){
     
     Route::post("/registerpage",[RegisterController::class, 'store'])->name('users.post');   
    
 }); 
 
-Route::get('/registerpage', function () {
-    $registers = DB::table('registers')->get();
-    return view('registerpage', [
-        'registers' => $registers
-    ]);
-})->name('registerpage');
+Route::get('/registerpage',[RegisterController::class, 'getRegisters'])->name('registerpage');
 Route::get('registerpage/edit/{id}', 'App\Http\Controllers\RegisterController@edit')->name('registerpage.edit');
 Route::put('/registerpage/{id}', [RegisterController::class, 'update'])->name('registerpage.update');
 Route::delete('/registerpage/{id}', [RegisterController::class, 'destroy'])->name('registerpage.destroy'); 
