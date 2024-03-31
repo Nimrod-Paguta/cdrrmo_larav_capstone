@@ -115,12 +115,21 @@ class RegisterController extends Controller
     public function getUserInfo(Request $request){
 
         $userID = $request->id;
+        $key = $request->key;
 
-        $user = Register::where('id', $userID)->first();
+        if($key == env('CRASHWATCH_KEY')){
+            $user = Register::where('id', $userID)->first();
 
-        // You might want to handle cases where the user is not found
-        if ($user) {
-            return response()->json($user);
+            if ($user) {
+                return response()->json($user);
+            }else{
+                return null;
+            }
+
+        }else{
+            return null;
         }
+
+        
     }
 }

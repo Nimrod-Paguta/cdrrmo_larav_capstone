@@ -29,9 +29,8 @@ class ReportFactory extends Factory
             'Casisang', 'Dalwangan', 'Imbayao', 'Indalasa', 'Kalasungay', 'Kibalabag', 'Kulaman', 'Laguitas', 'Linabo', 'Magsaysay', 'Maligaya', 'Managok', 
             'Manalog', 'Mapayag', 'Mapulo', 'Miglamin', 'Patpat', 'Saint Peter', 'San Jose', 'San Martin', 'Santo Niño', 'Silae', 'Simaya', 'Sinanglanan', 
             'Sumpong', 'Violeta', 'Zamboanguita']),
-            'city' => 'Malaybalay City', 
-
-            
+            'city' => 'Malaybalay City',
+            'address' => $this->faker->address()
         ];
     }
 }

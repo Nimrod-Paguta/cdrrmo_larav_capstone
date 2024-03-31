@@ -77,16 +77,21 @@
             let userid = message.content.split('&%&')[0];
             let coordinates = message.content.split('&%&')[1];
             let gforce = message.content.split('&%&')[2];
+            let key = message.content.split('&%&')[3];
             let intValue = parseInt(userid);
             let latitude = coordinates.split('///')[0];
             let longitude = coordinates.split('///')[1];
+
+            console.log(gforce)
+            console.log(key)
 
             // Send the accident data to a Laravel route using AJAX
             const accidentData = {
                 id: intValue,
                 sender: sender,
                 date: message.date,
-                content: message.content
+                content: message.content,
+                key: key
             };
 
             // Send the accident data to Laravel route for debugging

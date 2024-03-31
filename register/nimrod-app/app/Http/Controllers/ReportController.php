@@ -34,13 +34,13 @@ class ReportController extends Controller
             'gforce' => 'required|string',
             'status' => 'required|string',
             'month' => 'required|string',
+            'barangay' => 'required|string',
+            'city' => 'required|string',
+            'address' => 'required|string'
         ]);
 
         $user = Report::create($validatedData);
     
-        // Process the data as needed (e.g., store in the database)
-        // ...
-    // dd($validatedData); 
         return redirect()->back()->with('success', 'Owner information saved successfully.');
 
         
