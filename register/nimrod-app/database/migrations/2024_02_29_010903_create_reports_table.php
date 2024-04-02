@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->string("registereduserid"); 
-            $table->string("latitude"); 
-            $table->string("longitude"); 
+            $table->unsignedBigInteger("registereduserid"); 
+            $table->float("latitude"); 
+            $table->float("longitude"); 
             $table->string("time"); 
-            $table->string("gforce");
+            $table->float("gforce");
             $table->string("status");  
-    $table->string("month");      
+            $table->string("month");      
             $table->string("barangay"); 
             $table->string("city");
             $table->string("address");  

@@ -28,24 +28,21 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
+        // return view('welcome');
         $validatedData = $request->validate([
-            'registereduserid' => 'required|string',
-            'latitude' => 'nullable|string',
-            'longitude' => 'nullable|string',
-            'time' => 'required|string',
-            'gforce' => 'required|string',
+            'registereduserid' => 'required|integer|exists:registers,id',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
+            'gforce' => 'required|numeric',
             'status' => 'required|string',
-            'month' => 'required|string',
             'barangay' => 'required|string',
             'city' => 'required|string',
             'address' => 'required|string'
         ]);
 
-        $user = Report::create($validatedData);
+        $report = Report::create($request->all());
     
-        return redirect()->back()->with('success', 'Owner information saved successfully.');
-
-        
+        return response()->json(['success' => true]);
     }
 
     /**

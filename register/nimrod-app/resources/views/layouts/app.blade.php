@@ -82,9 +82,6 @@
             let latitude = coordinates.split('///')[0];
             let longitude = coordinates.split('///')[1];
 
-            console.log(gforce)
-            console.log(key)
-
             // Send the accident data to a Laravel route using AJAX
             const accidentData = {
                 id: intValue,
@@ -124,93 +121,140 @@
                 .then(accidentLocation => {
                     console.log(accidentLocation)
 
-                    // Create a modal element
-                    const modal = document.createElement('div');
-                    modal.className = 'modal';
-                    
-                    // Create modal content
-                    const modalContent = document.createElement('div');
+                    const currentDate = new Date();
+                    const currentMonth = currentDate.getMonth() + 1;
+                    const barangay = accidentLocation.address.quarter
+                    const city = accidentLocation.address.city
+                    const CRASHWATCH_CITY = accidentLocation.crashwatch_city;
 
-                    modalContent.innerHTML = `
-                        <div class="modal-dialog modal-dialog-centered modal-xl" role="document" >
-                            <div class="modal-dialog modal-content modal-xl pop" >
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">ALERT</h5>
-                                </div>
-                                <div class="modal-body" id="mudil">
-                                    <div style="margin-right: 50px;">
-                                        <div id="info-accident">
-                                            <i class="fa-solid fa-triangle-exclamation fa-5x" id="mark"></i>
-                                            <h2><b>ACCIDENT ALERT!</b></h2>
-                                            <h5><b>${accidentLocation.display_name}</b></h5>
-                                        </div>
-                                        <div>
-                                            <table id="table-accident" style="margin-top: 30px;">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Driver</td>
-                                                        <td><b>${data.name} ${data.middlename} ${data.lastname}</b></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Address</td>
-                                                        <td><b>${data.barangay}, ${data.municipality} ${data.province}</b></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Car</td>
-                                                        <td><b>${data.color} ${data.brand} ${data.model}</b></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                    if (city === CRASHWATCH_CITY) {
+                        console.log('City is defined');
+                        // Create a modal element
+                        const modal = document.createElement('div');
+                        modal.className = 'modal';
+                        
+                        // Create modal content
+                        const modalContent = document.createElement('div');
+
+                        modalContent.innerHTML = `
+                            <div class="modal-dialog modal-dialog-centered modal-xl" role="document" >
+                                <div class="modal-dialog modal-content modal-xl pop" >
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">ALERT</h5>
                                     </div>
+                                    <div class="modal-body" id="mudil">
+                                        <div style="margin-right: 50px;">
+                                            <div id="info-accident">
+                                                <i class="fa-solid fa-triangle-exclamation fa-5x" id="mark"></i>
+                                                <h2><b>ACCIDENT ALERT!</b></h2>
+                                                <h5><b>${accidentLocation.display_name}</b></h5>
+                                            </div>
+                                            <div>
+                                                <table id="table-accident" style="margin-top: 30px;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Driver</td>
+                                                            <td><b>${data.name} ${data.middlename} ${data.lastname}</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Address</td>
+                                                            <td><b>${data.barangay}, ${data.municipality} ${data.province}</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Car</td>
+                                                            <td><b>${data.color} ${data.brand} ${data.model}</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Medical Condition</td>
+                                                            <td><b>${data.medicalcondition ? data.medicalcondition : "None"}</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Time & Date</td>
+                                                            <td><b>${message.date} ${currentDate.getHours()}:${currentDate.getMinutes()}</b></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
 
-                                    <div id="modal-map" style="height:400px; width: 700px; border-radius: 1vh; box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);" class="my-3">
-                                    </div>                                    
-                                </div>
-                               
-                                <div class="modal-footer">
-                                    <a href="/reporting">
-                                        <button type="button" class="btn btn-danger">Proceed to Reporting</button>
-                                    </a>
+                                        <div id="modal-map" style="height:400px; width: 700px; border-radius: 1vh; box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);" class="my-3">
+                                        </div>                                    
+                                    </div>
+                                
+                                    <div class="modal-footer">
+                                        <a href="/reporting">
+                                            <button type="button" class="btn btn-danger">Proceed to Reporting</button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    `                 
+                        `                 
 
-                    // Append content to the modal
-                    modal.appendChild(modalContent);
-                    // Append the modal to the document body
-                    document.body.appendChild(modal);
-                    // Show the modal
-                    modal.style.display = 'block';
+                        // Append content to the modal
+                        modal.appendChild(modalContent);
+                        // Append the modal to the document body
+                        document.body.appendChild(modal);
+                        // Show the modal
+                        modal.style.display = 'block';
 
-                    let map;
-                    let marker;
-                    map = new google.maps.Map(document.getElementById("modal-map"), {
-                        center: initialLocation,
-                        zoom: 18,
-                        scrollwheel: true,
-                    });
+                        let map;
+                        let marker;
+                        map = new google.maps.Map(document.getElementById("modal-map"), {
+                            center: initialLocation,
+                            zoom: 18,
+                            scrollwheel: true,
+                        });
 
-                    marker = new google.maps.Marker({
-                        position: initialLocation,
-                        map: map,
-                        draggable: true
-                    });
+                        marker = new google.maps.Marker({
+                            position: initialLocation,
+                            map: map,
+                            draggable: true
+                        });
 
-                    // Close the modal when clicked outside the content
-                    window.onclick = function(event) {
-                        if (event.target == modal) {
-                            modal.style.display = 'none';
-                            document.body.removeChild(modal); // Remove the modal from the DOM
+                        // Close the modal when clicked outside the content
+                        window.onclick = function(event) {
+                            if (event.target == modal) {
+                                modal.style.display = 'none';
+                                document.body.removeChild(modal); // Remove the modal from the DOM
+                            }
+                        };
+
+                        const report = {
+                            registereduserid: data.id,
+                            latitude: parseFloat(latitude),
+                            longitude: parseFloat(longitude),
+                            time: message.time,
+                            gforce: gforce,
+                            status: "unread",
+                            month: currentMonth,
+                            barangay: barangay,
+                            city: city,
+                            address: accidentLocation.display_name,
                         }
-                    };
-                
-                }) // Handle the response if needed
-                .catch(error => console.error('Error:', error));
+
+                        storeReport(report)
+                    } else {
+                        console.log('City is undefined');
+                    }
 
                     
-            } 
+                
+                }) // Handle the response if needed
+                .catch(error => console.error('Error:', error));  
+            }
+
+            function storeReport(report){
+                fetch('/post_report', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // If CSRF protection is enabled
+                },
+                body: JSON.stringify(report)
+                })
+                // .then(response => response.json())
+                .then(verify => {console.log(verify)})
+            }
         }); 
 
     </script>

@@ -32,6 +32,7 @@
             </tr>
             </thead>
             <tbody>
+                
             @foreach($registers as $register)
             <tr>
                 

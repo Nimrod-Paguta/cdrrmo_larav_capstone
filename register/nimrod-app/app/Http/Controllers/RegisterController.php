@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Register; 
+use App\Models\Register;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function getRegisters()
     {
-      
+        $registersRaw = DB::table('registers')->get()->toArray();
+        $registers = array_reverse($registersRaw);
+        return view('registerpage', [
+            'registers' => $registers
+        ]);
     }
 
 
