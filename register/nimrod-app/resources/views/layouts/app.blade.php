@@ -91,6 +91,11 @@
                 key: key
             };
 
+            console.log(accidentData)
+            console.log(coordinates)
+            console.log(gforce)
+            console.log(key)
+
             // Send the accident data to Laravel route for debugging
             fetch('/accident', {
                 method: 'POST',
@@ -119,6 +124,7 @@
                 })
                 .then(response => response.json())
                 .then(accidentLocation => {
+                    
                     console.log(accidentLocation)
 
                     const currentDate = new Date();
@@ -256,6 +262,33 @@
                 .then(verify => {console.log(verify)})
             }
         }); 
+
+        function sendReport(id, userid) {
+            console.log(id);
+
+            let report = {
+                userid: userid,
+                id: id
+            }
+
+            fetch('{{ route('reporting.send')}}',  {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // If CSRF protection is enabled
+                },
+                body: JSON.stringify(report)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                const stringNumbers = data.contactNumbers.map(number => `+63${number}`);
+                const address = data.report.barangay + ", " + data.report.city
+                console.log(address)
+                socket.emit('send_on', stringNumbers, address);
+            })
+
+        }
 
     </script>
 

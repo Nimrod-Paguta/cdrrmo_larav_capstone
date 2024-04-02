@@ -54,6 +54,19 @@ class ReportController extends Controller
         $register = Register::findOrFail($report->id);
         return view('reporting.view', compact('report', 'register'));
     }
+     
+    public function send(Request $request)
+    {
+        $id = $request->id;
+        $report = Report::findOrFail($id);
+        $contactNumbers = Register::pluck('contactnumber');
+
+        return response()->json([
+            'report' => $report,
+            'contactNumbers' => $contactNumbers
+        ]);
+    
+    }
     /**
      * Show the form for editing the specified resource.
      */
