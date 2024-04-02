@@ -28,21 +28,24 @@ class ReportController extends Controller
      */
     public function store(Request $request)
     {
-        // return view('welcome');
         $validatedData = $request->validate([
-            'registereduserid' => 'required|integer|exists:registers,id',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
-            'gforce' => 'required|numeric',
+            'registereduserid' => 'required|string',
+            'latitude' => 'nullable|string',
+            'longitude' => 'nullable|string',
+            'time' => 'required|string',
+            'gforce' => 'required|string',
             'status' => 'required|string',
+            'month' => 'required|string',
             'barangay' => 'required|string',
             'city' => 'required|string',
             'address' => 'required|string'
         ]);
 
-        $report = Report::create($request->all());
+        $user = Report::create($validatedData);
     
-        return response()->json(['success' => true]);
+        return redirect()->back()->with('success', 'Owner information saved successfully.');
+
+        
     }
 
     /**
@@ -78,9 +81,16 @@ class ReportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'status' => 'required|string',
+        ]);
+    
+        $report = Report::findOrFail($id); // Find the report with the given ID
+        $report->update($request->all()); // Update the report with the request data
+    
+        return redirect()->route('reporting.index')->with('success', 'Report updated successfully!');
     }
 
     /**

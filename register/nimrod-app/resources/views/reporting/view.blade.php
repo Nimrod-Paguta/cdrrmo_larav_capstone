@@ -26,7 +26,7 @@
                                         value="{{$report->longitude}}" disabled>
                                 </div>
                             </div>
-                            <div id="map" style="height:520px; width: 570px;" class="my-3"></div>
+                            <div id="map" style="height:584px; width: 570px;" class="my-3"></div>
                         </div>
                         <div class="d-flex justify-content-center mb-2"></div>
                     </div>
@@ -41,7 +41,25 @@
                                 <p class="mb-0">Full Name:</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{$register->name}}</p>
+                                <p class="text-muted mb-0">{{$register->name}} {{$register->middlename}} {{$register->lastname}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Emergency Number:</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{$register->emergencynumber}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Model:</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{$register->model}}</p>
                             </div>
                         </div>
                         <hr>
@@ -69,12 +87,50 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
+                                <p class="mb-0">Gforce:</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{$report->gforce}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
                                 <p class="mb-0">Location:</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{$report->barangay}}, {{$report->city}}</p>
                             </div>
                         </div>
+                          <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Alert Message:</p>
+                            </div>
+                            <div class="col-sm-9">
+                            Attention: Urgent! A car crash has just occured at the {{$report->barangay}}, {{$report->city}}. The involved parties include a {{$register->model}} registered under the full name of {{$register->name}} {{$register->middlename}} {{$register->lastname}}. Please respond immediately and exercise caution in the area.
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Status:</p>
+                            </div>
+                            <div class="col-sm-9">
+                            <form id="statusForm" method="POST" action="{{ route('reporting.update', ['id' => $report->id]) }}">
+    @csrf
+    @method('PUT')
+
+    <select class="form-control" id="status" name="status">
+        <option value="ongoing" {{ $report->status === 'ongoing' ? 'selected' : '' }}>Ongoing</option>
+        <option value="unread" {{ $report->status === 'unread' ? 'selected' : '' }}>Unread</option>
+        <option value="completed" {{ $report->status === 'completed' ? 'selected' : '' }}>Completed</option>
+    </select>
+    <button type="submit" class="btn mt-2" style="background-color: green; border-color: green; color: white;">Submit</button>
+</form>
+
+
+                            </div>
                     </div>
                 </div>
             </div>
