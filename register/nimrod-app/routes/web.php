@@ -51,6 +51,9 @@ Route::prefix('reporting')->group(function () {
 Route::get('/reporting', [ReportController::class, 'index'])->name('reporting.index');
 Route::get('/reporting/{id}', [ReportController::class, 'show'])->name('reporting.view');
  Route::put('/reporting/{id}', [ReportController::class, 'update'])->name('reporting.update');
+ Route::get('/fetch-data', [DashboardController::class, 'fetchData']);
+
+
 
 Route::prefix('/')->group(function (){
     

@@ -476,6 +476,16 @@ public function getTotalCompletedReportsInDecember()
     return view('dashboard')->with('recentRegisters', $recentRegisters);
 }
 
+            public function getTotalCompletedReportsByMonthAndYear($year, $month)
+            {
+                $totalReports = Report::whereYear('created_at', $year)
+                                    ->whereMonth('created_at', $month)
+                                    ->count();
+
+                return $totalReports;
+            }
+
+
     /**
      * Display the specified resource.
      */
