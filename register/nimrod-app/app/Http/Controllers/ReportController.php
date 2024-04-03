@@ -29,13 +29,13 @@ class ReportController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'registereduserid' => 'required|string',
-            'latitude' => 'nullable|string',
-            'longitude' => 'nullable|string',
+            'registereduserid' => 'required|exists:registers,id',
+            'latitude' => 'nullable|numeric',
+            'longitude' => 'nullable|numeric',
             'time' => 'required|string',
-            'gforce' => 'required|string',
+            'gforce' => 'required|numeric',
             'status' => 'required|string',
-            'month' => 'required|string',
+            'month' => 'required|numeric',
             'barangay' => 'required|string',
             'city' => 'required|string',
             'address' => 'required|string'
@@ -44,8 +44,6 @@ class ReportController extends Controller
         $user = Report::create($validatedData);
     
         return redirect()->back()->with('success', 'Owner information saved successfully.');
-
-        
     }
 
     /**
@@ -54,7 +52,7 @@ class ReportController extends Controller
     public function show($id)
     {
         $report = Report::findOrFail($id);
-        $register = Register::findOrFail($report->id);
+        $register = Register::findOrFail($report->registereduserid);
         return view('reporting.view', compact('report', 'register'));
     }
      

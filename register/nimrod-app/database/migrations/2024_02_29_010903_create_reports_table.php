@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("registereduserid"); 
-            $table->float("latitude"); 
-            $table->float("longitude"); 
+            $table->decimal("latitude", 18, 15);; 
+            $table->decimal("longitude", 18, 15);; 
             $table->string("time"); 
             $table->float("gforce");
             $table->string("status");  

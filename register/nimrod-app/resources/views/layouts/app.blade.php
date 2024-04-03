@@ -238,6 +238,8 @@
                             address: accidentLocation.display_name,
                         }
 
+                        console.log(report)
+
                         storeReport(report)
                     } else {
                         console.log('City is undefined');

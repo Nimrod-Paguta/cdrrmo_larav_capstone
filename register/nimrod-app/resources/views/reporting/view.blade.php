@@ -3,18 +3,20 @@
         .hayt {
             height: 100vh;
         }
+        #status{
+            display: flex;
+            margin: 5px;
+        }
     </style>
     <div class="hayt">
-        <center>
-            <h5>Reporting Details</h5>
-        </center>
+            <h3>Reporting Details</h3>
 
         <div class="row">
             <div class="col-lg-5">
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         <div class="mapform">
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-5">
                                     <span>Latitude</span>
                                     <input type="text" class="form-control" placeholder="lat" name="lat" id="lat"
@@ -25,17 +27,17 @@
                                     <input type="text" class="form-control" placeholder="lng" name="lng" id="lng"
                                         value="{{$report->longitude}}" disabled>
                                 </div>
-                            </div>
-                            <div id="map" style="height:584px; width: 570px;" class="my-3"></div>
+                            </div> -->
+                            <center><div id="map" style="height:584px; width: 570px;" class="my-3"></div></center>
                         </div>
                         <div class="d-flex justify-content-center mb-2"></div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-7">
+            <h3>Driver Information</h3>
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h5>Driver info:</h5>
                         <div class="row">
                             <div class="col-sm-3">
                                 <p class="mb-0">Full Name:</p>
@@ -50,7 +52,7 @@
                                 <p class="mb-0">Emergency Number:</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{$register->emergencynumber}}</p>
+                                <p class="text-muted mb-0">0{{$register->emergencynumber}}</p>
                             </div>
                         </div>
                         <hr>
@@ -73,15 +75,26 @@
                         </div>
                     </div>
                 </div>
+                <h3>Accident Details</h3>
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h5>Accident Details:</h5>
+
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Time:</p>
+                                <p class="mb-0">ID:</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{$report->time}}</p>
+                                <p class="text-muted mb-0">{{$report->id}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Time & Date:</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{date('Y-m-d', strtotime($report->created_at))}} {{$report->time}}</p>
                             </div>
                         </div>
                         <hr>
@@ -99,19 +112,10 @@
                                 <p class="mb-0">Location:</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{$report->barangay}}, {{$report->city}}</p>
+                                <p class="text-muted mb-0">{{$report->address}}</p>
                             </div>
                         </div>
                           <hr>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Alert Message:</p>
-                            </div>
-                            <div class="col-sm-9">
-                            Attention: Urgent! A car crash has just occured at the {{$report->barangay}}, {{$report->city}}. The involved parties include a {{$register->model}} registered under the full name of {{$register->name}} {{$register->middlename}} {{$register->lastname}}. Please respond immediately and exercise caution in the area.
-                            </div>
-                        </div>
-                        <hr>
                         <div class="row">
                             <div class="col-sm-3">
                                 <p class="mb-0">Status:</p>
@@ -121,17 +125,24 @@
     @csrf
     @method('PUT')
 
+    <div id="status">
     <select class="form-control" id="status" name="status">
         <option value="ongoing" {{ $report->status === 'ongoing' ? 'selected' : '' }}>Ongoing</option>
         <option value="unread" {{ $report->status === 'unread' ? 'selected' : '' }}>Unread</option>
         <option value="completed" {{ $report->status === 'completed' ? 'selected' : '' }}>Completed</option>
     </select>
     <button type="submit" class="btn mt-2" style="background-color: green; border-color: green; color: white;">Submit</button>
-</form>
 
+    </div>
+
+  
+</form>
 
                             </div>
                     </div>
+                    <a>
+                        <button type="submit" class="btn btn-primary" onclick="sendReport({{ $report->id }}, {{ $report->registereduserid }})">Send Notification</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -144,7 +155,7 @@
                 function initMap() {
                     map = new google.maps.Map(document.getElementById("map"), {
                         center: { lat: parseFloat("{{$report->latitude}}"), lng: parseFloat("{{$report->longitude}}") },
-                        zoom: 8,
+                        zoom: 18,
                         scrollwheel: true,
                     });
 
@@ -155,23 +166,11 @@
                         draggable: true
                     });
 
-                    google.maps.event.addListener(marker,'position_changed',
-                        function (){
-                            let lat = marker.position.lat();
-                            let lng = marker.position.lng();
-                            $('#lat').val(lat);
-                            $('#lng').val(lng);
+                    marker = new google.maps.Marker({
+                            position: uluru,
+                            map: map,
+                            draggable: true
                         });
-
-                    google.maps.event.addListener(map,'click',
-                    function (event){
-                        let pos = event.latLng;
-                        marker.setPosition(pos);
-                        let lat = pos.lat();
-                        let lng = pos.lng();
-                        $('#lat').val(lat);
-                        $('#lng').val(lng);
-                    });
                 }
             </script>
 
