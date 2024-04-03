@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Register;
 
 class Report extends Model
 {
@@ -22,5 +23,11 @@ class Report extends Model
             'city',
             'address'
     ];
+
+    public function registereduserid()
+    {
+        return $this->belongsTo(Register::class, 'registereduserid');
+    }
+
 }
 

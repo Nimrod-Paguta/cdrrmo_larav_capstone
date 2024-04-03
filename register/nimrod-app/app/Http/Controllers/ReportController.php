@@ -12,7 +12,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $reports = Report::all();
+        $reports = Report::with('registereduserid')->get();
         return view('reporting', ['reports' => $reports]);
     }
 

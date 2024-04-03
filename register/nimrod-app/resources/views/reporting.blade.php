@@ -68,6 +68,9 @@
             </thead>
             <tbody>
                 @foreach($reports as $report)
+                <script>
+                    console.log(@json($report));
+                </script>
                 <tr>
                     <td>{{ $report->id }}</td>
                     <td>{{ $report->registereduserid }}</td>
@@ -109,6 +112,9 @@
 
         <!-- Include jQuery -->
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+        <!-- <script>
+            console.log(@json($reports))
+        </script> -->
 
         <!-- Include Bootstrap JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
