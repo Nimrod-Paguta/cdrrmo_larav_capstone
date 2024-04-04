@@ -68,44 +68,49 @@
             </thead>
             <tbody>
                 @foreach($reports as $report)
-                <script>
-                    console.log(@json($report));
-                </script>
-                <tr>
-                    <td>{{ $report->id }}</td>
-                    <td>{{ $report->registereduserid }}</td>
-                    <td>{{ $report->time }}</td>
-                    <td>{{ $report->barangay }}</td>
-                    <td>{{ $report->city }}</td>
-                    <td>
-                        <span style="background-color: 
-                            @if($report->status == 'ongoing') 
-                                orange;
-                            @elseif($report->status == 'completed') 
-                                green;
-                            @elseif($report->status == 'unread') 
-                                red; 
-                            @endif 
-                                color: white; padding: 5px 10px; border-radius: 5px;">
-                            {{ $report->status }}
-                        </span>
-                    </td>
-                    <td class="text-center">
-                        <!-- Add text-center class to center content -->
-                        <form method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger actions-buttons">Delete</button>
-                        </form>
-                        <a href="{{ route('reporting.view', ['id' => $report->id]) }}">
-                            <button type="submit" class="btn btn-secondary actions-buttons">View</button>
-                        </a>
-                        <a>
-                            <button type="submit" class="btn btn-primary actions-buttons" onclick="sendReport({{ $report->id }}, {{ $report->registereduserid }})">Send</button>
-                        </a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td>{{ $report->id }}</td>
+                        <td id="name_{{ $report->id }}"></td>
+                        <td>{{ $report->time }}</td>
+                        <td>{{ $report->barangay }}</td>
+                        <td>{{ $report->city }}</td>
+                        <td>
+                            <span style="background-color: 
+                                @if($report->status == 'ongoing') 
+                                    orange;
+                                @elseif($report->status == 'completed') 
+                                    green;
+                                @elseif($report->status == 'unread') 
+                                    red; 
+                                @endif 
+                                    color: white; padding: 5px 10px; border-radius: 5px;">
+                                {{ $report->status }}
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <!-- Add text-center class to center content -->
+                            <form method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger actions-buttons">Delete</button>
+                            </form>
+                            <a href="{{ route('reporting.view', ['id' => $report->id]) }}">
+                                <button type="submit" class="btn btn-secondary actions-buttons">View</button>
+                            </a>
+                            <a>
+                                <button type="submit" class="btn btn-primary actions-buttons" onclick="sendReport({{ $report->id }}, {{ $report->registereduserid }})">Send</button>
+                            </a>
+                        </td>
+                    </tr>
+                    <script>
+                        const report{{ $report->id }} = {!! json_encode($report) !!};
+                        const firstName{{ $report->id }} = report{{ $report->id }}.registereduserid.name;
+                        const middleName{{ $report->id }} = report{{ $report->id }}.registereduserid.middlename;
+                        const lastName{{ $report->id }} = report{{ $report->id }}.registereduserid.lastname;
+                        document.getElementById('name_{{ $report->id }}').innerText = firstName{{ $report->id }} + " " + middleName{{ $report->id }} + " " + lastName{{ $report->id }};
+                    </script>
                 @endforeach
+
                 <!-- Add other rows as needed -->
             </tbody>
         </table>
