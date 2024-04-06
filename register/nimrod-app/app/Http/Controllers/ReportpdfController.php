@@ -10,9 +10,8 @@ class ReportpdfController extends Controller
 {
     public function index($id){
         $report = Report::findOrFail($id);
-        // $report = Report::latest()->first(); // Assuming you want the latest report
-        $register = Register::find($report->id);
-        $report = Report::find($register->id);
+        $register = Register::find($report->registereduserid);
+        // $report = Report::find($register->id);
 
 
         $fpdf = new PdfReport('P','mm','A4');

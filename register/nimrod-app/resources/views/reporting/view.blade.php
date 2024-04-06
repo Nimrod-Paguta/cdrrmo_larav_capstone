@@ -16,18 +16,6 @@
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         <div class="mapform">
-                            <!-- <div class="row">
-                                <div class="col-5">
-                                    <span>Latitude</span>
-                                    <input type="text" class="form-control" placeholder="lat" name="lat" id="lat"
-                                        value="{{$report->latitude}}" disabled>
-                                </div>
-                                <div class="col-5">
-                                    <span>Longitude</span>
-                                    <input type="text" class="form-control" placeholder="lng" name="lng" id="lng"
-                                        value="{{$report->longitude}}" disabled>
-                                </div>
-                            </div> -->
                             <center><div id="map" style="height:584px; width: 570px;" class="my-3"></div></center>
                         </div>
                         <div class="d-flex justify-content-center mb-2"></div>
@@ -35,6 +23,7 @@
                 </div>
                 <a>
                     <button type="submit" class="btn btn-primary" onclick="sendReport({{ $report->id }}, {{ $report->registereduserid }})">Send Notification</button>
+                    <a href="{{ route('reports', ['id' => $report->id]) }}" class="btn btn-primary" style="background-color: red; border-color: blue; color: white;">Generate Report</a>
                 </a>
             </div>
             <div class="col-lg-7">
@@ -143,7 +132,6 @@
         <option value="unread" {{ $report->status === 'unread' ? 'selected' : '' }}>Unread</option>
         <option value="completed" {{ $report->status === 'completed' ? 'selected' : '' }}>Completed</option>
     </select>
-    <a href="{{ route('reports', ['id' => $report->id]) }}" class="btn mt-2" style="background-color: blue; border-color: blue; color: white;">Generate Report</a>
     <button type="submit" class="btn mt-2" style="background-color: green; border-color: green; color: white;">Submit</button>
 
     </div>

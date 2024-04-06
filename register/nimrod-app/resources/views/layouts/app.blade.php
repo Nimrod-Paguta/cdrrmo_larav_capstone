@@ -81,6 +81,22 @@
             let intValue = parseInt(userid);
             let latitude = coordinates.split('///')[0];
             let longitude = coordinates.split('///')[1];
+            let severity;
+
+            console.log(Math.abs(parseFloat(gforce)))
+            if (Math.abs(parseFloat(gforce)) > 0 && Math.abs(parseFloat(gforce)) < 4) {
+                severity = 'Safe';
+            } else if (Math.abs(parseFloat(gforce)) >= 4 && Math.abs(parseFloat(gforce)) < 20) {
+                severity = 'Low';
+            } else if (Math.abs(parseFloat(gforce)) >= 20 && Math.abs(parseFloat(gforce)) < 40) {
+                severity = 'Moderate';
+            } else if (Math.abs(parseFloat(gforce)) > 40) {
+                severity = 'Severe';
+            } else {
+                severity = 'Disoriented';
+            }
+            
+            console.log(severity)
 
             // Send the accident data to a Laravel route using AJAX
             const accidentData = {
@@ -90,11 +106,6 @@
                 content: message.content,
                 key: key
             };
-
-            console.log(accidentData)
-            console.log(coordinates)
-            console.log(gforce)
-            console.log(key)
 
             // Send the accident data to Laravel route for debugging
             fetch('/accident', {
@@ -173,6 +184,10 @@
                                                         <tr>
                                                             <td>Medical Condition</td>
                                                             <td><b>${data.medicalcondition ? data.medicalcondition : "None"}</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Severity</td>
+                                                            <td><b>${severity}</b></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Time & Date</td>
