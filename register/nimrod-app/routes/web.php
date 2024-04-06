@@ -6,6 +6,10 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\ReportpdfController;
+use App\Http\Controllers\ChartDataController;
+use App\Http\Controllers\barangayController;
+use App\Http\Controllers\RegisteredUserReportController;
 use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +52,11 @@ Route::prefix('reporting')->group(function () {
     });
 });
 
+
+
+
+Route::get('/chart', [ChartDataController::class, 'index']);
+
 Route::get('/reporting', [ReportController::class, 'index'])->name('reporting.index');
 Route::get('/reporting/{id}', [ReportController::class, 'show'])->name('reporting.view');
 Route::post('/reporting/send', [ReportController::class, 'send'])->name('reporting.send');
@@ -58,6 +67,14 @@ Route::prefix('/')->group(function (){
     Route::post("/registerpage",[RegisterController::class, 'store'])->name('users.post');   
    
 }); 
+
+
+Route::get('/reports/{id}', [ReportpdfController::class, 'index'])->name('reports');
+Route::get('/registeredusers', [RegisteredUserReportController::class, 'index'])->name('registeredReport');
+
+
+Route::get('/barangay', [barangayController::class, 'index'])->name('barangay');
+
 
 Route::get('/registerpage',[RegisterController::class, 'getRegisters'])->name('registerpage');
 Route::get('registerpage/edit/{id}', 'App\Http\Controllers\RegisterController@edit')->name('registerpage.edit');

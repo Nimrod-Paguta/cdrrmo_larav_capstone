@@ -335,6 +335,13 @@
         Register
       </a>
     </li>
+    <li style="padding-top: 10px;">
+      <a href="/barangay" class="nav-link text-white {{ Request::is('barangay') ? 'active' : '' }}">
+        <svg class="bi me-2" width="16" height="9"><use xlink:href="#grid"/></svg>
+        <i class="fa-regular fa-user" style="padding-right: 16px;"></i>
+        Barangay
+      </a>
+    </li>
   </ul>
 </div>
 

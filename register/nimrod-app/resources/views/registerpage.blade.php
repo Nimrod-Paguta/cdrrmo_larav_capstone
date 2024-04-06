@@ -18,6 +18,8 @@
         
         <h3>Register</h3>
         <button class="btn btn-success" onclick="openModal()">+ register</button>
+        <a href="/registeredusers" class="btn btn-success" style="width:300px">+ Generate Registered User</a>
+
         <table id="yourDataTableID" class="table table-striped" style="width:100%">
             <thead class="table-header">
             <tr>
@@ -245,10 +247,5 @@
                     }
                 };
             </script>
-
-
-
-            
-        
 </div>
 </x-app-layout> 
