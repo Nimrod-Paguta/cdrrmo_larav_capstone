@@ -33,6 +33,9 @@
                         <div class="d-flex justify-content-center mb-2"></div>
                     </div>
                 </div>
+                <a>
+                    <button type="submit" class="btn btn-primary" onclick="sendReport({{ $report->id }}, {{ $report->registereduserid }})">Send Notification</button>
+                </a>
             </div>
             <div class="col-lg-7">
             <h3>Driver Information</h3>
@@ -116,6 +119,15 @@
                             </div>
                         </div>
                           <hr>
+                          <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Coordinates:</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">LAT: {{$report->latitude}}, LON: {{$report->longitude}}</p>
+                            </div>
+                        </div>
+                        <hr>
                         <div class="row">
                             <div class="col-sm-3">
                                 <p class="mb-0">Status:</p>
@@ -140,9 +152,7 @@
 
                             </div>
                     </div>
-                    <a>
-                        <button type="submit" class="btn btn-primary" onclick="sendReport({{ $report->id }}, {{ $report->registereduserid }})">Send Notification</button>
-                    </a>
+                    
                 </div>
             </div>
         </div>

@@ -97,9 +97,9 @@
                             <a href="{{ route('reporting.view', ['id' => $report->id]) }}">
                                 <button type="submit" class="btn btn-secondary actions-buttons">View</button>
                             </a>
-                            <a>
+                            {{-- <a>
                                 <button type="submit" class="btn btn-primary actions-buttons" onclick="sendReport({{ $report->id }}, {{ $report->registereduserid }})">Send</button>
-                            </a>
+                            </a> --}}
                         </td>
                     </tr>
                     <script>
