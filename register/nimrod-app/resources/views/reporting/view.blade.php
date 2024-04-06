@@ -143,6 +143,7 @@
         <option value="unread" {{ $report->status === 'unread' ? 'selected' : '' }}>Unread</option>
         <option value="completed" {{ $report->status === 'completed' ? 'selected' : '' }}>Completed</option>
     </select>
+    <a href="{{ route('reports', ['id' => $report->id]) }}" class="btn mt-2" style="background-color: blue; border-color: blue; color: white;">Generate Report</a>
     <button type="submit" class="btn mt-2" style="background-color: green; border-color: green; color: white;">Submit</button>
 
     </div>

@@ -17,7 +17,7 @@ class ReportFactory extends Factory
     public function definition(): array
     {
         return [
-            'registereduserid' => $this->faker->uuid,
+            'registereduserid' => $this->faker->randomFloat(2, 0, 10),
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
             'time' => $this->faker->time(),
@@ -30,7 +30,11 @@ class ReportFactory extends Factory
             'Manalog', 'Mapayag', 'Mapulo', 'Miglamin', 'Patpat', 'Saint Peter', 'San Jose', 'San Martin', 'Santo Niño', 'Silae', 'Simaya', 'Sinanglanan', 
             'Sumpong', 'Violeta', 'Zamboanguita']),
             'city' => 'Malaybalay City',
-            'address' => $this->faker->address()
+            'address' => $this->faker->address(), 
+            'created_at' => $this->faker->dateTimeBetween('2025-01-01', '2025-12-31')->format('Y-m-d H:i:s'),
+
+
+
         ];
     }
 }
