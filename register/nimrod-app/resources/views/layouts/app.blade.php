@@ -245,7 +245,7 @@
                             latitude: parseFloat(latitude),
                             longitude: parseFloat(longitude),
                             time: message.time,
-                            gforce: gforce,
+                            gforce: Math.abs(gforce),
                             status: "unread",
                             month: currentMonth,
                             barangay: barangay,

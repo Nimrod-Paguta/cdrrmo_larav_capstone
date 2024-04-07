@@ -50,6 +50,15 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
+                                <p class="mb-0">Medical Condition:</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{$register->medicalcondition ? $register->medicalcondition : 'None'}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
                                 <p class="mb-0">Model:</p>
                             </div>
                             <div class="col-sm-9">
@@ -95,7 +104,15 @@
                                 <p class="mb-0">Gforce:</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{$report->gforce}}</p>
+                                <p class="text-muted mb-0">
+                                    {{($report->gforce == 0) ? "" : $report->gforce."g"}} 
+                                    {{
+                                        ($report->gforce > 0 && $report->gforce < 4) ? "Safe" :
+                                        (($report->gforce >= 4 && $report->gforce < 20) ? "Low" : 
+                                        ((($report->gforce >= 20 && $report->gforce < 40) ? "Moderate" : 
+                                        (($report->gforce > 40) ? "Severe" : "Disoriented"))))
+                                    }}
+                                </p>
                             </div>
                         </div>
                         <hr>
