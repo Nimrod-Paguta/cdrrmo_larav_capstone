@@ -94,8 +94,11 @@ class ReportController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function destroy($id)
+{
+    $report = Report::findOrFail($id);
+    $report->delete();
+
+    return redirect()->route('reporting.index')->with('success', 'Report deleted successfully!');
+}
 }

@@ -9,6 +9,8 @@
 <div class = "hayt">
     
 <h2>Update Information</h2>
+<button type="button" class="btn btn-outline-primary ms-1 mb-3" onclick="window.location.href='/registerpage'">Back</button>
+
 
 <div id="update-form-div">
     <form class="row g-3 needs-validation" method="post" action="{{ route('registerpage.update', ['id' => $registers->id]) }}">

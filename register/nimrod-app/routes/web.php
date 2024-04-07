@@ -63,6 +63,8 @@ Route::get('/reporting', [ReportController::class, 'index'])->name('reporting.in
 Route::get('/reporting/{id}', [ReportController::class, 'show'])->name('reporting.view');
 Route::post('/reporting/send', [ReportController::class, 'send'])->name('reporting.send');
 Route::put('/reporting/{id}', [ReportController::class, 'update'])->name('reporting.update');
+Route::delete('/reports/{id}', [ReportController::class, 'destroy'])->name('reports.destroy');
+
 
 Route::prefix('/')->group(function (){    
 Route::post("/registerpage",[RegisterController::class, 'store'])->name('users.post');}); 

@@ -320,7 +320,7 @@
 
 
 
-
+<!-- this is the sidevar  -->
     
     <div class="d-flex flex-column flex-shrink-0 p-3 text-white sidecolor" style="width: 240px; height: auto; ">
   <a href="{{ route('dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">

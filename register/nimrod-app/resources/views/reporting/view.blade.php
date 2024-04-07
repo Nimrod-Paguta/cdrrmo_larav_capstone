@@ -10,13 +10,15 @@
     </style>
     <div class="hayt">
             <h3>Reporting Details</h3>
+            <button type="button" class="btn btn-outline-primary ms-1 mb-3" onclick="window.location.href='/reporting'">Back</button>
+
 
         <div class="row">
             <div class="col-lg-5">
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         <div class="mapform">
-                            <center><div id="map" style="height:584px; width: 570px;" class="my-3"></div></center>
+                            <center><div id="map" style="height:584px; width: auto;" class="my-3"></div></center>
                         </div>
                         <div class="d-flex justify-content-center mb-2"></div>
                     </div>

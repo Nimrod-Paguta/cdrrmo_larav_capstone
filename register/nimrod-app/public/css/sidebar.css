@@ -17,3 +17,22 @@
    
     text-decoration: none; /* Remove underline from links */
 }
+
+
+
+.sidecolor {
+    position: fixed; /* Fix the sidebar position */
+  
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 240px;
+  /* Ensure sidebar is on top of other content */
+    background-color: #C74B3B;
+   
+}
+
+#content-wrapper {
+    margin-left: 240px; /* Adjust content margin to accommodate sidebar width */
+}

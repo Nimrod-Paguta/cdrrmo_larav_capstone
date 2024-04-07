@@ -47,9 +47,7 @@
             cursor: pointer;
         }
 
-        .hayt {
-            height: 100vh;
-        }
+      
     </style>
 
     <div class="hayt">
@@ -89,7 +87,7 @@
                         </td>
                         <td class="text-center">
                             <!-- Add text-center class to center content -->
-                            <form method="POST" style="display:inline;">
+                            <form method="POST" action="{{ route('reports.destroy', ['id' => $report->id]) }}" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger actions-buttons">Delete</button>

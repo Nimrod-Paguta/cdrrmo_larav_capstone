@@ -1,8 +1,6 @@
 <x-app-layout>
     <style>
-        .hayt{
-            height: 100vh;
-        }
+       
     </style>
 <div class = "hayt">
     
