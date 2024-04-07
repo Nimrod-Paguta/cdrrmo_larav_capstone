@@ -64,10 +64,25 @@ class ReportpdfController extends Controller
         $fpdf->SetFont('Arial', 'U', 12);
         $fpdf->Cell(40, 0, '' . $report->created_at->format('H:i:s'), 0, 0, 'L');
         $fpdf->Ln(10);
+
+        
+
+
         $fpdf->SetFont('Arial', 'B', 12);
-        $fpdf->Cell(20,5,'Location: ',0,0,'L');
+        $fpdf->Cell(20,10,'Location: ',0,0,'L');
         $fpdf->SetFont('Arial', 'U', 12);
-        $fpdf->Cell(80,5,$report->address,0,0,'L');
+
+        $address = $report->address;
+        $max_length = 40; // Maximum characters allowed for the address
+
+        if (strlen($address) > $max_length) {
+            // Insert line break
+            $fpdf->MultiCell(0, 10, $address, 0, 'L');
+        } else {
+            $fpdf->Cell(0, 10, $address, 0, 0, 'L');
+        }
+
+
         $fpdf->Ln(12);
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->Cell(19,5,'Status: ',0,0,'L');

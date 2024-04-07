@@ -10,6 +10,8 @@ use App\Http\Controllers\ReportpdfController;
 use App\Http\Controllers\ChartDataController;
 use App\Http\Controllers\barangayController;
 use App\Http\Controllers\RegisteredUserReportController;
+use App\Http\Controllers\BarangayReportController;
+use App\Http\Controllers\ReportControllerAll;
 use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
@@ -62,19 +64,13 @@ Route::get('/reporting/{id}', [ReportController::class, 'show'])->name('reportin
 Route::post('/reporting/send', [ReportController::class, 'send'])->name('reporting.send');
 Route::put('/reporting/{id}', [ReportController::class, 'update'])->name('reporting.update');
 
-Route::prefix('/')->group(function (){
-    
-    Route::post("/registerpage",[RegisterController::class, 'store'])->name('users.post');   
-   
-}); 
-
-
+Route::prefix('/')->group(function (){    
+Route::post("/registerpage",[RegisterController::class, 'store'])->name('users.post');}); 
 Route::get('/reports/{id}', [ReportpdfController::class, 'index'])->name('reports');
 Route::get('/registeredusers', [RegisteredUserReportController::class, 'index'])->name('registeredReport');
-
-
+Route::get('/allreports', [ReportControllerAll::class, 'index'])->name('allreports');
+Route::get('/barangayreports/{id}', [BarangayReportController::class, 'generateReport'])->name('barangayreport');
 Route::get('/barangay', [barangayController::class, 'index'])->name('barangay');
-
 
 Route::get('/registerpage',[RegisterController::class, 'getRegisters'])->name('registerpage');
 Route::get('registerpage/edit/{id}', 'App\Http\Controllers\RegisterController@edit')->name('registerpage.edit');
@@ -82,15 +78,7 @@ Route::put('/registerpage/{id}', [RegisterController::class, 'update'])->name('r
 Route::delete('/registerpage/{id}', [RegisterController::class, 'destroy'])->name('registerpage.destroy'); 
 Route::get('/registerpage/{id}', [RegisterController::class, 'show'])->name('registerpage.view');
 
-
 Route::get('/dashboard', [DashboardController::class, 'recentRegisters'])->name('dashboard');
 
 });
-
-
-
-
-
- 
-
 require __DIR__.'/auth.php';

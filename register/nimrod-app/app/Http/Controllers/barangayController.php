@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Report;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class barangayController extends Controller
 {
@@ -11,12 +12,19 @@ class barangayController extends Controller
      */
     public function index()
     {
-        // Fetch all reports from the database
-        $reports = Report::all();
+       
+        // Fetch the total number of reports for each barangay
+        $totalReportsByBarangay = DB::table('reports')
+        ->select('barangay', 'city', DB::raw('COUNT(*) as total_reports'))
+        ->groupBy('barangay', 'city')
+        ->get();
+    
+
         
-        // Pass the reports data to the view
-        return view('barangay', ['reports' => $reports]);
+        // Pass the total number of reports by barangay to the view
+        return view('barangay', ['totalReportsByBarangay' => $totalReportsByBarangay]);
     }
+
 
 
     /**
