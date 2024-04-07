@@ -124,7 +124,7 @@
 
     <div>
         
-    <img src="{{ asset('img/register/new-logo-black.png') }}" class="img-fluid" alt="Logo" style="width: 480px; height: auto; padding-left:20px; padding-top: 5px;">
+    <img src="{{ asset('img/register/mewsaimongnawong.png') }}" class="img-fluid" alt="Logo" style="width: 480px; height: auto; padding-left:20px; padding-top: 5px;">
     
     <img src="{{ asset('img/register/Logo_of_Bukidnon_State_University.png') }}" class="img-fluid" alt="Logo" style="width: 105px; height: auto; padding-left:20px; padding-top: 5px;">
     

@@ -5,7 +5,7 @@
         }
     </style>
     <div class="hayt">
-        <h1>Reports</h1>
+        <h3>Barangay Report</h3>
         <table id="yourDataTableID" class="table table-striped" style="width:100%">
             <thead class="table-header">
                 <tr>
