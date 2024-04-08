@@ -41,94 +41,6 @@ class DashboardController extends Controller
         return $totalCompletedReports;
     }
 
-    public function getTotalCompletedReportsJanuary()
-    {
-        $totalJanuary = Report::where('month', 'January')->count();
-
-        return $totalJanuary;
-    }
-
-
-    public function getTotalCompletedReportsFebruay()
-    {
-        $totalfebruary = Report::where('month', 'February')->count();
-
-        return $totalfebruary;
-    }
-
-
-    public function getTotalCompletedReportsMarch()
-    {
-        $totalMarch = Report::where('month', 'March')->count();
-
-        return $totalMarch;
-    }
-
-    public function getTotalCompletedReportsMay()
-    {
-        $totalMay = Report::where('month', 'May')->count();
-
-        return $totalMay;
-    }
-
-
-    public function getTotalCompletedReportsApril()
-    {
-        $totalApril = Report::where('month', 'April')->count();
-
-        return $totalApril;
-    }
-
-    
-    public function getTotalCompletedReportsJune()
-    {
-        $totalJune = Report::where('month', 'June')->count();
-
-        return $totalJune;
-    }
-
-    public function getTotalCompletedReportsJuly()
-    {
-        $totalJuly = Report::where('month', 'July')->count();
-
-        return $totalJuly;
-    }
-
-    public function getTotalCompletedReportsAug()
-    {
-        $totalAug = Report::where('month', 'August')->count();
-
-        return $totalAug;
-    }
-
-    public function getTotalCompletedReportsSep()
-    {
-        $totalSep = Report::where('month', 'September')->count();
-
-        return $totalSep;
-    }
-
-    public function getTotalCompletedReportsOct()
-    {
-        $totalOct = Report::where('month', 'October')->count();
-
-        return $totalOct;
-    }
-
-    public function getTotalCompletedReportsNovember()
-    {
-        $totalNovember = Report::where('month', 'November')->count();
-
-        return $totalNovember;
-    }
-
-    public function getTotalCompletedReportsDecember()
-    {
-        $totalDecember = Report::where('month', 'December')->count();
-
-        return $totalDecember;
-    }
-
 
     public function getTotalCompletedReportsByTimestamp()
 {
@@ -140,281 +52,150 @@ class DashboardController extends Controller
     return $totalReports;
 }
 
-
-
-
-public function getTotalCompletedReportsByMonth()
+public function getAllTimeReports()
 {
-    $totalReportsByMonth = [];
-    
-    for ($month = 1; $month <= 12; $month++) {
-        $totalReportsByMonth[] = Report::whereMonth('created_at', $month)->count();
-    }
+    // Query to get the count of reports created on each day
+    $reportData = Report::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+    ->groupBy('date')
+    ->get();
 
-    return $totalReportsByMonth;
+    // Format the data into the structure required by Chart.js
+    $labels = $reportData->pluck('date')->toArray();
+    $counts = $reportData->pluck('count')->toArray();
+
+    $data = [
+        'labels' => $labels,
+        'counts' => $counts,
+    ];
+
+    // Return the data as JSON
+    return response()->json($data);
 }
 
-
-public function getTotalCompletedReportsInJanuary()
+public function getThisWeekReports()
 {
-    $totalReportsInJanuary = [];
+    // Get the start and end dates of the current week
+    $startOfWeek = now()->startOfWeek()->toDateString();
+    $endOfWeek = now()->endOfWeek()->toDateString();
 
-    // Get the current year
-    $currentYear = date('Y');
+    // Query to get the count of reports created within the current week
+    $reportData = Report::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+        ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
+        ->groupBy('date')
+        ->get();
 
-    // Loop through each day of January
-    for ($day = 1; $day <= 31; $day++) {
-        // Format the specific date for January and the current year
-        $specificDate = $currentYear . '-01-' . str_pad($day, 2, '0', STR_PAD_LEFT);
-        
-        // Fetch total reports for the specific date in January
-        $totalReportsInJanuary[] = Report::whereDate('created_at', $specificDate)->count();
-    }
+    // Format the data into the structure required by Chart.js
+    $labels = $reportData->pluck('date')->toArray();
+    $counts = $reportData->pluck('count')->toArray();
 
-    return $totalReportsInJanuary;
+    $data = [
+        'labels' => $labels,
+        'counts' => $counts,
+    ];
+
+    // Return the data as JSON
+    return response()->json($data);
 }
 
-public function getTotalCompletedReportsInMarch()
+public function getThisMonthsReports()
 {
-    $totalReportsInMarch = [];
+    // Get the start and end dates of the current month
+    $startOfMonth = now()->startOfMonth()->toDateString();
+    $endOfMonth = now()->endOfMonth()->toDateString();
 
-    // Get the current year
-    $currentYear = date('Y');
+    // Query to get the count of reports created within the current month
+    $reportData = Report::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+        ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+        ->groupBy('date')
+        ->get();
 
-    // Loop through each day of March
-    for ($day = 1; $day <= 31; $day++) {
-        // Format the specific date for March and the current year
-        $specificDate = $currentYear . '-03-' . str_pad($day, 2, '0', STR_PAD_LEFT);
-        
-        // Fetch total reports for the specific date in March
-        $totalReportsInMarch[] = Report::whereDate('created_at', $specificDate)->count();
-    }
+    // Format the data into the structure required by Chart.js
+    $labels = $reportData->pluck('date')->toArray();
+    $counts = $reportData->pluck('count')->toArray();
 
-    return $totalReportsInMarch;
+    $data = [
+        'labels' => $labels,
+        'counts' => $counts,
+    ];
+
+    // Return the data as JSON
+    return response()->json($data);
 }
 
-public function getTotalCompletedReportsInFebruary()
+public function getLastMonthReports()
 {
-    $totalReportsInFebruary = [];
+    // Get the start and end dates of the last month
+    $startOfMonth = now()->subMonth()->startOfMonth()->toDateString();
+    $endOfMonth = now()->subMonth()->endOfMonth()->toDateString();
 
-    // Get the current year
-    $currentYear = date('Y');
+    // Query to get the count of reports created within the last month
+    $reportData = Report::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+        ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+        ->groupBy('date')
+        ->get();
 
-    // Loop through each day of February
-    for ($day = 1; $day <= 31; $day++) {
-        // Format the specific date for February and the current year
-        $specificDate = $currentYear . '-02-' . str_pad($day, 2, '0', STR_PAD_LEFT);
-        
-        // Fetch total reports for the specific date in February
-        $totalReportsInFebruary[] = Report::whereDate('created_at', $specificDate)->count();
-    }
+    // Format the data into the structure required by Chart.js
+    $labels = $reportData->pluck('date')->toArray();
+    $counts = $reportData->pluck('count')->toArray();
 
-    return $totalReportsInFebruary;
+    $data = [
+        'labels' => $labels,
+        'counts' => $counts,
+    ];
+
+    // Return the data as JSON
+    return response()->json($data);
 }
 
-public function getTotalCompletedReportsInApril()
+public function getThisYearReports()
 {
-    $totalReportsInApril = [];
+    // Get the start and end dates of the current year
+    $startOfYear = now()->startOfYear()->toDateString();
+    $endOfYear = now()->endOfYear()->toDateString();
 
-    // Get the current year
-    $currentYear = date('Y');
+    // Query to get the count of reports created within the current year
+    $reportData = Report::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+        ->whereBetween('created_at', [$startOfYear, $endOfYear])
+        ->groupBy('date')
+        ->get();
 
-    // Loop through each day of April
-    for ($day = 1; $day <= 31; $day++) {
-        // Format the specific date for April and the current year
-        $specificDate = $currentYear . '-04-' . str_pad($day, 2, '0', STR_PAD_LEFT);
-        
-        // Fetch total reports for the specific date in April
-        $totalReportsInApril[] = Report::whereDate('created_at', $specificDate)->count();
-    }
+    // Format the data into the structure required by Chart.js
+    $labels = $reportData->pluck('date')->toArray();
+    $counts = $reportData->pluck('count')->toArray();
 
-    return $totalReportsInApril;
+    $data = [
+        'labels' => $labels,
+        'counts' => $counts,
+    ];
+
+    // Return the data as JSON
+    return response()->json($data);
 }
 
-public function getTotalCompletedReportsInMay()
+public function getLastYearReports()
 {
-    $totalReportsInMay = [];
+    // Get the start and end dates of last year
+    $startOfYear = now()->startOfYear()->subYear()->toDateString();
+    $endOfYear = now()->endOfYear()->subYear()->toDateString();
 
-    // Get the current year
-    $currentYear = date('Y');
+    // Query to get the count of reports created within last year
+    $reportData = Report::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+        ->whereBetween('created_at', [$startOfYear, $endOfYear])
+        ->groupBy('date')
+        ->get();
 
-    // Loop through each day of May
-    for ($day = 1; $day <= 31; $day++) {
-        // Format the specific date for May and the current year
-        $specificDate = $currentYear . '-05-' . str_pad($day, 2, '0', STR_PAD_LEFT);
-        
-        // Fetch total reports for the specific date in May
-        $totalReportsInMay[] = Report::whereDate('created_at', $specificDate)->count();
-    }
+    // Format the data into the structure required by Chart.js
+    $labels = $reportData->pluck('date')->toArray();
+    $counts = $reportData->pluck('count')->toArray();
 
-    return $totalReportsInMay;
+    $data = [
+        'labels' => $labels,
+        'counts' => $counts,
+    ];
+
+    // Return the data as JSON
+    return response()->json($data);
 }
-
-public function getTotalCompletedReportsInJune()
-{
-    $totalReportsInJune = [];
-
-    // Get the current year
-    $currentYear = date('Y');
-
-    // Loop through each day of June
-    for ($day = 1; $day <= 31; $day++) {
-        // Format the specific date for June and the current year
-        $specificDate = $currentYear . '-06-' . str_pad($day, 2, '0', STR_PAD_LEFT);
-        
-        // Fetch total reports for the specific date in June
-        $totalReportsInJune[] = Report::whereDate('created_at', $specificDate)->count();
-    }
-
-    return $totalReportsInJune;
-}
-
-public function getTotalCompletedReportsInJuly()
-{
-    $totalReportsInJuly = [];
-
-    // Get the current year
-    $currentYear = date('Y');
-
-    // Loop through each day of July
-    for ($day = 1; $day <= 31; $day++) {
-        // Format the specific date for July and the current year
-        $specificDate = $currentYear . '-07-' . str_pad($day, 2, '0', STR_PAD_LEFT);
-        
-        // Fetch total reports for the specific date in July
-        $totalReportsInJuly[] = Report::whereDate('created_at', $specificDate)->count();
-    }
-
-    return $totalReportsInJuly;
-}
-
-public function getTotalCompletedReportsInAugust()
-{
-    $totalReportsInAugust = [];
-
-    // Get the current year
-    $currentYear = date('Y');
-
-    // Loop through each day of August
-    for ($day = 1; $day <= 31; $day++) {
-        // Format the specific date for August and the current year
-        $specificDate = $currentYear . '-08-' . str_pad($day, 2, '0', STR_PAD_LEFT);
-        
-        // Fetch total reports for the specific date in August
-        $totalReportsInAugust[] = Report::whereDate('created_at', $specificDate)->count();
-    }
-
-    return $totalReportsInAugust;
-}
-
-public function getTotalCompletedReportsInSeptember()
-{
-    $totalReportsInSeptember = [];
-
-    // Get the current year
-    $currentYear = date('Y');
-
-    // Loop through each day of September
-    for ($day = 1; $day <= 31; $day++) {
-        // Format the specific date for September and the current year
-        $specificDate = $currentYear . '-09-' . str_pad($day, 2, '0', STR_PAD_LEFT);
-        
-        // Fetch total reports for the specific date in September
-        $totalReportsInSeptember[] = Report::whereDate('created_at', $specificDate)->count();
-    }
-
-    return $totalReportsInSeptember;
-}
-
-
-public function getTotalCompletedReportsInOctober()
-{
-    $totalReportsInOctober = [];
-
-    // Get the current year
-    $currentYear = date('Y');
-
-    // Loop through each day of October
-    for ($day = 1; $day <= 31; $day++) {
-        // Format the specific date for October and the current year
-        $specificDate = $currentYear . '-10-' . str_pad($day, 2, '0', STR_PAD_LEFT);
-        
-        // Fetch total reports for the specific date in October
-        $totalReportsInOctober[] = Report::whereDate('created_at', $specificDate)->count();
-    }
-
-    return $totalReportsInOctober;
-}
-
-
-public function getTotalCompletedReportsInNovember()
-{
-    $totalReportsInNovember = [];
-
-    // Get the current year
-    $currentYear = date('Y');
-
-    // Loop through each day of November
-    for ($day = 1; $day <= 31; $day++) {
-        // Format the specific date for November and the current year
-        $specificDate = $currentYear . '-11-' . str_pad($day, 2, '0', STR_PAD_LEFT);
-        
-        // Fetch total reports for the specific date in November
-        $totalReportsInNovember[] = Report::whereDate('created_at', $specificDate)->count();
-    }
-
-    return $totalReportsInNovember;
-}
-
-public function getTotalCompletedReportsInDecember()
-{
-    $totalReportsInDecember = [];
-
-    // Get the current year
-    $currentYear = date('Y');
-
-    // Loop through each day of December
-    for ($day = 1; $day <= 31; $day++) {
-        // Format the specific date for December and the current year
-        $specificDate = $currentYear . '-11-' . str_pad($day, 2, '0', STR_PAD_LEFT);
-        
-        // Fetch total reports for the specific date in December
-        $totalReportsInDecember[] = Report::whereDate('created_at', $specificDate)->count();
-    }
-
-    return $totalReportsInDecember;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public function getTotalPublicVehicle()
@@ -429,13 +210,7 @@ public function getTotalCompletedReportsInDecember()
         $totalPrivateVehicle = Register::where('type', 'Private')->count();
 
         return $totalPrivateVehicle;
-    }
-
-
-    
-
-    
-    
+    }    
 
     public function getTotalRegistered()
     {

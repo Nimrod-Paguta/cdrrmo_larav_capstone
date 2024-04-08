@@ -82,5 +82,12 @@ Route::get('/registerpage/{id}', [RegisterController::class, 'show'])->name('reg
 
 Route::get('/dashboard', [DashboardController::class, 'recentRegisters'])->name('dashboard');
 
+Route::get('/all-time-report-dashboard', [DashboardController::class, 'getAllTimeReports'])->name('all-time-report-dashboard');
+Route::get('/this-week-report-dashboard', [DashboardController::class, 'getThisWeekReports'])->name('this-week-report-dashboard');
+Route::get('/this-month-report-dashboard', [DashboardController::class, 'getThisMonthsReports'])->name('this-month-report-dashboard');
+Route::get('/last-month-report-dashboard', [DashboardController::class, 'getLastMonthReports'])->name('last-month-report-dashboard');
+Route::get('/this-year-report-dashboard', [DashboardController::class, 'getThisYearReports'])->name('this-year-report-dashboard');
+Route::get('/last-year-report-dashboard', [DashboardController::class, 'getLastYearReports'])->name('last-year-report-dashboard');
+
 });
 require __DIR__.'/auth.php';

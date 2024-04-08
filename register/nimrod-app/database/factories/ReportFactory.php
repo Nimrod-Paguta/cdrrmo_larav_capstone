@@ -17,7 +17,7 @@ class ReportFactory extends Factory
     public function definition(): array
     {
         return [
-            'registereduserid' => $this->faker->randomFloat(2, 0, 10),
+            'registereduserid' => $this->faker->numberBetween(110, 155),
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
             'time' => $this->faker->time(),
@@ -31,9 +31,7 @@ class ReportFactory extends Factory
             'Sumpong', 'Violeta', 'Zamboanguita']),
             'city' => 'Malaybalay City',
             'address' => $this->faker->address(), 
-            'created_at' => $this->faker->dateTimeBetween('2025-01-01', '2025-12-31')->format('Y-m-d H:i:s'),
-
-
+            'created_at' => $this->faker->dateTimeBetween('2023-12-01', '2024-04-08')->format('Y-m-d H:i:s'),
 
         ];
     }

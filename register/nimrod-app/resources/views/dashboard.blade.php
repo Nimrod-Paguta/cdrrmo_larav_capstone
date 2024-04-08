@@ -21,66 +21,6 @@
          $totalCompletedReports = $reportController->getTotalCompletedReports();
      @endphp
 
-     @php
-         $reportController = new App\Http\Controllers\DashboardController();
-         $totalJanuary = $reportController->getTotalCompletedReportsJanuary();
-     @endphp
-
-     @php
-         $reportController = new App\Http\Controllers\DashboardController();
-         $totalfebruary = $reportController->getTotalCompletedReportsFebruay();
-     @endphp
-
-     @php
-         $reportController = new App\Http\Controllers\DashboardController();
-         $totalMarch = $reportController->getTotalCompletedReportsMarch();
-     @endphp
-
-     @php
-         $reportController = new App\Http\Controllers\DashboardController();
-         $totalApril = $reportController->getTotalCompletedReportsApril();
-     @endphp
-
-     @php
-         $reportController = new App\Http\Controllers\DashboardController();
-         $totalMay = $reportController->getTotalCompletedReportsMay();
-     @endphp
-
-     @php
-         $reportController = new App\Http\Controllers\DashboardController();
-         $totalJune = $reportController->getTotalCompletedReportsJune();
-     @endphp
-
-     @php
-         $reportController = new App\Http\Controllers\DashboardController();
-         $totalJuly = $reportController->getTotalCompletedReportsJuly();
-     @endphp
-
-     @php
-         $reportController = new App\Http\Controllers\DashboardController();
-         $totalAug = $reportController->getTotalCompletedReportsAug();
-     @endphp
-
-     @php
-         $reportController = new App\Http\Controllers\DashboardController();
-         $totalSep = $reportController->getTotalCompletedReportsSep();
-     @endphp
-
-     @php
-         $reportController = new App\Http\Controllers\DashboardController();
-         $totalOct = $reportController->getTotalCompletedReportsOct();
-     @endphp
-
-     @php
-         $reportController = new App\Http\Controllers\DashboardController();
-         $totalNovember = $reportController->getTotalCompletedReportsNovember();
-     @endphp
-
-     @php
-         $reportController = new App\Http\Controllers\DashboardController();
-         $totalDecember = $reportController->getTotalCompletedReportsDecember();
-     @endphp
-
 
      @php
          $reportController = new App\Http\Controllers\DashboardController();
@@ -97,92 +37,6 @@
     $reportController = new App\Http\Controllers\DashboardController();
     $totalReports = $reportController->getTotalCompletedReportsByTimestamp();
 @endphp
-
-
-
-@php
-    $reportController = new App\Http\Controllers\DashboardController();
-    $totalReportsByMonth = $reportController->getTotalCompletedReportsByMonth();
-@endphp
-
-@php
-    $reportController = new App\Http\Controllers\DashboardController();
-    $totalReportsInJanuary = $reportController->getTotalCompletedReportsInJanuary();
-@endphp
-
-
-@php
-    $reportController = new App\Http\Controllers\DashboardController();
-    $totalReportsInMarch = $reportController->getTotalCompletedReportsInMarch();
-@endphp
-
-
-@php
-    $reportController = new App\Http\Controllers\DashboardController();
-    $totalReportsInFebruary = $reportController->getTotalCompletedReportsInFebruary();
-@endphp
-
-@php
-    $reportController = new App\Http\Controllers\DashboardController();
-    $totalReportsInApril = $reportController->getTotalCompletedReportsInApril();
-@endphp
-
-@php
-    $reportController = new App\Http\Controllers\DashboardController();
-    $totalReportsInMay = $reportController->getTotalCompletedReportsInMay();
-@endphp
-
-@php
-    $reportController = new App\Http\Controllers\DashboardController();
-    $totalReportsInJune = $reportController->getTotalCompletedReportsInJune();
-@endphp
-
-@php
-    $reportController = new App\Http\Controllers\DashboardController();
-    $totalReportsInJuly = $reportController->getTotalCompletedReportsInJuly();
-@endphp
-
-@php
-    $reportController = new App\Http\Controllers\DashboardController();
-    $totalReportsInAugust = $reportController->getTotalCompletedReportsInAugust();
-@endphp
-
-@php
-    $reportController = new App\Http\Controllers\DashboardController();
-    $totalReportsInSeptember = $reportController->getTotalCompletedReportsInSeptember();
-@endphp
-
-@php
-    $reportController = new App\Http\Controllers\DashboardController();
-    $totalReportsInOctober = $reportController->getTotalCompletedReportsInOctober();
-@endphp
-
-@php
-    $reportController = new App\Http\Controllers\DashboardController();
-    $totalReportsInNovember = $reportController->getTotalCompletedReportsInNovember();
-@endphp
-
-
-@php
-    $reportController = new App\Http\Controllers\DashboardController();
-    $totalReportsInDecember = $reportController->getTotalCompletedReportsInDecember();
-@endphp
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
      <!-- Page Heading -->
@@ -348,34 +202,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
      <div class="row">
 
          <!-- Area Chart -->
@@ -383,7 +209,7 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Total Report Every Month</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Total Reports</h6>
                 <div class="dropdown no-arrow">
                     <select id="monthDropdown" class="form-control">
                         <option value="0">All Time</option>
@@ -392,19 +218,15 @@
                         <option value="3">Last Month</option>
                         <option value="4">This Year</option>
                         <option value="5">Last Year</option>
-                        {{-- <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option> --}}
                     </select>
                 </div>
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                <div class="chart-area" style="height: 200px;">
+                <div class="chart-area" style="height: 300px;">
+                    <center><div id="loadingSpinner" style="display: none;">
+                        <h4>Loading...</h4>
+                    </div></center>
                     <canvas id="myAreaChart"></canvas>
                 </div>
             </div>
@@ -594,214 +416,105 @@
 
 
 
-
          <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // // Function to update chart based on selected month
-        // function updateChart(monthIndex) {
-        //     if (monthIndex === 0) {
-        //         myLineChart.data.labels = defaultLabels;
-        //         myLineChart.data.datasets[0].data = defaultData;
-        //     } else {
-        //         var currentDate = new Date();
-        //         var year = currentDate.getFullYear();
-        //         var daysInMonth = new Date(year, monthIndex, 0).getDate();
-        //         var labels = [];
-        //         for (var i = 1; i <= daysInMonth; i++) {
-        //             labels.push(year + '-' + ('0' + monthIndex).slice(-2) + '-' + ('0' + i).slice(-2));
-        //         }
-        //         myLineChart.data.labels = labels;
-        //         myLineChart.data.datasets[0].data = specificMonthData[monthIndex - 1];
-        //     }
-        //     myLineChart.update();
-        // }
+           $(document).ready(function() {
+            $('#loadingSpinner').show();
 
-        // Data for the chart
-        var defaultLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        var defaultData = [
-            @foreach($totalReportsByMonth as $total)
-                {{ $total }},
-            @endforeach
-        ];
+            function getReports(reportURL){
+                 $.ajax({
+                    url: reportURL,
+                    type: 'GET',
+                    success: function(response) {
+                        $('#loadingSpinner').hide();
+                        // Response should contain labels and counts arrays
+                        createChart(response.labels, response.counts);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                        $('#loadingSpinner').hide();
+                    }
+                });
+            }
 
-        var specificMonthData = [
-            // Data for January
-            [
-                @foreach($totalReportsInJanuary as $total)
-            {{ $total }},
-              @endforeach
-            ],
-            // Data for February
-            [
-                @foreach($totalReportsInFebruary  as $total)
-                {{ $total }},
-                @endforeach
-            ],
-            // Data for March
-            [
-                @foreach($totalReportsInMarch  as $total)
-                {{ $total }},
-                @endforeach
-            ],
-            // Data for April
-            [
-                @foreach($totalReportsInApril as $total)
-                {{ $total }},
-                @endforeach
-            ],
-            // Data for May
-            [
-                @foreach($totalReportsInMay as $total)
-                {{ $total }},
-                @endforeach
-            ],
-            // Data for June
-            [
-                @foreach($totalReportsInJune as $total)
-                {{ $total }},
-                @endforeach
-            ],
-            // Data for July
-            [
-                @foreach($totalReportsInJuly as $total)
-                {{ $total }},
-                @endforeach
-            ],
-            // Data for August
-            [
-                @foreach($totalReportsInAugust as $total)
-                {{ $total }},
-                @endforeach
-            ],
-            // Data for September
-            [
-                @foreach($totalReportsInSeptember as $total)
-                {{ $total }},
-                @endforeach
-            ],
-            // Data for October
-            [
-                @foreach($totalReportsInOctober as $total)
-                {{ $total }},
-                @endforeach
-            ],
-            // Data for November
-            [
-                @foreach($totalReportsInNovember as $total)
-                {{ $total }},
-                @endforeach
-            ],
-            // Data for December
-            [
-                @foreach($totalReportsInDecember as $total)
-                {{ $total }},
-                @endforeach
-            ]
-        ];
-
-        // Chart configuration
-        var chartConfig = {
-            type: 'line',
-            data: {
-                labels: defaultLabels,
-                datasets: [{
-                    label: "Total Report",
-                    backgroundColor: "rgba(78, 115, 223, 0.05)",
-                    borderColor: "rgba(78, 115, 223, 1)",
-                    pointRadius: 3,
-                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointBorderColor: "rgba(78, 115, 223, 1)",
-                    pointHoverRadius: 3,
-                    pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                    pointHitRadius: 10,
-                    pointBorderWidth: 2,
-                    data: defaultData
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                scales: {
-                    xAxes: [{
-                        gridLines: {
-                            display: false
-                        }
-                    }],
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                            callback: function(value) {
-                                return value; // Display as it is
-                            }
-                        }
-                    }]
+            function updateChart(select){
+                switch (select) {
+                    case 0:
+                        getReports('/all-time-report-dashboard')
+                        break;
+                    case 1:
+                        getReports('/this-week-report-dashboard')
+                        break;
+                    case 2:
+                        getReports('/this-month-report-dashboard')
+                        break;
+                    case 3:
+                        getReports('/last-month-report-dashboard')
+                        break;
+                    case 4:
+                        getReports('/this-year-report-dashboard')
+                        break;
+                    case 5:
+                        getReports('/last-year-report-dashboard')
+                        break;
+                
+                    default:
+                        break;
                 }
             }
-        };
 
-        // Get the canvas element
-        var ctx = document.getElementById('myAreaChart').getContext('2d');
+            document.getElementById('monthDropdown').addEventListener('change', function() {
+                var select = parseInt(this.value);
+                updateChart(select);
+            });
 
-        // Create the chart with the provided data and configuration
-        var myLineChart = new Chart(ctx, chartConfig);
+            getReports('/all-time-report-dashboard')
 
-        // Event listener for dropdown change
-        document.getElementById('monthDropdown').addEventListener('change', function() {
-            var select = parseInt(this.value);
-            updateChart(select);
-        });
+            });
 
-        function updateChart(select){
-            switch (select) {
-                case 0:
-                    myLineChart.data.labels = defaultLabels;
-                    myLineChart.data.datasets[0].data = defaultData;
-                    break;
-                case 1:
-                    
-                    break;
-            
-                default:
-                    break;
+            function createChart(labels, counts) {
+                var ctx = document.getElementById('myAreaChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Number of Reports',
+                            data: counts,
+                            backgroundColor: "rgba(78, 115, 223, 0.05)",
+                            borderColor: "rgba(78, 115, 223, 1)",
+                            pointRadius: 3,
+                            pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                            pointBorderColor: "rgba(78, 115, 223, 1)",
+                            pointHoverRadius: 3,
+                            pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                            pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                            pointHitRadius: 10,
+                            pointBorderWidth: 2,
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        scales: {
+                            xAxes: [{
+                                gridLines: {
+                                    display: false
+                                }
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    callback: function(value) {
+                                        return value; // Display as it is
+                                    }
+                                }
+                            }]
+                        }
+                    }
+                });
             }
-            // if (monthIndex === 0) {
-            //     myLineChart.data.labels = defaultLabels;
-            //     myLineChart.data.datasets[0].data = defaultData;
-            // } else {
-            //     var currentDate = new Date();
-            //     var year = currentDate.getFullYear();
-            //     var daysInMonth = new Date(year, monthIndex, 0).getDate();
-            //     var labels = [];
-            //     for (var i = 1; i <= daysInMonth; i++) {
-            //         labels.push(year + '-' + ('0' + monthIndex).slice(-2) + '-' + ('0' + i).slice(-2));
-            //     }
-            //     myLineChart.data.labels = labels;
-            //     myLineChart.data.datasets[0].data = specificMonthData[monthIndex - 1];
-            // }
-            myLineChart.update();
-        }
-    });
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
+        </script>
+        
 
 
 
