@@ -70,13 +70,22 @@
         }
         .clickable-heading {
             color: white;
-         
-            padding: 10px 20px;
-          
+            padding: 25px 40px;
             cursor: pointer;
             font-size: 20px;
-            width: 200px;
-            text-align: center;
+            width: 150px;
+            float: right;
+            display: inline-block;
+            margin-bottom: 10px; /* Adjust margin as needed */
+            text-decoration: none; /* Remove underline */
+        }
+        .clickable-heading-login {
+            color: white;
+            padding: 25px 40px;
+            cursor: pointer;
+            font-size: 20px;
+            width: 150px;
+            float: right;
             display: inline-block;
             margin-bottom: 10px; /* Adjust margin as needed */
             text-decoration: none; /* Remove underline */
@@ -123,20 +132,14 @@
 
 
     <div>
+
+    <img src="{{ asset('malaybalaylogo.png') }}" class="img-fluid" alt="Logo" style="width: 120px; height: auto; padding-left:20px; padding-top: 5px;">
         
-    <img src="{{ asset('img/register/mewsaimongnawong.png') }}" class="img-fluid" alt="Logo" style="width: 480px; height: auto; padding-left:20px; padding-top: 5px;">
+    <img src="{{ asset('img/register/mewsaimongnawong.png') }}" class="img-fluid" alt="Logo" style="width: 480px; height: auto; padding-left:5px; padding-top: 5px;">
     
-    <img src="{{ asset('img/register/Logo_of_Bukidnon_State_University.png') }}" class="img-fluid" alt="Logo" style="width: 105px; height: auto; padding-left:20px; padding-top: 5px;">
+   
     
-
-
-    <h1 class="clickable-heading">
-       About Us
-    </h1>
-    <h1 class="clickable-heading" >
-        Contact Us
-    </h1>
-    <h1 class="clickable-heading" id="loginButton">
+    <h1 class="clickable-heading-login" id="loginButton">
         Log in
     </h1>
     <h1 class="clickable-heading" id="registerButton">
