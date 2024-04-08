@@ -386,19 +386,19 @@
                 <h6 class="m-0 font-weight-bold text-primary">Total Report Every Month</h6>
                 <div class="dropdown no-arrow">
                     <select id="monthDropdown" class="form-control">
-                        <option value="0">Months</option>
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
+                        <option value="0">All Time</option>
+                        <option value="1">This Week</option>
+                        <option value="2">This Month</option>
+                        <option value="3">Last Month</option>
+                        <option value="4">This Year</option>
+                        <option value="5">Last Year</option>
+                        {{-- <option value="6">June</option>
                         <option value="7">July</option>
                         <option value="8">August</option>
                         <option value="9">September</option>
                         <option value="10">October</option>
                         <option value="11">November</option>
-                        <option value="12">December</option>
+                        <option value="12">December</option> --}}
                     </select>
                 </div>
             </div>
@@ -597,24 +597,24 @@
 
          <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // Function to update chart based on selected month
-        function updateChart(monthIndex) {
-            if (monthIndex === 0) {
-                myLineChart.data.labels = defaultLabels;
-                myLineChart.data.datasets[0].data = defaultData;
-            } else {
-                var currentDate = new Date();
-                var year = currentDate.getFullYear();
-                var daysInMonth = new Date(year, monthIndex, 0).getDate();
-                var labels = [];
-                for (var i = 1; i <= daysInMonth; i++) {
-                    labels.push(year + '-' + ('0' + monthIndex).slice(-2) + '-' + ('0' + i).slice(-2));
-                }
-                myLineChart.data.labels = labels;
-                myLineChart.data.datasets[0].data = specificMonthData[monthIndex - 1];
-            }
-            myLineChart.update();
-        }
+        // // Function to update chart based on selected month
+        // function updateChart(monthIndex) {
+        //     if (monthIndex === 0) {
+        //         myLineChart.data.labels = defaultLabels;
+        //         myLineChart.data.datasets[0].data = defaultData;
+        //     } else {
+        //         var currentDate = new Date();
+        //         var year = currentDate.getFullYear();
+        //         var daysInMonth = new Date(year, monthIndex, 0).getDate();
+        //         var labels = [];
+        //         for (var i = 1; i <= daysInMonth; i++) {
+        //             labels.push(year + '-' + ('0' + monthIndex).slice(-2) + '-' + ('0' + i).slice(-2));
+        //         }
+        //         myLineChart.data.labels = labels;
+        //         myLineChart.data.datasets[0].data = specificMonthData[monthIndex - 1];
+        //     }
+        //     myLineChart.update();
+        // }
 
         // Data for the chart
         var defaultLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -747,9 +747,39 @@
 
         // Event listener for dropdown change
         document.getElementById('monthDropdown').addEventListener('change', function() {
-            var selectedMonthIndex = parseInt(this.value);
-            updateChart(selectedMonthIndex);
+            var select = parseInt(this.value);
+            updateChart(select);
         });
+
+        function updateChart(select){
+            switch (select) {
+                case 0:
+                    myLineChart.data.labels = defaultLabels;
+                    myLineChart.data.datasets[0].data = defaultData;
+                    break;
+                case 1:
+                    
+                    break;
+            
+                default:
+                    break;
+            }
+            // if (monthIndex === 0) {
+            //     myLineChart.data.labels = defaultLabels;
+            //     myLineChart.data.datasets[0].data = defaultData;
+            // } else {
+            //     var currentDate = new Date();
+            //     var year = currentDate.getFullYear();
+            //     var daysInMonth = new Date(year, monthIndex, 0).getDate();
+            //     var labels = [];
+            //     for (var i = 1; i <= daysInMonth; i++) {
+            //         labels.push(year + '-' + ('0' + monthIndex).slice(-2) + '-' + ('0' + i).slice(-2));
+            //     }
+            //     myLineChart.data.labels = labels;
+            //     myLineChart.data.datasets[0].data = specificMonthData[monthIndex - 1];
+            // }
+            myLineChart.update();
+        }
     });
 </script>
 
