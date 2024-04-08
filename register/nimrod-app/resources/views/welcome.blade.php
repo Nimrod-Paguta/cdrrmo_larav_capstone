@@ -25,10 +25,10 @@
         }
        
         .modal-body {
-            padding: 40px;
+            padding: 30px;
         }
         .login-logo {
-            margin-bottom: 30px;
+            margin-bottom: 5px;
             .login-logo img {
                 width: 50px; /* Set the width as needed */
                 height: auto; /* Let the height adjust automatically to maintain aspect ratio */
@@ -54,7 +54,7 @@
             border-radius: 5px; /* Rounded corners */
             cursor: pointer;
             font-size: 16px; /* Adjust font size as needed */
-            width: 410px;
+            width: 435px;
         }
 
         /* Custom styling for alternative buttons */
@@ -70,16 +70,57 @@
         }
         .clickable-heading {
             color: white;
-         
-            padding: 10px 20px;
-          
+            padding: 25px 40px;
             cursor: pointer;
             font-size: 20px;
-            width: 200px;
-            text-align: center;
+            width: 150px;
+            float: right;
             display: inline-block;
             margin-bottom: 10px; /* Adjust margin as needed */
             text-decoration: none; /* Remove underline */
+        }
+        #registerButton {
+            transition: color 0.3s ease; /* Smooth transition effect */
+        }
+
+        #registerButton:hover {
+            color: #DDDDDD; /* Change text color on hover */
+        }
+        
+        
+        .clickable-heading-login {
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 20px;
+        width: 95px;
+        float: right;
+        display: inline-block;
+        margin-bottom: 10px;
+        margin-top: 15px;
+        margin-right: 20px; 
+        text-decoration: none; /* Remove underline */
+        background-color: #D7953F; /* Green background color */
+        border-radius: 25px 25px 25px 25px; /* Make it circular */
+        }
+
+        .clickable-heading-login:hover {
+        background-color: #F0AD4E; /* Change background color on hover */
+        }
+
+        .close-button {
+        color: #DDDDDD;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 30px;
+        margin-left: 440px;
+        float: right;
+        text-decoration: none;
+        }
+
+        .close-button:hover {
+        text-decoration: none; /* Prevent underline on hover */
+        color: #DDDDDD; /* Ensure color remains the same on hover */
         }
 
         .img-fluid {
@@ -123,20 +164,14 @@
 
 
     <div>
+
+    <img src="{{ asset('malaybalaylogo.png') }}" class="img-fluid" alt="Logo" style="width: 120px; height: auto; padding-left:20px; padding-top: 5px;">
         
-    <img src="{{ asset('img/register/mewsaimongnawong.png') }}" class="img-fluid" alt="Logo" style="width: 480px; height: auto; padding-left:20px; padding-top: 5px;">
+    <img src="{{ asset('img/register/mewsaimongnawong.png') }}" class="img-fluid" alt="Logo" style="width: 480px; height: auto; padding-left:5px; padding-top: 5px;">
     
-    <img src="{{ asset('img/register/Logo_of_Bukidnon_State_University.png') }}" class="img-fluid" alt="Logo" style="width: 105px; height: auto; padding-left:20px; padding-top: 5px;">
+   
     
-
-
-    <h1 class="clickable-heading">
-       About Us
-    </h1>
-    <h1 class="clickable-heading" >
-        Contact Us
-    </h1>
-    <h1 class="clickable-heading" id="loginButton">
+    <h1 class="clickable-heading-login" id="loginButton">
         Log in
     </h1>
     <h1 class="clickable-heading" id="registerButton">
@@ -151,6 +186,7 @@
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+        <a href="/" class="close-button">&#10006;</a>
             <div class="modal-body">
                 <div class="text-center login-logo">
                     <img src="{{ asset('img/register/logo_cdrrmo-new.png') }}" class="img-fluid" alt="Logo">
@@ -220,6 +256,7 @@
 <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+        <a href="/" class="close-button">&#10006;</a>
             <div class="modal-body">
                 <div class="text-center login-logo">
                     <img src="{{ asset('img/register/logo_cdrrmo-new.png') }}" class="img-fluid" alt="Logo">
