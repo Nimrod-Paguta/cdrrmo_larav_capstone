@@ -15,8 +15,21 @@
         @endif
         
         <h3>Register</h3>
-        <button class="btn btn-success" onclick="openModal()">+ register</button>
-        <a href="/registeredusers" class="btn btn-primary">Generate Report</a>
+
+        <div style="display: flex;">
+            <button class="btn btn-success" onclick="openModal()" style="margin-right: 5px">+ register</button>
+            <a href="{{$pdf}}" class="btn btn-primary" id="registerReport" style="margin-right: 5px">Generate Report</a>
+            <select id="registerSelect" class="form-control" style="width: 135px">
+                <option value="0">All Time</option>
+                <option value="1">This Week</option>
+                <option value="2">This Month</option>
+                <option value="3">Last Month</option>
+                <option value="4">This Year</option>
+                <option value="5">Last Year</option>
+            </select>
+        </div>
+        
+                
 
         <table id="yourDataTableID" class="table table-striped" style="width:100%">
             <thead class="table-header">
@@ -223,6 +236,60 @@
 <script>
     $(document).ready(function () {
         $('#yourDataTableID').DataTable();
+
+        // update select if changed
+        var selectElement = document.getElementById('registerSelect');
+        for(var i = 0; i < selectElement.options.length; i++) {
+            if(selectElement.options[i].value == {!! json_encode($sort) !!}) {
+                selectElement.options[i].selected = true;
+                break;
+            }
+        }
+
+        document.getElementById('registerSelect').addEventListener('change', function() {
+                var select = parseInt(this.value);
+                updateTable(select)
+            });
+
+        function updateTable(select){
+            switch (select) {
+                case 0:
+                    getRegisters('/registerpage')
+                    break;
+                case 1:
+                    getRegisters('/this-week-register')
+                    break;
+                case 2:
+                    getRegisters('/this-month-register')
+                    break;
+                case 3:
+                    getRegisters('/last-month-register')
+                    break;
+                case 4:
+                    getRegisters('/this-year-register')
+                    break;
+                case 5:
+                    getRegisters('/last-year-register')
+                    break;
+                
+                default:
+                    break;    
+                }
+            }
+        
+        function getRegisters(registerURL){
+            $.ajax({
+                url: registerURL,
+                type: 'GET',
+                success: function(response) {
+                    window.location.href = registerURL;
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+
     });
 </script>
 

@@ -16,9 +16,102 @@ class RegisterController extends Controller
         $registersRaw = DB::table('registers')->get()->toArray();
         $registers = array_reverse($registersRaw);
         return view('registerpage', [
-            'registers' => $registers
+            'registers' => $registers,
+            'sort' => '0',
+            'pdf' => '/registeredusers',
         ]);
     }
+
+    public function getThisWeekRegisters()
+    {
+         // Get the start and end dates of the current week
+        $startOfWeek = now()->startOfWeek()->toDateString();
+        $endOfWeek = now()->endOfWeek()->toDateString();
+
+        // Query to get the count of reports created within the current week
+        $reportData = DB::table('registers')
+        ->whereBetween('created_at', [$startOfWeek, $endOfWeek])
+        ->get();
+        
+        return view('registerpage', [
+            'registers' => $reportData,
+            'sort' => '1',
+            'pdf' => '/registeredusers-thisweek',
+        ]);
+    }
+
+    public function getThisMonthRegisters()
+    {
+        // Get the start and end dates of the current month
+        $startOfMonth = now()->startOfMonth()->toDateString();
+        $endOfMonth = now()->endOfMonth()->toDateString();
+
+        // Query to get the registers created within the current month
+        $registers = DB::table('registers')
+            ->whereBetween('created_at', [$startOfMonth, $endOfMonth])
+            ->get();
+
+        return view('registerpage', [
+            'registers' => $registers,
+            'sort' => '2',
+            'pdf' => '/registeredusers-thismonth',
+        ]);
+    }
+
+    public function getLastMonthRegisters()
+    {
+        // Get the start and end dates of the last month
+        $startOfLastMonth = now()->subMonth()->startOfMonth()->toDateString();
+        $endOfLastMonth = now()->subMonth()->endOfMonth()->toDateString();
+
+        // Query to get the registers created within the last month
+        $registers = DB::table('registers')
+            ->whereBetween('created_at', [$startOfLastMonth, $endOfLastMonth])
+            ->get();
+
+        return view('registerpage', [
+            'registers' => $registers,
+            'sort' => '3',
+            'pdf' => '/registeredusers-lastmonth',
+        ]);
+    }
+
+    public function getThisYearRegisters()
+    {
+        // Get the start and end dates of the current year
+        $startOfYear = now()->startOfYear()->toDateString();
+        $endOfYear = now()->endOfYear()->toDateString();
+
+        // Query to get the registers created within the current year
+        $registers = DB::table('registers')
+            ->whereBetween('created_at', [$startOfYear, $endOfYear])
+            ->get();
+
+        return view('registerpage', [
+            'registers' => $registers,
+            'sort' => '4',
+            'pdf' => '/registeredusers-thisyear',
+        ]);
+    }
+
+    public function getLastYearRegisters()
+    {
+        // Get the start and end dates of the last year
+        $startOfLastYear = now()->subYear()->startOfYear()->toDateString();
+        $endOfLastYear = now()->subYear()->endOfYear()->toDateString();
+
+        // Query to get the registers created within the last year
+        $registers = DB::table('registers')
+            ->whereBetween('created_at', [$startOfLastYear, $endOfLastYear])
+            ->get();
+
+        return view('registerpage', [
+            'registers' => $registers,
+            'sort' => '5',
+            'pdf' => '/registeredusers-lastyear',
+        ]);
+    }
+
 
 
     /**

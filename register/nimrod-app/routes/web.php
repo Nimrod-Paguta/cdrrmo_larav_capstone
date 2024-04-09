@@ -65,14 +65,21 @@ Route::post('/reporting/send', [ReportController::class, 'send'])->name('reporti
 Route::put('/reporting/{id}', [ReportController::class, 'update'])->name('reporting.update');
 Route::delete('/reports/{id}', [ReportController::class, 'destroy'])->name('reports.destroy');
 
-
 Route::prefix('/')->group(function (){    
 Route::post("/registerpage",[RegisterController::class, 'store'])->name('users.post');}); 
 Route::get('/reports/{id}', [ReportpdfController::class, 'index'])->name('reports');
-Route::get('/registeredusers', [RegisteredUserReportController::class, 'index'])->name('registeredReport');
+
 Route::get('/allreports', [ReportControllerAll::class, 'index'])->name('allreports');
 Route::get('/barangayreports/{id}', [BarangayReportController::class, 'generateReport'])->name('barangayreport');
 Route::get('/barangay', [barangayController::class, 'index'])->name('barangay');
+
+// Register PDF
+Route::get('/registeredusers', [RegisteredUserReportController::class, 'allTime'])->name('registeredReport');
+Route::get('/registeredusers-thisweek', [RegisteredUserReportController::class, 'thisWeek'])->name('registeredusers-thisweek');
+Route::get('/registeredusers-thismonth', [RegisteredUserReportController::class, 'thisMonth'])->name('registeredusers-thismonth');
+Route::get('/registeredusers-lastmonth', [RegisteredUserReportController::class, 'lastMonth'])->name('registeredusers-lastmonth');
+Route::get('/registeredusers-thisyear', [RegisteredUserReportController::class, 'thisYear'])->name('registeredusers-thisyear');
+Route::get('/registeredusers-lastyear', [RegisteredUserReportController::class, 'lastYear'])->name('registeredusers-lastyear');
 
 Route::get('/registerpage',[RegisterController::class, 'getRegisters'])->name('registerpage');
 Route::get('registerpage/edit/{id}', 'App\Http\Controllers\RegisterController@edit')->name('registerpage.edit');
@@ -88,6 +95,12 @@ Route::get('/this-month-report-dashboard', [DashboardController::class, 'getThis
 Route::get('/last-month-report-dashboard', [DashboardController::class, 'getLastMonthReports'])->name('last-month-report-dashboard');
 Route::get('/this-year-report-dashboard', [DashboardController::class, 'getThisYearReports'])->name('this-year-report-dashboard');
 Route::get('/last-year-report-dashboard', [DashboardController::class, 'getLastYearReports'])->name('last-year-report-dashboard');
+
+Route::get('/this-week-register', [RegisterController::class, 'getThisWeekRegisters'])->name('this-week-register');
+Route::get('/this-month-register', [RegisterController::class, 'getThisMonthRegisters'])->name('this-month-register');
+Route::get('/last-month-register', [RegisterController::class, 'getLastMonthRegisters'])->name('last-month-register');
+Route::get('/this-year-register', [RegisterController::class, 'getThisYearRegisters'])->name('this-year-register');
+Route::get('/last-year-register', [RegisterController::class, 'getLastYearRegisters'])->name('last-year-register');
 
 });
 require __DIR__.'/auth.php';

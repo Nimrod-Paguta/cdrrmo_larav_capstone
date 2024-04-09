@@ -345,7 +345,7 @@
     </li>
     <li style="padding-top: 10px;">
       <a href="/registerpage" class="nav-link text-white {{ Request::is('registerpage') ? 'active' : '' }}">
-        <svg class="bi me-2" width="16" height="9""><use xlink:href="#grid"/></svg>
+        <svg class="bi me-2" width="16" height="9"><use xlink:href="#grid"/></svg>
         <i class="fa-regular fa-user" style="padding-right: 16px;"></i>
         Register
       </a>

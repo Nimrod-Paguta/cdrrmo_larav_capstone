@@ -35,6 +35,7 @@ class RegisterFactory extends Factory
             'vehiclelicense' => $this->faker->bothify('???###'),
             'color' => $this->faker->colorName,
             'type' => $this->faker->randomElement(['Private', 'Public']),
+            'created_at' => $this->faker->dateTimeBetween('2023-12-01', '2024-04-08')->format('Y-m-d H:i:s'),
         ];
     }
 }
