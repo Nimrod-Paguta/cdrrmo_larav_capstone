@@ -102,5 +102,11 @@ Route::get('/last-month-register', [RegisterController::class, 'getLastMonthRegi
 Route::get('/this-year-register', [RegisterController::class, 'getThisYearRegisters'])->name('this-year-register');
 Route::get('/last-year-register', [RegisterController::class, 'getLastYearRegisters'])->name('last-year-register');
 
+Route::get('/this-week-reports', [ReportController::class, 'getThisWeekReports'])->name('this-week-reports');
+Route::get('/this-month-reports', [ReportController::class, 'getThisMonthReports'])->name('this-month-reports');
+Route::get('/last-month-reports', [ReportController::class, 'getLastMonthReports'])->name('last-month-reports');
+Route::get('/this-year-reports', [ReportController::class, 'getThisYearReports'])->name('this-year-reports');
+Route::get('/last-year-reports', [ReportController::class, 'getLastYearReports'])->name('last-year-reports');
+
 });
 require __DIR__.'/auth.php';

@@ -52,6 +52,17 @@
 
     <div class="hayt">
         <h3>Reporting</h3>
+        <div style="display: flex;">
+            <a class="btn btn-primary" id="registerReport" style="margin-right: 5px">Generate Report</a>
+            <select id="reportingSelect" class="form-control" style="width: 135px">
+                <option value="0">All Time</option>
+                <option value="1">This Week</option>
+                <option value="2">This Month</option>
+                <option value="3">Last Month</option>
+                <option value="4">This Year</option>
+                <option value="5">Last Year</option>
+            </select>
+        </div>
         <table id="yourDataTableID" class="table table-striped" style="width:100%">
             <thead class="table-header">
                 <tr>
@@ -105,7 +116,11 @@
                         const firstName{{ $report->id }} = report{{ $report->id }}.registereduserid.name;
                         const middleName{{ $report->id }} = report{{ $report->id }}.registereduserid.middlename;
                         const lastName{{ $report->id }} = report{{ $report->id }}.registereduserid.lastname;
-                        document.getElementById('name_{{ $report->id }}').innerText = firstName{{ $report->id }} + " " + middleName{{ $report->id }} + " " + lastName{{ $report->id }};
+                        if(middleName{{ $report->id }}){
+                            document.getElementById('name_{{ $report->id }}').innerText = firstName{{ $report->id }} + " " + middleName{{ $report->id }} + " " + lastName{{ $report->id }};
+                        }else{
+                            document.getElementById('name_{{ $report->id }}').innerText = firstName{{ $report->id }} + " " + lastName{{ $report->id }};
+                        }
                     </script>
                 @endforeach
 
@@ -133,8 +148,62 @@
         <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
 
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('#yourDataTableID').DataTable();
+
+                // update select if changed
+            var selectElement = document.getElementById('reportingSelect');
+            for(var i = 0; i < selectElement.options.length; i++) {
+                if(selectElement.options[i].value == {!! json_encode($sort) !!}) {
+                    selectElement.options[i].selected = true;
+                    break;
+                }
+            }
+        
+                document.getElementById('reportingSelect').addEventListener('change', function() {
+                        var select = parseInt(this.value);
+                        updateTable(select)
+                    });
+        
+                function updateTable(select){
+                    switch (select) {
+                        case 0:
+                            getReports('/reporting')
+                            break;
+                        case 1:
+                            getReports('/this-week-reports')
+                            break;
+                        case 2:
+                            getReports('/this-month-reports')
+                            break;
+                        case 3:
+                            getReports('/last-month-reports')
+                            break;
+                        case 4:
+                            getReports('/this-year-reports')
+                            break;
+                        case 5:
+                            getReports('/last-year-reports')
+                            break;
+                        
+                        default:
+                            break;    
+                        }
+                    }
+                
+                function getReports(registerURL){
+                    $.ajax({
+                        url: registerURL,
+                        type: 'GET',
+                        success: function(response) {
+                            window.location.href = registerURL;
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                }
+        
             });
         </script>
     </div>

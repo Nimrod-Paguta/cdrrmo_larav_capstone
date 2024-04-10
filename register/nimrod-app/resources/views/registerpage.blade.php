@@ -17,7 +17,7 @@
         <h3>Register</h3>
 
         <div style="display: flex;">
-            <button class="btn btn-success" onclick="openModal()" style="margin-right: 5px">+ register</button>
+            <button class="btn btn-success" onclick="openModal()" style="margin-right: 5px">+ Register User</button>
             <a href="{{$pdf}}" class="btn btn-primary" id="registerReport" style="margin-right: 5px">Generate Report</a>
             <select id="registerSelect" class="form-control" style="width: 135px">
                 <option value="0">All Time</option>
@@ -254,24 +254,23 @@
         function updateTable(select){
             switch (select) {
                 case 0:
-                    getRegisters('/registerpage')
+                    getRegisters('/reporting')
                     break;
                 case 1:
-                    getRegisters('/this-week-register')
+                    getRegisters('/this-week-reports')
                     break;
                 case 2:
-                    getRegisters('/this-month-register')
+                    getRegisters('/this-month-reports')
                     break;
                 case 3:
-                    getRegisters('/last-month-register')
+                    getRegisters('/last-month-reports')
                     break;
                 case 4:
-                    getRegisters('/this-year-register')
+                    getRegisters('/this-year-reports')
                     break;
                 case 5:
-                    getRegisters('/last-year-register')
+                    getRegisters('/last-year-reports')
                     break;
-                
                 default:
                     break;    
                 }
