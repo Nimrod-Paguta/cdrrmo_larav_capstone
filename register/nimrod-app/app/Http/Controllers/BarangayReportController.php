@@ -22,12 +22,27 @@ class BarangayReportController extends Controller
 
     // Generate PDF report using fetched data
     $fpdf = new PdfReport('P', 'mm', 'A4');
+
+    
     $fpdf->AddPage();
+    $currentDate = date('Y-m-d'); 
+    
+    $fpdf->SetFont('Arial', '', 12);
+    $fpdf->SetXY(10, 45); 
+    $fpdf->Cell(12, 10, 'Date: ', 0, 0, 'L');
+    $fpdf->SetFont('Arial', 'BU', 12);
+    $fpdf->Cell(0, 10, $currentDate, 0, 0, 'L'); 
+    $fpdf->Ln(10);
+
     $fpdf->SetFont('Arial', 'B', 14);
+    
     $fpdf->Cell(101, 10, 'ACCIDENT REPORTS IN BARANGAY ' . strtoupper($id), 0, 0, 'L');
     $fpdf->SetFont('Arial', 'B', 12);
     $fpdf->Ln(12);
 
+    
+    // Set current date
+ 
     $fpdf->SetFont('Arial', 'B', 12);
     $header_vehicle = array('Full Name', 'Phone No.', 'G-Force', 'Vehicle Model', 'Date of Accident');
     $data_vehicle = array();
@@ -62,8 +77,6 @@ class BarangayReportController extends Controller
     $fpdf->Ln(10);
     $header_incident = array();
     $data_incident = array();
-
-
 
     $fpdf->SetFont('Arial', 'B', 12);
 $fpdf->Cell(40, 10, 'TOTAL REPORTS: ', 0,0,'L');

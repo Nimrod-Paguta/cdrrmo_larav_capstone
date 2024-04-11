@@ -13,6 +13,16 @@ class RegisteredUserReportController extends Controller
         $upperCaseStamp = strtoupper($stamp);
         $fpdf = new PdfReport('P','mm','A4');
         $fpdf->AddPage();
+        $currentDate = date('Y-m-d'); // Get current date
+
+        // Place date at the bottom of the logo
+        $fpdf->SetFont('Arial', '', 12);
+        $fpdf->SetXY(10, 45); // Adjust the X and Y coordinates as needed
+        $fpdf->Cell(12, 10, 'Date: ', 0, 0, 'L');
+        $fpdf->SetFont('Arial', 'BU', 12);
+        $fpdf->Cell(0, 10, $currentDate, 0, 0, 'L'); // Display current date
+        $fpdf->Ln(10);
+    
         $fpdf->SetFont('Arial', 'B', 14);
         $fpdf->Cell(0, 10, 'REGISTERED USERS AS OF '.$upperCaseStamp, 0,0,'L');
         $fpdf->SetFont('Arial', 'B', 12);

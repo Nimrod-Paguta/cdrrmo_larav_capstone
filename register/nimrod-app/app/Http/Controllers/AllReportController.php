@@ -15,6 +15,15 @@ class AllReportController extends Controller
         $upperCaseStamp = strtoupper($stamp);
         $fpdf = new PdfReport('P','mm','A4');
         $fpdf->AddPage();
+
+        $currentDate = date('Y-m-d'); 
+        $fpdf->SetFont('Arial', '', 12);
+        $fpdf->SetXY(10, 45); 
+        $fpdf->Cell(12, 10, 'Date: ', 0, 0, 'L');
+        $fpdf->SetFont('Arial', 'BU', 12);
+        $fpdf->Cell(0, 10, $currentDate, 0, 0, 'L'); 
+        $fpdf->Ln(10);
+    
         $fpdf->SetFont('Arial', 'B', 14);
         $fpdf->Cell(101, 10, 'ACCIDENT REPORTS IN MALAYBALAY CITY AS OF ' . $upperCaseStamp, 0,0,'L');
         $fpdf->SetFont('Arial', 'B', 12);

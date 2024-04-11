@@ -16,6 +16,14 @@ class ReportpdfController extends Controller
 
         $fpdf = new PdfReport('P','mm','A4');
         $fpdf->AddPage();
+
+        $currentDate = date('Y-m-d'); 
+        $fpdf->SetFont('Arial', '', 12);
+        $fpdf->SetXY(10, 40); 
+        $fpdf->Cell(12, 10, 'Date: ', 0, 0, 'L');
+        $fpdf->SetFont('Arial', 'BU', 12);
+        $fpdf->Cell(0, 10, $currentDate, 0, 0, 'L'); 
+        $fpdf->Ln(10);
         $fpdf->SetFont('Arial', 'B', 14);
         $fpdf->Cell(0, 10, 'ACCIDENT REPORT', 0,0,'C');
 
