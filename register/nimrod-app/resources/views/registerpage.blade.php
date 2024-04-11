@@ -18,7 +18,7 @@
 
         <div style="display: flex;">
             <button class="btn btn-success" onclick="openModal()" style="margin-right: 5px">+ Register User</button>
-            <a href="{{$pdf}}" class="btn btn-primary" id="registerReport" style="margin-right: 5px">Generate Report</a>
+            <a href="{{$pdf}}" class="btn btn-primary" id="registerReport" style="margin-right: 5px"><i class="fas fa-download fa-sm text-white-70"></i> Generate Report</a>
             <select id="registerSelect" class="form-control" style="width: 135px">
                 <option value="0">All Time</option>
                 <option value="1">This Week</option>

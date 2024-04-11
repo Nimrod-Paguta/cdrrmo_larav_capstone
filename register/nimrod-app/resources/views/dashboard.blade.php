@@ -53,7 +53,7 @@
              <!-- <img width="40" height="30" src="https://img.icons8.com/ios/50/alarm--v1.png" alt="alarm--v1"/> -->
          </a>
           <a href="/allreports" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> 
+                 class="fas fa-download fa-sm text-white-70"></i> Generate Report</a> 
      </div>
 
 
@@ -107,7 +107,9 @@
                              </div>
                          </div>
                          <div class="col-auto">
-                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                             <i class="fas fa-users  fa-2x text-gray-300"></i>
+                             
+                             
                          </div>
                      </div>
                  </div>
@@ -133,7 +135,7 @@
                              </div>
                          </div>
                          <div class="col-auto">
-                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                             <i class="fas fa-file fa-2x text-gray-300"></i>
                          </div>
                      </div>
                  </div>
@@ -165,7 +167,7 @@
                              </div>
                          </div>
                          <div class="col-auto">
-                             <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                             <i class="fas fa-list fa-2x text-gray-300"></i>
                          </div>
                      </div>
                  </div>
@@ -189,7 +191,7 @@
                              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ number_format($totalVehicle) }}</div>
                          </div>
                          <div class="col-auto">
-                             <i class="fas fa-comments fa-2x text-gray-300"></i>
+                             <i class="fas  fa-car  fa-2x text-gray-300"></i>
                          </div>
                      </div>
                  </div>

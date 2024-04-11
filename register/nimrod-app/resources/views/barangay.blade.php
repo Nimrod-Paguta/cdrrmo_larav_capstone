@@ -23,7 +23,7 @@
                     <form method="GET" action="{{ route('barangayreport', ['id' => $report->barangay]) }}">
     @csrf
     <button type="submit" class="btn btn-secondary actions-buttons" style="background-color: green; width: 220px;">
-        <i class="fas fa-download fa-sm text-white-50"></i> Generate Report
+        <i class="fas fa-download fa-sm text-white-70"></i> Generate Report
     </button>
 </form>
 
