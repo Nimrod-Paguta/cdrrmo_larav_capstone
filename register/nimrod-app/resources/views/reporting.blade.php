@@ -53,7 +53,7 @@
     <div class="hayt">
         <h3>Reporting</h3>
         <div style="display: flex;">
-            <a href="/allreport" class="btn btn-primary" id="registerReport" style="margin-right: 5px">Generate Report</a>
+            <a href="{{$pdf}}" class="btn btn-primary" id="registerReport" style="margin-right: 5px">Generate Report</a>
             <select id="reportingSelect" class="form-control" style="width: 135px">
                 <option value="0">All Time</option>
                 <option value="1">This Week</option>
@@ -68,6 +68,7 @@
                 <tr>
                     <th>Id</th>
                     <th>Registered User ID</th>
+                    <th>Date</th>
                     <th>Time</th>
                     <th>Barangay</th>
                     <th>City</th>
@@ -80,7 +81,8 @@
                     <tr>
                         <td>{{ $report->id }}</td>
                         <td id="name_{{ $report->id }}"></td>
-                        <td>{{ $report->time }}</td>
+                        <td>{{ explode(' ', $report->created_at)[0] }}</td>
+                        <td>{{ explode(' ', $report->created_at)[1] }}</td>
                         <td>{{ $report->barangay }}</td>
                         <td>{{ $report->city }}</td>
                         <td>

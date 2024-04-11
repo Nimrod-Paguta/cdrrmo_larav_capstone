@@ -110,7 +110,12 @@ Route::get('/this-year-reports', [ReportController::class, 'getThisYearReports']
 Route::get('/last-year-reports', [ReportController::class, 'getLastYearReports'])->name('last-year-reports');
 
 
-Route::get('/allreport', [AllReportController::class, 'index'])->name('allreport');
+Route::get('/allreport', [AllReportController::class, 'allTime'])->name('allreport');
+Route::get('/reports-thisweek', [AllReportController::class, 'thisWeek'])->name('reports-thisweek');
+Route::get('/reports-thismonth', [AllReportController::class, 'thisMonth'])->name('reports-thismonth');
+Route::get('/reports-lastmonth', [AllReportController::class, 'lastMonth'])->name('reports-lastmonth');
+Route::get('/reports-thisyear', [AllReportController::class, 'thisYear'])->name('reports-thisyear');
+Route::get('/reports-lastyear', [AllReportController::class, 'lastYear'])->name('reports-lastyear');
 
 });
 require __DIR__.'/auth.php';

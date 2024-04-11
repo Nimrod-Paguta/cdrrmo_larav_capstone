@@ -17,7 +17,7 @@ class ReportController extends Controller
         return view('reporting', [
             'reports' => $reports,
             'sort' => '0',
-            'pdf' => '/allreports',
+            'pdf' => '/allreport',
         ]);
     }
 
