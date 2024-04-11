@@ -257,19 +257,19 @@
                     getRegisters('/reporting')
                     break;
                 case 1:
-                    getRegisters('/this-week-reports')
+                    getRegisters('/this-week-register')
                     break;
                 case 2:
-                    getRegisters('/this-month-reports')
+                    getRegisters('/this-month-register')
                     break;
                 case 3:
-                    getRegisters('/last-month-reports')
+                    getRegisters('/last-month-register')
                     break;
                 case 4:
-                    getRegisters('/this-year-reports')
+                    getRegisters('/this-year-register')
                     break;
                 case 5:
-                    getRegisters('/last-year-reports')
+                    getRegisters('/last-year-register')
                     break;
                 default:
                     break;    

@@ -36,12 +36,22 @@ class BarangayReportController extends Controller
     foreach ($barangayReports as $report) {
         // Find the corresponding register data for each report
         $register = Register::find($report->registereduserid);
+        $totalReports = $barangayReports->count();
+        if ($report->gforce >= 0 && $report->gforce <= 4) {
+            $accidentSeverity = 'No Accident';
+        } elseif ($report->gforce > 4 && $report->gforce <= 20) {
+            $accidentSeverity = 'Mild Accident';
+        } elseif ($report->gforce > 20 && $report->gforce <= 40) {
+            $accidentSeverity = 'Medium Accident';
+        } else {
+            $accidentSeverity = 'Severe Accident';
+        }
         if ($register) {
             // If register data exists for this report, add it to the PDF data array
             $data_vehicle[] = array(
                 $register->name,
                 $register->contactnumber,
-                $report->gforce,
+                $accidentSeverity, 
                 $register->brand . ' ' . $register->model,
                 $report->created_at->format('Y-m-d'),
             );
@@ -52,6 +62,40 @@ class BarangayReportController extends Controller
     $fpdf->Ln(10);
     $header_incident = array();
     $data_incident = array();
+
+
+
+    $fpdf->SetFont('Arial', 'B', 12);
+$fpdf->Cell(40, 10, 'TOTAL REPORTS: ', 0,0,'L');
+$fpdf->SetFont('Arial', 'BU', 12);
+$fpdf->Cell(0, 10, $totalReports, 0,0,'L');
+$fpdf->Ln(20);
+
+$fpdf->SetFont('Arial', '', 12);
+$fpdf->Cell(100, 10, 'Prepared by:', 0,0,'L');
+$fpdf->Cell(0, 10, 'Noted by:', 0,0,'L');
+$fpdf->Ln(15);
+
+$fpdf->SetFont('Arial', 'BU', 12);
+$fpdf->Cell(100, 10, 'Danilo C. Bautista', 0,0,'L');
+$fpdf->Cell(0, 10, 'Ana Andrea A. Ho', 0,0,'L');
+$fpdf->Ln(5);
+
+$fpdf->SetFont('Arial', '', 0);
+$fpdf->Cell(100, 10, '911 Communication Chief', 0,0,'L');
+$fpdf->Cell(0, 10, 'Communication and Command Central Chief', 0,0,'L');
+$fpdf->Ln(30);
+
+$fpdf->SetFont('Arial', '', 12);
+$fpdf->Cell(100, 10, 'Approved by:', 0,0,'L');
+$fpdf->Ln(15);
+
+$fpdf->SetFont('Arial', 'BU', 12);
+$fpdf->Cell(100, 10, 'Alan J. Comiso', 0,0,'L');
+$fpdf->Ln(5);
+$fpdf->SetFont('Arial', '', 12);
+$fpdf->Cell(0, 10, 'CGDH I (CDRRMO)', 0,0,'L');
+
 
     $fpdf->Output();
     exit;

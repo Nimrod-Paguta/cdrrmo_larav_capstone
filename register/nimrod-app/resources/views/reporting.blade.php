@@ -53,7 +53,7 @@
     <div class="hayt">
         <h3>Reporting</h3>
         <div style="display: flex;">
-            <a class="btn btn-primary" id="registerReport" style="margin-right: 5px">Generate Report</a>
+            <a href="/allreport" class="btn btn-primary" id="registerReport" style="margin-right: 5px">Generate Report</a>
             <select id="reportingSelect" class="form-control" style="width: 135px">
                 <option value="0">All Time</option>
                 <option value="1">This Week</option>
