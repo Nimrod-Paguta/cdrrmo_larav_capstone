@@ -52,8 +52,8 @@
              data-target="#myModal">
              <!-- <img width="40" height="30" src="https://img.icons8.com/ios/50/alarm--v1.png" alt="alarm--v1"/> -->
          </a>
-          <a href="/allreports" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                 class="fas fa-download fa-sm text-white-70"></i> Generate Report</a> 
+        
+
      </div>
 
 
@@ -121,8 +121,11 @@
 
          @php
              $reportController = new App\Http\Controllers\DashboardController();
-             $totalReported = $reportController->getTotalReported();
+             $totalReported = $reportController->getTotalReported(); 
          @endphp
+
+
+
          <!-- Earnings (Monthly) Card Example -->
          <div class="col-xl-3 col-md-6 mb-4">
              <div class="card border-left-success shadow h-100 py-2">
@@ -292,7 +295,7 @@
 
          <!-- Pie Chart -->
          <div class="col-xl-4 col-lg-5">
-             <div class="card shadow mb-4" style="width: auto;">
+             <div class="card shadow mb-4" style="width: auto; height: 430px;">
                  <!-- Card Header - Dropdown -->
                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                      <h6 class="m-0 font-weight-bold text-primary">Pie Chart</h6>
@@ -313,20 +316,10 @@
                  </div>
                  <!-- Card Body -->
                  <div class="card-body">
-                     <div class="chart-pie pt-4 pb-2" style="height: 300px;">
+                     <div class="chart-pie pt-4 pb-2" ">
                          <canvas id="myPieChart1"></canvas>
                      </div>
-                     <div class="mt-4 text-center small">
-                         <span class="mr-2">
-                             <i class="fas fa-circle text-primary"></i> Total Registed Driver
-                         </span>
-                         <span class="mr-2">
-                             <i class="fas fa-circle text-success"></i> Total Report
-                         </span>
-                         <span class="mr-2">
-                             <i class="fas fa-circle text-info"></i> Total Completed Reports
-                         </span>
-                     </div>
+
                  </div>
              </div>
          </div>
@@ -496,48 +489,63 @@
 
 
 
-         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-         <script>
-             // Set new default font family and font color to mimic Bootstrap's default styling
-             Chart.defaults.font.family = 'Nunito',
-                 '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-             Chart.defaults.font.color = '#858796';
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Set new default font family and font color to mimic Bootstrap's default styling
+    Chart.defaults.font.family = 'Nunito',
+        '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.font.color = '#858796';
 
-             // Pie Chart Example
-             var ctx = document.getElementById("myPieChart1");
-             var myPieChart = new Chart(ctx, {
-                 type: 'doughnut',
-                 data: {
 
-                     datasets: [{
-                         data: [{{ number_format($totalRegistered) }}, {{ number_format($totalReported) }},
-                             {{ $totalCompletedReports }}
-                         ],
-                         backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-                         hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
-                         hoverBorderColor: "rgba(234, 236, 244, 1)",
-                     }],
-                 },
-                 options: {
-                     maintainAspectRatio: false,
-                     plugins: {
-                         tooltip: {
-                             backgroundColor: "rgb(255,255,255)",
-                             bodyFont: {
-                                 color: "#858796"
-                             },
-                             borderColor: '#dddfeb',
-                             borderWidth: 1,
-                             padding: 15,
-                         }
-                     },
-                     legend: {
-                         display: false
-                     },
-                     cutoutPercentage: 80,
-                 },
-             });
-         </script>
+    // Pie Chart Example
+    var ctx = document.getElementById("myPieChart1");
+    var totalRegistered = {{ $totalRegistered }};
+    var totalReported = {{ $totalReported }};
+    var totalCompletedReports = {{ $totalCompletedReports }};
+    var totalVehicle = {{ $totalVehicle }};
+    var myPieChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Total Registered', 'Total Reported', 'Total Completed Reports', 'Total Vehicle'],
+            datasets: [{
+                data: [totalRegistered, totalReported, totalCompletedReports, totalVehicle],
+                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#cc3675'],
+                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#cc3675'],
+                hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            var label = context.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            var value = context.parsed;
+                            if (value !== null) {
+                                label += value.toLocaleString();
+                            }
+                            return label;
+                        }
+                    }
+                }
+            },
+            legend: {
+                display: false
+            },
+            cutoutPercentage: 80,
+        },
+    });
+</script>
+
+
+
+
+
+
 
 
 @php

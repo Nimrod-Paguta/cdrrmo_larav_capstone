@@ -11,6 +11,10 @@
     <div class="hayt">
             <h3>Reporting Details</h3>
             <button type="button" class="btn btn-outline-primary ms-1 mb-3" onclick="window.location.href='/reporting'">Back</button>
+                    <button type="submit" class="btn btn-outline-primary ms-1 mb-3" onclick="sendReport({{ $report->id }}, {{ $report->registereduserid }})">Send Notification</button>
+                    <a href="{{ route('reports', ['id' => $report->id]) }}" target="_blank" class="btn btn-outline-primary ms-1 mb-3" style="background-color: red; border-color: blue; color: white;">Generate Report</a>
+
+                
 
 
         <div class="row">
@@ -23,10 +27,10 @@
                         <div class="d-flex justify-content-center mb-2"></div>
                     </div>
                 </div>
-                <a>
+                <!-- <a>
                     <button type="submit" class="btn btn-primary" onclick="sendReport({{ $report->id }}, {{ $report->registereduserid }})">Send Notification</button>
                     <a href="{{ route('reports', ['id' => $report->id]) }}" class="btn btn-primary" style="background-color: red; border-color: blue; color: white;">Generate Report</a>
-                </a>
+                </a> -->
             </div>
             <div class="col-lg-7">
             <h3>Driver Information</h3>
@@ -151,7 +155,7 @@
         <option value="unread" {{ $report->status === 'unread' ? 'selected' : '' }}>Unread</option>
         <option value="completed" {{ $report->status === 'completed' ? 'selected' : '' }}>Completed</option>
     </select>
-    <button type="submit" class="btn mt-2" style="background-color: green; border-color: green; color: white;">Submit</button>
+    <button type="submit" class="btn mt-1" style="background-color: green; border-color: green; color: white;">Submit</button>
 
     </div>
 

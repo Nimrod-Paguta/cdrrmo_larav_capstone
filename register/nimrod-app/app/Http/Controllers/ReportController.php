@@ -183,7 +183,7 @@ class ReportController extends Controller
         $report = Report::findOrFail($id); // Find the report with the given ID
         $report->update($request->all()); // Update the report with the request data
     
-        return redirect()->route('reporting.index')->with('success', 'Report updated successfully!');
+        return redirect()->route('reporting.view', ['id' => $report->id])->with('success', 'Report updated successfully!');
     }
 
     /**

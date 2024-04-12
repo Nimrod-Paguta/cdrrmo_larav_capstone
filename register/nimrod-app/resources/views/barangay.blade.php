@@ -4,6 +4,7 @@
     </style>
     <div class="hayt">
         <h3>Barangay Report</h3>
+        <a href="/allreports" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-70"></i> Generate Report</a>
         <table id="yourDataTableID" class="table table-striped" style="width:100%">
             <thead class="table-header">
                 <tr>

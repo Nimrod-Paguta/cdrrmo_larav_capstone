@@ -33,6 +33,8 @@ class DashboardController extends Controller
         return $totalReported;
     }
 
+
+
     
     public function getTotalCompletedReports()
     {

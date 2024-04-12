@@ -18,7 +18,8 @@
 
         <div style="display: flex;">
             <button class="btn btn-success" onclick="openModal()" style="margin-right: 5px">+ Register User</button>
-            <a href="{{$pdf}}" class="btn btn-primary" id="registerReport" style="margin-right: 5px"><i class="fas fa-download fa-sm text-white-70"></i> Generate Report</a>
+            <a href="{{$pdf}}" target="_blank" class="btn btn-primary" id="registerReport" style="margin-right: 5px"><i class="fas fa-download fa-sm text-white-70"></i> Generate Report</a>
+
             <select id="registerSelect" class="form-control" style="width: 135px">
                 <option value="0">All Time</option>
                 <option value="1">This Week</option>
@@ -130,17 +131,17 @@
 
                         <div class="col-md-4">
                             <label for="contactnumber" class="form-label">Contact Number</label>
-                            <input type="number" class="form-control" name="contactnumber" required>
+                            <input type="text" class="form-control" name="contactnumber" pattern="[0-9]{11}" maxlength="11" required>
                             <div class="invalid-feedback">
-                                Please enter Contact Number.  
+                                Please enter a 11-digit Contact Number.  
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <label for="emergencynumber" class="form-label">Emergency Number</label>
-                            <input type="number" class="form-control" name="emergencynumber" required>
+                            <input type="text" class="form-control" name="emergencynumber" pattern="[0-9]{11}" maxlength="11" required>
                             <div class="invalid-feedback">
-                                Please enter Emergency Number.  
+                                Please enter a 11-digit Emergency Number.  
                             </div>
                         </div>
 

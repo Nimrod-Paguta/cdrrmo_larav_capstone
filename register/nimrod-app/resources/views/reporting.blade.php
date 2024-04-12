@@ -53,7 +53,8 @@
     <div class="hayt">
         <h3>Reporting</h3>
         <div style="display: flex;">
-            <a href="{{$pdf}}" class="btn btn-primary" id="registerReport" style="margin-right: 5px"><i class="fas fa-download fa-sm text-white-70"></i> Generate Report</a>
+        <a href="{{$pdf}}" target="_blank" class="btn btn-primary" id="registerReport" style="margin-right: 5px"><i class="fas fa-download fa-sm text-white-70"></i> Generate Report</a>
+
             <select id="reportingSelect" class="form-control" style="width: 135px">
                 <option value="0">All Time</option>
                 <option value="1">This Week</option>
