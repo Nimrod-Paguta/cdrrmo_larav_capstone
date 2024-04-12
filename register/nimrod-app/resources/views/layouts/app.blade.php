@@ -298,8 +298,8 @@
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 const stringNumbers = data.contactNumbers.map(number => `+63${number}`);
+                console.log(stringNumbers)
                 const address = data.report.barangay + ", " + data.report.city
                 console.log(address)
                 socket.emit('send_on', stringNumbers, address);
