@@ -124,6 +124,30 @@ function AllReportTable($header, $data)
     }
 }
 
+function IndividualReportTable($header, $data)
+{
+    $this->SetFont('Arial', 'B', 11);
+
+    // Header
+    foreach($header as $col)
+        $this->Cell(32,10,$col,1,0,'L');
+    $this->Ln();
+    
+    // Data
+    $this->SetFont('Arial', '', 10);
+    foreach($data as $row) {
+        foreach($row as $col) {
+            // Center align the cell
+            $this->Cell(32,10,$col,1,0,'L');
+        }
+        $this->Ln();
+    }
+}
+
+
+
+
+
 
 
 

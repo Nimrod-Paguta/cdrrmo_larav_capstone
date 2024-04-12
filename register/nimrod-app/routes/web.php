@@ -12,6 +12,7 @@ use App\Http\Controllers\barangayController;
 use App\Http\Controllers\RegisteredUserReportController;
 use App\Http\Controllers\BarangayReportController;
 use App\Http\Controllers\ReportControllerAll;
+use App\Http\Controllers\IndividualReportController;
 use App\Http\Controllers\AllReportController;
 
 use Illuminate\Support\Facades\DB;
@@ -117,6 +118,9 @@ Route::get('/reports-thismonth', [AllReportController::class, 'thisMonth'])->nam
 Route::get('/reports-lastmonth', [AllReportController::class, 'lastMonth'])->name('reports-lastmonth');
 Route::get('/reports-thisyear', [AllReportController::class, 'thisYear'])->name('reports-thisyear');
 Route::get('/reports-lastyear', [AllReportController::class, 'lastYear'])->name('reports-lastyear');
+
+Route::get('/individualreport/{id}', [IndividualReportController::class, 'index'])->name('individualreport');
+
 
 });
 require __DIR__.'/auth.php';

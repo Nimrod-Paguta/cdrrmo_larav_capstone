@@ -5,7 +5,11 @@
   </style>
 <div class = "hayt">
 <button type="button" class="btn btn-outline-primary ms-1" onclick="window.location.href='/registerpage'">Back</button>
+<button type="button" class="btn btn-outline-primary ms-1" onclick="window.open('/individualreport/{{ $register->id }}', '_blank')">
+  Generate Report
+</button>
 
+ 
  
  <center><h5>Driver's Profile</h5></center>
  <div class="row">
