@@ -99,6 +99,7 @@ $fpdf->Cell(0, 10, 'CGDH I (CDRRMO)', 0,0,'L');
         $fpdf->Output();
         exit;
     }
+    
 
     public function allTime(){
         $reports = Report::all();

@@ -10,7 +10,6 @@
     </style>
     <div class="hayt">
             <h3>Reporting Details</h3>
-            <button type="button" class="btn btn-outline-primary ms-1 mb-3" onclick="window.location.href='/reporting'">Back</button>
                     <button type="submit" class="btn btn-outline-primary ms-1 mb-3" onclick="sendReport({{ $report->id }}, {{ $report->registereduserid }})">Send Notification</button>
                     <a href="{{ route('reports', ['id' => $report->id]) }}" target="_blank" class="btn btn-outline-primary ms-1 mb-3" style="background-color: red; border-color: blue; color: white;">Generate Report</a>
 

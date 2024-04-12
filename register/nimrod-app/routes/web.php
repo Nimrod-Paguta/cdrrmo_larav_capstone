@@ -13,6 +13,7 @@ use App\Http\Controllers\RegisteredUserReportController;
 use App\Http\Controllers\BarangayReportController;
 use App\Http\Controllers\ReportControllerAll;
 use App\Http\Controllers\AllReportController;
+
 use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
