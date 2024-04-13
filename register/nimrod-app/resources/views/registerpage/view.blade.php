@@ -4,15 +4,14 @@
 
   </style>
 <div class = "hayt">
-<button type="button" class="btn btn-outline-primary ms-1" onclick="window.location.href='/registerpage'">Back</button>
 <button type="button" class="btn btn-outline-primary ms-1" onclick="window.open('/individualreport/{{ $register->id }}', '_blank')">
-  Generate Report
+    <i class="fas fa-download fa-sm text-white-70"></i>
+      Generate Report
 </button>
 
  
  
- <center><h5>Driver's Profile</h5></center>
- <div class="row">
+ <div class="row" style="margin-top: 15px;">
    <div class="col-lg-4">
      <div class="card mb-4">
        <div class="card-body text-center">
@@ -29,7 +28,9 @@
      </div>
    
    </div>
+   
    <div class="col-lg-8">
+   <h3>Driver's Profile</h3>
      <div class="card mb-4">
        <div class="card-body">
          <div class="row">

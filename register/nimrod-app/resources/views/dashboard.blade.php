@@ -253,36 +253,36 @@
 
 
 
+<!-- Pie Chart -->
+<div class="col-xl-4 col-lg-5">
+    <h6 class="m-0 font-weight-bold text-primary">Recently Added Users</h6>
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="table-responsive tablename" style="max-height: 390px; overflow-y: auto;">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Contact Number</th>
+                        <th scope="col">Driver's Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($recentRegisters as $register)
+                    <tr>
+                        <th scope="row">{{ $register->id }}</th>
+                        <td>{{ $register->name }} {{ $register->middlename }} {{ $register->lastname }}</td>
+                        <td>{{ $register->contactnumber }}</td>
+                        <td>{{ $register->type }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-         <!-- Pie Chart -->
-         <div class="col-xl-4 col-lg-5">
-             <h6 class="m-0 font-weight-bold text-primary">Recently Added Users</h6>
-             <div class="card shadow mb-4">
-                 <!-- Card Header - Dropdown -->
-                 <div class="table-responsive tablename">
-                     <table class="table table-striped">
-                         <thead>
-                             <tr>
-                                 <th scope="col">ID</th>
-                                 <th scope="col">Full Name</th>
-                                 <th scope="col">Contact Number</th>
-                                 <th scope="col">Driver's Status</th>
-                             </tr>
-                         </thead>
-                         <tbody>
-                             @foreach ($recentRegisters as $register)
-                                 <tr>
-                                     <th scope="row">{{ $register->id }}</th>
-                                     <td>{{ $register->name }} {{ $register->middlename }} {{ $register->lastname }}</td>
-                                     <td>{{ $register->contactnumber }}</td>
-                                     <td>{{ $register->type }}</td>
-                                 </tr>
-                             @endforeach
-                         </tbody>
-                     </table>
-                 </div>
-             </div>
-         </div>
 
 
 
@@ -298,7 +298,7 @@
              <div class="card shadow mb-4" style="width: auto; height: 430px;">
                  <!-- Card Header - Dropdown -->
                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                     <h6 class="m-0 font-weight-bold text-primary">Pie Chart</h6>
+                     <h6 class="m-0 font-weight-bold text-primary">CrashWatch Chart</h6>
                      <div class="dropdown no-arrow">
                          <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

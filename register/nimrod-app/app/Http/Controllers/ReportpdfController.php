@@ -46,7 +46,7 @@ class ReportpdfController extends Controller
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->Cell(23,0,'Phone No: ',0,0,'L');
         $fpdf->SetFont('Arial', '', 12);
-        $fpdf->Cell(71,0,$register->contactnumber,0,0,'L');
+        $fpdf->Cell(71,0, '0'.$register->contactnumber,0,0,'L');
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->Cell(17,0,'Model: ',0,0,'L');
         $fpdf->SetFont('Arial', '', 12);
@@ -55,7 +55,7 @@ class ReportpdfController extends Controller
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->Cell(32,0,'Emergency No: ',0,0,'L');
         $fpdf->SetFont('Arial', '', 12);
-        $fpdf->Cell(62,0,$register->emergencynumber,0,0,'L');
+        $fpdf->Cell(62,0, '0'.$register->emergencynumber,0,0,'L');
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->Cell(35,0,'Vehicle License: ',0,0,'L');
         $fpdf->SetFont('Arial', '', 12);
@@ -132,12 +132,12 @@ class ReportpdfController extends Controller
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->Cell(19,5,'Latitude: ',0,0,'L');
         $fpdf->SetFont('Arial', '', 12);
-        $fpdf->Cell(19,5,'0948577263.8488',0,0,'L');
+        $fpdf->Cell(19,5, $report->latitude,0,0,'L');
         $fpdf->Ln(10);
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->Cell(24,5,'Longitude: ',0,0,'L');
         $fpdf->SetFont('Arial', '', 12);
-        $fpdf->Cell(19,5,'273762.6465',0,0,'L');
+        $fpdf->Cell(19,5,$report->longitude,0,0,'L');
 
 
 

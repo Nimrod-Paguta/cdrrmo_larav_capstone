@@ -7,13 +7,63 @@
             display: flex;
             margin: 5px;
         }
+        #send-modal{
+            height: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .spinner {
+            /* border-radius: 50%; */
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        #text-loading{
+            font-size: 100px;
+        }
     </style>
     <div class="hayt">
             <h3>Reporting Details</h3>
-                    <button type="submit" class="btn btn-outline-primary ms-1 mb-3" onclick="sendReport({{ $report->id }}, {{ $report->registereduserid }})">Send Notification</button>
-                    <a href="{{ route('reports', ['id' => $report->id]) }}" target="_blank" class="btn btn-outline-primary ms-1 mb-3" style="background-color: red; border-color: blue; color: white;">Generate Report</a>
+                    <button type="submit" class="btn btn-outline-primary ms-1 mb-3" onclick="openModal()" style="background-color: red; border-color: blue; color: white;">Send Notification</button>
+                    <a href="{{ route('reports', ['id' => $report->id]) }}" target="_blank" class="btn btn-outline-primary ms-1 mb-3" >
+                        <i class="fas fa-download fa-sm text-white-70"></i>
+                        Generate Report</a>
 
                 
+                    <div id="mySendModal" class="modal">
+    <div class="modal-dialog modal-content modal-lg send-modal">
+
+        <div id="sending-display" style="display: none;">
+            <center><img src="/img/loading.png" alt="loading..." id="loading-img" style="height: 350px; width: 350px; margin-right: 20px; margin-top: 20px;"></center>
+            <h2><b>Sending Notification To All Users...</b></h2>
+            <h4>Please Wait</h4>
+        </div>
+
+        <div id="sent-display" style="display: none;">
+            <center><img src="/img/sent.png" alt="loading..." id="loading-img" style="height: 350px; width: 350px; margin-right: 20px; margin-top: 20px;"></center>
+            <h2><b>Notification Sent!</b></h2>
+            <button style="margin-top: 70px" onclick="closeModal()">Close</button>
+        </div>
+        
+        <!-- <h1 id="text-loading"><i class="fa-solid fa-spinner spinner" style="padding-right: 16px;"></i></h1> -->
+        <!-- <button onclick="closeModal()">Exit</button> -->
+    </div>
+</div>
+
+<script>
+    function openModal() {
+        document.getElementById('mySendModal').style.display = 'flex';
+        sendReport({{ $report->id }}, {{ $report->registereduserid }});
+    }
+
+    function closeModal() {
+        document.getElementById('mySendModal').style.display = 'none';
+    }
+</script>
+
+
 
 
         <div class="row">
@@ -168,6 +218,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 

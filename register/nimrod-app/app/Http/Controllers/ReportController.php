@@ -136,9 +136,9 @@ class ReportController extends Controller
             'address' => 'required|string'
         ]);
 
-        $user = Report::create($validatedData);
+        $report = Report::create($validatedData);
     
-        return redirect()->back()->with('success', 'Owner information saved successfully.');
+        return response()->json(['success' => true, 'report' => $report], 200);
     }
 
     /**

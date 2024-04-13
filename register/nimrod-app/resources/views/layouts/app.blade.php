@@ -69,6 +69,13 @@
             socket.emit('send_message', 'Hello from client');
         });
 
+        socket.on('send_confirm', function(message) {
+            console.log(message)
+            document.getElementById('sending-display').style.display = 'none';
+            document.getElementById('sent-display').style.display = 'block';
+
+        })
+
         socket.on('receive_message', function(message) {
             // Add the received message to the DOM
             accident = "Sender: " + message.sender + "\nDate: " + message.date + "\nMessage: " + message.content;
@@ -81,6 +88,9 @@
             let intValue = parseInt(userid);
             let latitude = coordinates.split('///')[0];
             let longitude = coordinates.split('///')[1];
+            const currentDate = new Date();
+            const currentMonth = currentDate.getMonth() + 1;
+            const initialLocation = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
             let severity;
 
             console.log(Math.abs(parseFloat(gforce)))
@@ -90,8 +100,10 @@
                 severity = 'Low';
             } else if (Math.abs(parseFloat(gforce)) >= 20 && Math.abs(parseFloat(gforce)) < 40) {
                 severity = 'Moderate';
-            } else if (Math.abs(parseFloat(gforce)) > 40) {
+            } else if (Math.abs(parseFloat(gforce)) > 40 && Math.abs(parseFloat(gforce)) != 666.66) {
                 severity = 'Severe';
+            } else if (Math.abs(parseFloat(gforce)) == 666.66){
+                severity = 'Manual Rescue'
             } else {
                 severity = 'Disoriented';
             }
@@ -123,8 +135,6 @@
             // Alert the accident data
             function proceed(data, accidentData){
 
-                const initialLocation = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
-
                 fetch('/location', {
                 method: 'POST',
                 headers: {
@@ -137,9 +147,6 @@
                 .then(accidentLocation => {
                     
                     console.log(accidentLocation)
-
-                    const currentDate = new Date();
-                    const currentMonth = currentDate.getMonth() + 1;
                     const barangay = accidentLocation.address.quarter
                     const city = accidentLocation.address.city
                     const CRASHWATCH_CITY = accidentLocation.crashwatch_city;
@@ -147,7 +154,48 @@
                     if (city === CRASHWATCH_CITY) {
                         console.log('City is defined');
                         // Create a modal element
-                        const modal = document.createElement('div');
+
+                        const report = {
+                            registereduserid: data.id,
+                            latitude: parseFloat(latitude),
+                            longitude: parseFloat(longitude),
+                            time: message.time,
+                            gforce: Math.abs(gforce),
+                            status: "unread",
+                            month: currentMonth,
+                            barangay: barangay,
+                            city: city,
+                            address: accidentLocation.display_name,
+                        }
+
+                        console.log(report)
+
+                        storeReport(report, accidentLocation, data)
+                    } else {
+                        console.log('City is undefined');
+                    }
+
+                    
+                
+                }) // Handle the response if needed
+                .catch(error => console.error('Error:', error));  
+            }
+
+            function storeReport(report, accidentLocation, data){
+                fetch('/post_report', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // If CSRF protection is enabled
+                },
+                body: JSON.stringify(report)
+                })
+                .then(response => response.json())
+                .then(verify => {
+                    console.log(verify.report.id)
+                    report_id =  verify.report.id;
+
+                    const modal = document.createElement('div');
                         modal.className = 'modal';
                         
                         // Create modal content
@@ -203,7 +251,7 @@
                                     </div>
                                 
                                     <div class="modal-footer">
-                                        <a href="/reporting">
+                                        <a href="/reporting/${report_id}">
                                             <button type="button" class="btn btn-danger">Proceed to Reporting</button>
                                         </a>
                                     </div>
@@ -240,48 +288,14 @@
                             }
                         };
 
-                        const report = {
-                            registereduserid: data.id,
-                            latitude: parseFloat(latitude),
-                            longitude: parseFloat(longitude),
-                            time: message.time,
-                            gforce: Math.abs(gforce),
-                            status: "unread",
-                            month: currentMonth,
-                            barangay: barangay,
-                            city: city,
-                            address: accidentLocation.display_name,
-                        }
-
-                        console.log(report)
-
-                        storeReport(report)
-                    } else {
-                        console.log('City is undefined');
-                    }
-
-                    
-                
-                }) // Handle the response if needed
-                .catch(error => console.error('Error:', error));  
-            }
-
-            function storeReport(report){
-                fetch('/post_report', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // If CSRF protection is enabled
-                },
-                body: JSON.stringify(report)
+                    return report_id;
                 })
-                // .then(response => response.json())
-                .then(verify => {console.log(verify)})
             }
         }); 
 
         function sendReport(id, userid) {
             console.log(id);
+            document.getElementById('sending-display').style.display = 'block';
 
             let report = {
                 userid: userid,
