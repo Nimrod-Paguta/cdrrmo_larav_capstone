@@ -21,7 +21,7 @@
                     <td>{{ $report->total_reports }}</td>
                     <td>{{ $report->city }}</td>
                     <td style="text-align: center;">
-                    <form method="GET" action="{{ route('barangayreport', ['id' => $report->barangay]) }}">
+                    <form method="GET" action="{{ route('barangayreport', ['id' => $report->barangay]) }}" target="_blank">
     @csrf
     <button type="submit" class="btn btn-secondary actions-buttons" style="background-color: green; width: 220px;">
         <i class="fas fa-download fa-sm text-white-70"></i> Generate Report

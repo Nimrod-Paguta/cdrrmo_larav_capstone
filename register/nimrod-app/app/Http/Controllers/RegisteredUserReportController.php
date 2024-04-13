@@ -38,7 +38,7 @@ class RegisteredUserReportController extends Controller
         foreach ($registeredUsers as $user) {
             // Push data for each user into the $data_registeredusers array
             $data_registeredusers[] = [
-                $user->name,
+                $user->name .  ' ' . $user->lastname,
                 $user->barangay,
                 $user->contactnumber,
                 $user->brand,

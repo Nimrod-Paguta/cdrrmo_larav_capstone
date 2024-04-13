@@ -67,19 +67,22 @@ class PdfReport extends FPDF
 
 function RegisteredUserTable($header, $data)
 {
-    $this->SetFont('Arial', 'B', 11);
+    $this->SetFont('Arial', 'B', 9);
+
+    $colWidths = [60, 25, 25, 25, 26, 32];
 
     // Header
-    foreach($header as $col)
-        $this->Cell(32,10,$col,1,0,'L');
+    foreach($header as $key => $col) {
+        $this->Cell($colWidths[$key], 10, $col, 1, 0, 'L');
+    }
     $this->Ln();
     
     // Data
-    $this->SetFont('Arial', '', 10);
+    $this->SetFont('Arial', '', 9);
     foreach($data as $row) {
-        foreach($row as $col) {
+        foreach($row as $key => $col) {
             // Center align the cell
-            $this->Cell(32,10,$col,1,0,'L');
+            $this->Cell($colWidths[$key], 10, $col, 1, 0, 'L');
         }
         $this->Ln();
     }
@@ -106,39 +109,47 @@ function BarangayReportTable($header, $data)
 
 function AllReportTable($header, $data)
 {
-    $this->SetFont('Arial', 'B', 11);
+    $this->SetFont('Arial', 'B', 9);
+
+    // Define column widths
+    $colWidths = [60, 25, 25, 25, 25, 32];
 
     // Header
-    foreach($header as $col)
-        $this->Cell(32,10,$col,1,0,'L');
+    foreach($header as $key => $col) {
+        $this->Cell($colWidths[$key], 10, $col, 1, 0, 'L');
+    }
     $this->Ln();
     
     // Data
-    $this->SetFont('Arial', '', 10);
+    $this->SetFont('Arial', '', 9);
     foreach($data as $row) {
-        foreach($row as $col) {
+        foreach($row as $key => $col) {
             // Center align the cell
-            $this->Cell(32,10,$col,1,0,'L');
+            $this->Cell($colWidths[$key], 10, $col, 1, 0, 'L');
         }
         $this->Ln();
     }
 }
 
+
+
 function IndividualReportTable($header, $data)
 {
-    $this->SetFont('Arial', 'B', 11);
+    $this->SetFont('Arial', 'B', 9);
+    $colWidths = [60, 25, 25, 26, 24, 32];
 
     // Header
-    foreach($header as $col)
-        $this->Cell(32,10,$col,1,0,'L');
+    foreach($header as $key => $col) {
+        $this->Cell($colWidths[$key], 10, $col, 1, 0, 'L');
+    }
     $this->Ln();
     
     // Data
-    $this->SetFont('Arial', '', 10);
+    $this->SetFont('Arial', '', 9);
     foreach($data as $row) {
-        foreach($row as $col) {
+        foreach($row as $key => $col) {
             // Center align the cell
-            $this->Cell(32,10,$col,1,0,'L');
+            $this->Cell($colWidths[$key], 10, $col, 1, 0, 'L');
         }
         $this->Ln();
     }
