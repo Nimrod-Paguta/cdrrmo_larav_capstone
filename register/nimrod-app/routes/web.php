@@ -14,6 +14,7 @@ use App\Http\Controllers\BarangayReportController;
 use App\Http\Controllers\ReportControllerAll;
 use App\Http\Controllers\IndividualReportController;
 use App\Http\Controllers\AllReportController;
+use App\Http\Controllers\DashboardReportController;
 
 use Illuminate\Support\Facades\DB;
 /*
@@ -120,6 +121,9 @@ Route::get('/reports-thisyear', [AllReportController::class, 'thisYear'])->name(
 Route::get('/reports-lastyear', [AllReportController::class, 'lastYear'])->name('reports-lastyear');
 
 Route::get('/individualreport/{id}', [IndividualReportController::class, 'index'])->name('individualreport');
+
+Route::get('/dashboardreport', [DashboardReportController::class, 'index'])->name('dashboardreport');
+
 
 
 });

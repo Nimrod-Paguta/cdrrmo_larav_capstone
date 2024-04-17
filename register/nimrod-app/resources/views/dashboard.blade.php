@@ -44,7 +44,7 @@
 
          <!-- Trigger modal -->
 
-
+     
      </div>
 
      <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -52,9 +52,11 @@
              data-target="#myModal">
              <!-- <img width="40" height="30" src="https://img.icons8.com/ios/50/alarm--v1.png" alt="alarm--v1"/> -->
          </a>
+         <a href="/dashboardreport" target="_blank" class="btn btn-primary" id="registerReport" style="margin-right: 5px"><i class="fas fa-download fa-sm text-white-70"></i> Generate Report</a>
         
 
      </div>
+     
 
 
 
