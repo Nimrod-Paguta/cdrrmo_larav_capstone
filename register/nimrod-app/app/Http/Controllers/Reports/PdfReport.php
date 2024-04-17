@@ -338,8 +338,6 @@ function PieChart($w, $h, $data, $format, $colors=null)
 
 
 
-
-
 function LineGraph($w, $h, $data, $options='', $colors=null, $maxVal=0, $nbDiv=4) {
     $this->SetFont('Courier', '', 10);
     $this->SetDrawColor(0, 0, 0);
@@ -452,8 +450,78 @@ function LineGraph($w, $h, $data, $options='', $colors=null, $maxVal=0, $nbDiv=4
 
 
 
+function BarDiagram($w, $h, $data, $format, $color=null, $maxVal=0, $nbDiv=4)
+{
+    $this->SetFont('Courier', '', 10);
+    $this->SetLegends($data,$format);
+
+    $XPage = $this->GetX();
+    $YPage = $this->GetY();
+    $margin = 5; // Increased margin for more space below
+    $YDiag = $YPage + $margin;
+    $hDiag = floor($h - $margin * 3); // Adjusted for scale values
+    $XDiag = $XPage + $margin * 2 + $this->wLegend;
+    $lDiag = floor($w - $margin * 3 - $this->wLegend);
+    if($color == null)
+        $color=array(155,155,155);
+    if ($maxVal == 0) {
+        $maxVal = max($data);
+    }
+    $valIndRepere = ceil($maxVal / $nbDiv);
+    $maxVal = $valIndRepere * $nbDiv;
+    $lRepere = floor($lDiag / $nbDiv);
+    $lDiag = $lRepere * $nbDiv;
+    $unit = $lDiag / $maxVal;
+    $hBar = floor($hDiag / ($this->NbVal + 1));
+    $hDiag = $hBar * ($this->NbVal + 1);
+    $eBaton = floor($hBar * 80 / 100);
+
+    $this->SetLineWidth(0.2);
+    $this->Rect($XDiag, $YDiag, $lDiag, $hDiag);
+
+    $this->SetFont('Courier', '', 10);
+    $this->SetFillColor($color[0],$color[1],$color[2]);
+    $i=0;
+    foreach($data as $val) {
+        //Bar
+        $xval = $XDiag;
+        $lval = (int)($val * $unit);
+        $yval = $YDiag + ($i + 1) * $hBar - $eBaton / 2;
+        $hval = $eBaton;
+        $this->Rect($xval, $yval, $lval, $hval, 'DF');
+        //Legend
+        $this->SetXY(0, $yval);
+        $this->Cell($xval - $margin, $hval, $this->legends[$i],0,0,'R');
+        $i++;
+    }
+
+    //Scales
+    for ($i = 0; $i <= $nbDiv; $i++) {
+        $xpos = $XDiag + $lRepere * $i;
+        $this->Line($xpos, $YDiag, $xpos, $YDiag + $hDiag);
+        $val = $i * $valIndRepere;
+        $xpos = $XDiag + $lRepere * $i - $this->GetStringWidth($val) / 2;
+        $ypos = $YDiag + $hDiag + $margin; // Positioned even further below the graph
+        $this->Text($xpos, $ypos, $val);
+    }
+}
 
 
+
+
+
+
+
+function RotateText($x, $y, $text) {
+    $characters = str_split($text);
+    $charHeight = $this->FontSize;
+    $rotation = 90;
+
+    foreach($characters as $char) {
+        $this->Text($x, $y, $char);
+        $y += $charHeight;
+    }
+}
 
 
 

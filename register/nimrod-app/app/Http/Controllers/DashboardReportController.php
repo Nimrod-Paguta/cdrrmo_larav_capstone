@@ -89,55 +89,49 @@ $fpdf->PieChart(140, 70, $data, '%l (%p)', array($col1,$col2,$col3,$col4)); // U
 $fpdf->SetXY($valX, $valY + 40);
 
 
-
-
-// Get monthly report counts
-// Get monthly report counts
-$monthlyReports = Report::selectRaw("DATE_FORMAT(`time`, '%Y-%m') AS `month`, COUNT(*) AS `total_reports`")
-    ->groupBy('month', 'time')
-    ->orderBy('month')
-    ->pluck('total_reports', 'month')
-    ->toArray();
-
-
-
-// Prepare data for the line graph
-$data = [
-    'Group 1' => $monthlyReports
-];
-
-// Prepare labels for the line graph (from February to December)
-// Prepare labels for the line graph (from January to December)
-$months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-];
-
-// Map the monthly report counts to their corresponding month labels
-$monthlyData = [];
-foreach ($months as $month) {
-    $monthYear = '2023-' . str_pad(array_search($month, $months) + 1, 2, '0', STR_PAD_LEFT); // Assuming starting from January 2023
-    $totalReports = isset($monthlyReports[$monthYear]) ? $monthlyReports[$monthYear] : 0;
-    $monthlyData[$month] = $totalReports;
-}
-
-// Replace the data in $data with the monthly totals
-$data['Group 1'] = $monthlyData;
-
+$data = array(
+    'Group 1' => array(
+        '2023-12-02' => 2.7,
+        '2023-12-11' => 15.6,
+        '2023-12-16' => 18.0,
+        '2023-12-25' => 10.56,
+        '2023-12-28' =>5.6
+    )
+);
+$colors = array(
+    'Group 1' => array(0, 0, 255)
+);
 
 
 
 $fpdf->AddPage();
-// Display options: horizontal lines, bounding boxes around the plotting area and the entire area
-// Colors: random
-// Max ordinate: 20
-// Number of divisions: 10
 $fpdf->LineGraph(190,100,$data,'HgBdB',null,20,10);
 
 
+$fpdf->Ln(120);
+$data = array(
+    'Sumpong' => 1510,
+    'Kalasungay' => 1610,
+    'San Jose' => 1400,
+    'Another City' => 1200,
+    'New Town' => 1800,
+    'Village A' => 1350,
+    'Village B' => 1700,
+    'City X' => 1550,
+    'Town Y' => 1420,
+    'Hamlet Z' => 1650
+);
+// Bar diagram
+$fpdf->SetFont('Arial', 'B', 12);
+$fpdf->Cell(0, 5, 'Bar diagram', 0, 0);
+$fpdf->Ln(8);
+$valX = $fpdf->GetX();
+$valY = $fpdf->GetY();
+$fpdf->BarDiagram(190, 70, $data, '%l', array(255,175,100)); 
+$fpdf->SetXY($valX, $valY + 80);
 
 
-        
+
         $fpdf->Output();
         exit;
     }
