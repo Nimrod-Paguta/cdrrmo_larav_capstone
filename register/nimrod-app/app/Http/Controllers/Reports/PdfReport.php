@@ -168,10 +168,12 @@ function DashboardTable($header, $data)
     
     // Data
     $this->SetFont('Arial', '', 10);
+    $count = 0;
     foreach($data as $row) {
         foreach($row as $col) {
             // Center align the cell
             $this->Cell(48,10,$col,1,0,'C');
+            $count++;
         }
         $this->Ln();
     }
