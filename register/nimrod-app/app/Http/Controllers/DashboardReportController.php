@@ -38,9 +38,11 @@ class DashboardReportController extends Controller
     
 
         $fpdf = new PdfReport('P','mm','A4');
+        $currentDate = date('Y-m-d'); 
         $fpdf->AddPage();
-        $fpdf->SetFont('Arial', 'U', 12);
-        $fpdf->Cell(0, 10, 'Date: '.date('m/d/Y'), 0, 0, 'L');
+        $fpdf->Cell(14, 10, 'Date: ', 0, 0, 'L');
+        $fpdf->SetFont('Arial', 'BU', 12);
+        $fpdf->Cell(0, 10, $currentDate, 0, 0, 'L');
         $fpdf->Ln(20);
         $fpdf->SetFont('Arial', 'B', 14);
         $fpdf->Cell(0, 0, 'OVERALL ACCIDENT REPORT', 0,0,'C');
@@ -105,6 +107,38 @@ $valX = $fpdf->GetX();
 $valY = $fpdf->GetY();
 $fpdf->BarDiagram(190, 70, $data, '%l', array(255,175,100)); 
 $fpdf->SetXY($valX, $valY + 80);
+
+
+
+
+$fpdf->Ln(10);
+      
+$fpdf->SetFont('Arial', '', 12);
+$fpdf->Cell(100, 10, 'Prepared by:', 0,0,'L');
+$fpdf->Cell(0, 10, 'Noted by:', 0,0,'L');
+$fpdf->Ln(15);
+
+$fpdf->SetFont('Arial', 'BU', 12);
+$fpdf->Cell(100, 10, 'Danilo C. Bautista', 0,0,'L');
+$fpdf->Cell(0, 10, 'Ana Andrea A. Ho', 0,0,'L');
+$fpdf->Ln(5);
+
+$fpdf->SetFont('Arial', '', 0);
+$fpdf->Cell(100, 10, '911 Communication Chief', 0,0,'L');
+$fpdf->Cell(0, 10, 'Communication and Command Central Chief', 0,0,'L');
+$fpdf->Ln(30);
+
+$fpdf->SetFont('Arial', '', 12);
+$fpdf->Cell(100, 10, 'Approved by:', 0,0,'L');
+$fpdf->Ln(15);
+
+$fpdf->SetFont('Arial', 'BU', 12);
+$fpdf->Cell(100, 10, 'Alan J. Comiso', 0,0,'L');
+$fpdf->Ln(5);
+$fpdf->SetFont('Arial', '', 12);
+$fpdf->Cell(0, 10, 'CGDH I (CDRRMO)', 0,0,'L');
+
+
 
 
 
