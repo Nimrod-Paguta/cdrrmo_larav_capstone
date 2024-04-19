@@ -88,7 +88,6 @@ $col4=array(100,255,100);
 $fpdf->PieChart(140, 70, $data, '%l (%p)', array($col1,$col2,$col3,$col4)); // Updated function call with the new color
 $fpdf->SetXY($valX, $valY + 40);
 
-
 $fpdf->Ln(120);
 $data = Report::select('barangay', \DB::raw('COUNT(*) as total'))
 ->groupBy('barangay')

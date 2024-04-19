@@ -288,6 +288,8 @@
                             }
                         };
 
+                        socket.emit('buzz', 'BUZZER!!');
+
                     return report_id;
                 })
             }
