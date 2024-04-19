@@ -160,19 +160,21 @@ function IndividualReportTable($header, $data)
 function DashboardTable($header, $data)
 {
     $this->SetFont('Arial', 'B', 11);
-
+    $colWidths = [20, 90, 50, 30];
     // Header
-    foreach($header as $col)
-        $this->Cell(48,10,$col,1,0,'C');
+    foreach($header as $key => $col) {
+        $this->Cell($colWidths[$key], 10, $col, 1, 0, 'C');
+    }
     $this->Ln();
     
     // Data
     $this->SetFont('Arial', '', 10);
+    $colWidths = [20, 90, 50, 30];
     $count = 0;
     foreach($data as $row) {
-        foreach($row as $col) {
+        foreach($row as $key => $col) {
             // Center align the cell
-            $this->Cell(48,10,$col,1,0,'C');
+            $this->Cell($colWidths[$key], 10, $col, 1, 0, 'C');
             $count++;
         }
         $this->Ln();
