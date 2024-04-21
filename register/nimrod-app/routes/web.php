@@ -36,6 +36,7 @@ Route::post('/post_report', [ReportController::class, 'store'])->name('reporting
 
 Route::post('/accident',[RegisterController::class, 'getUserInfo']);
 Route::post('/location',[MapController::class, 'getMap']);
+Route::post('/recentaccident',[ReportController::class, 'getRecent']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
