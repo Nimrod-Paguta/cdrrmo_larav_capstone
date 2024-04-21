@@ -196,4 +196,10 @@ class ReportController extends Controller
 
     return redirect()->route('reporting.index')->with('success', 'Report deleted successfully!');
 }
+
+    public function getRecent(){
+        $latestReport = Report::latest()->first();
+
+        return response()->json(['success' => true, 'report' => $latestReport], 200);
+    }
 }

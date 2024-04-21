@@ -600,30 +600,32 @@
          
 
          <script>
-            const initialLocation = { lat: 8.149849666666666, lng: 125.13129416666666 };
-            const initialLocation2 = { lat: 8.149834333333333, lng: 125.1315816666667 };
+            const status = { status: 200 };
 
-            fetch('/location', {
+            fetch('/recentaccident', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': '{{ csrf_token() }}' // If CSRF protection is enabled
             },
-            body: JSON.stringify(initialLocation)
+            body: JSON.stringify(status)
             })
             .then(response => response.json())
             .then(accidentLocation => {
-                console.log(accidentLocation)
+
+            const initialLocassstion = { lat: parseFloat(accidentLocation.report.latitude), lng: parseFloat(accidentLocation.report.longitude) };
+            console.log(initialLocassstion)
+
             let map;
             let marker;
             map = new google.maps.Map(document.getElementById("map-container-google-1"), {
-                center: initialLocation,
+                center: initialLocassstion,
                 zoom: 18,
                 scrollwheel: true,
             });
 
             marker = new google.maps.Marker({
-                position: initialLocation,
+                position: initialLocassstion,
                 map: map,
                 draggable: true
             });
