@@ -62,7 +62,7 @@
 <body class="font-sans antialiased">
 
     <script>
-        const socket = io('ws://192.168.1.240:8765');
+        const socket = io('ws://192.168.1.239:8765');
 
         socket.on('connect', function() {
             // Emit a message after the connection is established
