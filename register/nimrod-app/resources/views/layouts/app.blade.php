@@ -252,7 +252,7 @@
                                 
                                     <div class="modal-footer">
                                         <a href="/reporting/${report_id}">
-                                            <button type="button" class="btn btn-danger">Proceed to Reporting</button>
+                                            <button type="button" class="btn btn-danger">Proceed to Report</button>
                                         </a>
                                     </div>
                                 </div>

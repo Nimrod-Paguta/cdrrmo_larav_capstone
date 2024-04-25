@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Register;
 
 class Report extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table = "reports"; 
 
     protected $fillable = [
@@ -21,7 +22,8 @@ class Report extends Model
             'month',
             'barangay',
             'city',
-            'address'
+            'address', 
+            'passenger_no'
     ];
 
     public function registereduserid()

@@ -125,7 +125,10 @@ Route::get('/individualreport/{id}', [IndividualReportController::class, 'index'
 
 Route::get('/dashboardreport', [DashboardReportController::class, 'index'])->name('dashboardreport');
 
+Route::delete('/reports/{id}', [ReportController::class, 'delete'])->name('reports.delete');
 
+Route::get('/reports/{id}/restore', [ReportController::class, 'restore'])->name('reports.restore');
+Route::get('/archived', [ReportController::class, 'archived'])->name('reporting.archived');
 
 });
 require __DIR__.'/auth.php';

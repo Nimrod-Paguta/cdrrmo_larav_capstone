@@ -87,7 +87,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Full Name:</p>
+                                <p class="mb-0">Vehicle Owner:</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{$register->name}} {{$register->middlename}} {{$register->lastname}}</p>
@@ -100,6 +100,15 @@
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">0{{$register->emergencynumber}}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Contact Number:</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">0{{$register->contactnumber}}</p>
                             </div>
                         </div>
                         <hr>
@@ -191,25 +200,36 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Status:</p>
+                                <p class="mb-0"></p>
                             </div>
                             <div class="col-sm-9">
-                            <form id="statusForm" method="POST" action="{{ route('reporting.update', ['id' => $report->id]) }}">
-    @csrf
-    @method('PUT')
 
-    <div id="status">
-    <select class="form-control" id="status" name="status">
-        <option value="ongoing" {{ $report->status === 'ongoing' ? 'selected' : '' }}>Ongoing</option>
-        <option value="unread" {{ $report->status === 'unread' ? 'selected' : '' }}>Unread</option>
-        <option value="completed" {{ $report->status === 'completed' ? 'selected' : '' }}>Completed</option>
-    </select>
-    <button type="submit" class="btn mt-1" style="background-color: green; border-color: green; color: white;">Submit</button>
+                            <form method="POST" action="{{ route('reporting.update', ['id' => $report->id]) }}">
+                    @csrf
+                    @method('PUT')
 
-    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="passenger_no" class="mb-1">Passenger Number:</label>
+                            <input type="number" class="form-control" id="passenger_no" name="passenger_no" placeholder="{{ $report->passenger_no ? $report->passenger_no : 'Enter passenger number' }}">
 
-  
-</form>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="status" class="mb-0">Status:</label>
+                            <select class="form-control" id="status" name="status">
+                                <option value="ongoing" {{ $report->status === 'ongoing' ? 'selected' : '' }}>Ongoing</option>
+                                <option value="unread" {{ $report->status === 'unread' ? 'selected' : '' }}>Unread</option>
+                                <option value="completed" {{ $report->status === 'completed' ? 'selected' : '' }}>Completed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-sm-12">
+                        <button type="submit" class="btn mt-1" style="background-color: green; border-color: green; color: white;">Submit</button>
+
+                        </div>
+                    </div>
+                </form>
 
                             </div>
                     </div>
