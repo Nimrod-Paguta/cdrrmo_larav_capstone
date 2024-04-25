@@ -210,8 +210,8 @@
 
                     <div class="row">
                         <div class="col-sm-6">
-                            <label for="passenger_no" class="mb-1">Passenger Number:</label>
-                            <input type="number" class="form-control" id="passenger_no" name="passenger_no" placeholder="{{ $report->passenger_no ? $report->passenger_no : 'Enter passenger number' }}">
+                            <label for="passenger_no" class="mb-1">No. of Passenger:</label>
+                            <input type="number" class="form-control" id="passenger_no" name="passenger_no" placeholder="{{ $report->passenger_no ? $report->passenger_no : 'Enter No. of Passenger' }}">
 
                         </div>
                         <div class="col-sm-6">
