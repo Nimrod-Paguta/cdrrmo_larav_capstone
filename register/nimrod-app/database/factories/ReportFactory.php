@@ -17,7 +17,7 @@ class ReportFactory extends Factory
     public function definition(): array
     {
         return [
-            'registereduserid' => $this->faker->numberBetween(1, 7),
+            'registereduserid' => $this->faker->numberBetween(2, 7),
             'latitude' => $this->faker->latitude,
             'longitude' => $this->faker->longitude,
             'time' => $this->faker->time(),

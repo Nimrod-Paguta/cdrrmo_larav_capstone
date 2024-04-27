@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string("barangay"); 
             $table->string("city");
             $table->string("address");
-            $table->string("passenger_no")->nullable();
+            $table->unsignedBigInteger("passenger_no")->nullable();
             $table->timestamps();
         });
     }

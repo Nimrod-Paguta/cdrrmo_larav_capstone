@@ -134,7 +134,7 @@ class ReportController extends Controller
             'barangay' => 'required|string',
             'city' => 'required|string',
             'address' => 'required|string', 
-            'passenger_no' => 'required|string'
+            'passenger_no' => 'nullable|numeric'
         ]);
 
         $report = Report::create($validatedData);
