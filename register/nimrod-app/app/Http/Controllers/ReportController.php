@@ -133,7 +133,8 @@ class ReportController extends Controller
             'month' => 'required|numeric',
             'barangay' => 'required|string',
             'city' => 'required|string',
-            'address' => 'required|string'
+            'address' => 'required|string', 
+            'passenger_no' => 'nullable|numeric'
         ]);
 
         $report = Report::create($validatedData);
@@ -178,6 +179,7 @@ class ReportController extends Controller
     {
         $request->validate([
             'status' => 'required|string',
+            'passenger_no' => 'nullable|string',
         ]);
     
         $report = Report::findOrFail($id); // Find the report with the given ID
@@ -202,4 +204,28 @@ class ReportController extends Controller
 
         return response()->json(['success' => true, 'report' => $latestReport], 200);
     }
+
+    public function delete($id){
+            $report=Report::find($id); 
+            $report->delete(); 
+            return redirect()->route('reporting.index')->with('success', 'Report deleted successfully!');
+    }
+
+    public function restore($id){
+        $report=Report::withTrashed()->find($id); 
+        $report->restore(); 
+        return redirect()->route('reporting.index')->with('success', 'Report deleted successfully!');
+}
+
+public function archived()
+{
+    // Retrieve only archived reports
+    $archivedReports = Report::onlyTrashed()->get();
+    $reports = Report::with('registereduserid')->get();
+    return view("reporting.archived", compact('archivedReports'));
+}
+
+
+
+
 }

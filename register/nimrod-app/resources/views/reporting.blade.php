@@ -53,7 +53,7 @@
     <div class="hayt">
         <h3>Reporting</h3>
         <div style="display: flex;">
-        <a href="{{$pdf}}" target="_blank" class="btn btn-primary" id="registerReport" style="margin-right: 5px"><i class="fas fa-download fa-sm text-white-70"></i> Generate Report</a>
+        <a href="{{$pdf}}" target="_blank" class="btn btn-primary" id="registerReport" style="margin-right: 10px"><i class="fas fa-download fa-sm text-white-70"></i> Generate Report</a>
 
             <select id="reportingSelect" class="form-control" style="width: 135px">
                 <option value="0">All Time</option>
@@ -63,6 +63,9 @@
                 <option value="4">This Year</option>
                 <option value="5">Last Year</option>
             </select>
+            <a href="/archived" class="btn btn-success" style="margin-left: 10px">Archived</a>
+
+
         </div>
         <table id="yourDataTableID" class="table table-striped" style="width:100%">
             <thead class="table-header">
@@ -101,11 +104,13 @@
                         </td>
                         <td class="text-center">
                             <!-- Add text-center class to center content -->
-                            <form method="POST" action="{{ route('reports.destroy', ['id' => $report->id]) }}" style="display:inline;">
+                            <form method="POST" action="{{ route('reports.delete', ['id' => $report->id]) }}" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger actions-buttons">Delete</button>
+                                <button type="submit" class="btn btn-danger actions-buttons">Archive</button>
                             </form>
+
+
                             <a href="{{ route('reporting.view', ['id' => $report->id]) }}">
                                 <button type="submit" class="btn btn-secondary actions-buttons">View</button>
                             </a>

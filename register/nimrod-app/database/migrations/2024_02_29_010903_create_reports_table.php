@@ -17,13 +17,14 @@ return new class extends Migration
             $table->foreign('registereduserid')->references('id')->on('registers')->onDelete('cascade');
             $table->decimal("latitude", 18, 15);; 
             $table->decimal("longitude", 18, 15);; 
-            $table->string("time"); 
+            $table->string("time");  
             $table->float("gforce");
             $table->string("status");  
             $table->string("month");      
             $table->string("barangay"); 
             $table->string("city");
-            $table->string("address");  
+            $table->string("address");
+            $table->unsignedBigInteger("passenger_no")->nullable();
             $table->timestamps();
         });
     }

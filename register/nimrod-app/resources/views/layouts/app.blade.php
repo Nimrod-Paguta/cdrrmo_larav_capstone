@@ -85,6 +85,7 @@
             let coordinates = message.content.split('&%&')[1];
             let gforce = message.content.split('&%&')[2];
             let key = message.content.split('&%&')[3];
+            let direction = message.content.split('&%&')[4];
             let intValue = parseInt(userid);
             let latitude = coordinates.split('///')[0];
             let longitude = coordinates.split('///')[1];
@@ -93,7 +94,6 @@
             const initialLocation = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
             let severity;
 
-            console.log(Math.abs(parseFloat(gforce)))
             if (Math.abs(parseFloat(gforce)) > 0 && Math.abs(parseFloat(gforce)) < 4) {
                 severity = 'Safe';
             } else if (Math.abs(parseFloat(gforce)) >= 4 && Math.abs(parseFloat(gforce)) < 20) {
@@ -108,8 +108,6 @@
                 severity = 'Disoriented';
             }
             
-            console.log(severity)
-
             // Send the accident data to a Laravel route using AJAX
             const accidentData = {
                 id: intValue,
@@ -241,6 +239,10 @@
                                                             <td>Time & Date</td>
                                                             <td><b>${message.date} ${currentDate.getHours()}:${currentDate.getMinutes()}</b></td>
                                                         </tr>
+                                                        <tr>
+                                                            <td>Direction</td>
+                                                            <td><b>${direction}</b></td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -252,7 +254,7 @@
                                 
                                     <div class="modal-footer">
                                         <a href="/reporting/${report_id}">
-                                            <button type="button" class="btn btn-danger">Proceed to Reporting</button>
+                                            <button type="button" class="btn btn-danger">Proceed to Report</button>
                                         </a>
                                     </div>
                                 </div>
