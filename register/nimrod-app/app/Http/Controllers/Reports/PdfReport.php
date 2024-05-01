@@ -8,21 +8,18 @@ class PdfReport extends FPDF
 {
     function Header()
     {
-        // Logo 1
-        $this->Image('malaybalaylogo.png',10,6,30);
-        // Logo 2
-        $this->Image('cdrrmologo.png',170,6,30);
-        
-        // Title
-        $this->Ln(7);
-        $this->SetFont('Arial','B',14);
-        $this->Cell(0,0,'City Disaster Risk Reduction Management Office',0,0,'C');
-        $this->Ln(7);
-        $this->Cell(0,0,'Malaybalay City, Bukidnon',0,0,'C');
+       // Logo 1
+       $this->Image('malaybalaylogo.png',1,6,25);
+       // Logo 2
+       $this->Image('cdrrmologo.png',26,6,25);
+       $this->Image('bagongpilipinas.png',50,6,25);
+       $this->Image('Picture2.jpg',73,6,51);
+       $this->Image('contact.png',123,10,90);
+
+     
       
-       
-        // Line break
-        $this->Ln(20);
+       // Line break
+       $this->Ln(30);
     }
    
     function BasicTable($header, $data)

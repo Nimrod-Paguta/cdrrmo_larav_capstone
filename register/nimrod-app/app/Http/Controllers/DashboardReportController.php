@@ -40,6 +40,9 @@ class DashboardReportController extends Controller
         $fpdf = new PdfReport('P','mm','A4');
         $currentDate = date('Y-m-d'); 
         $fpdf->AddPage();
+        // Set font
+        $fpdf->SetFont('Arial', '', 12); // Arial, regular, size 12
+
         $fpdf->Cell(14, 10, 'Date: ', 0, 0, 'L');
         $fpdf->SetFont('Arial', 'BU', 12);
         $fpdf->Cell(0, 10, $currentDate, 0, 0, 'L');
