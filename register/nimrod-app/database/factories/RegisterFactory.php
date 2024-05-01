@@ -17,6 +17,7 @@ class RegisterFactory extends Factory
     public function definition(): array
     {
         return [
+            
             'name' => $this->faker->firstName,
             'middlename' => $this->faker->optional()->lastName,
             'lastname' => $this->faker->lastName,
@@ -31,11 +32,13 @@ class RegisterFactory extends Factory
             'emergencynumber' => $this->faker->numerify('##########'),
             'medicalcondition' => $this->faker->optional()->sentence,
             'brand' => $this->faker->word,
+            'gender' => $this->faker->randomElement(['male', 'female']),
             'model' => $this->faker->word,
             'vehiclelicense' => strtoupper($this->faker->bothify('???###')),
             'color' => $this->faker->colorName,
             'type' => $this->faker->randomElement(['Private', 'Public']),
             'created_at' => $this->faker->dateTimeBetween('2023-12-01', '2024-04-08')->format('Y-m-d H:i:s'),
+
         ];
     }
 }

@@ -1,3 +1,4 @@
+@role('admin')
 <x-app-layout>
 
     <style>
@@ -215,4 +216,9 @@
             });
         </script>
     </div>
+
 </x-app-layout>
+@endrole
+@role('driver')
+<center><h1>404 - Page Not Found</h1></center>
+@endrole

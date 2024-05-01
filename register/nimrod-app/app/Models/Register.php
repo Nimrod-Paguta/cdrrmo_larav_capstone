@@ -25,5 +25,16 @@ class register extends Model
         'vehiclelicense',
         'color',
         'type',
+        'gender', 
+        'email', 
+        'password',
+        
+      
+        
     ];
+
+        public function users()
+    {
+        return $this->hasMany(User::class, 'register_id', 'id')->cascadeDelete();
+    }
 }

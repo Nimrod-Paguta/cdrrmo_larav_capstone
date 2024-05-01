@@ -27,9 +27,13 @@ return new class extends Migration
             $table->string("vehiclelicense");
             $table->string("color");
             $table->string("type");
+            $table->string("gender");
+            $table->string('email')->unique();
+            $table->string('password'); 
             $table->timestamps();
-        });
+        }); 
     }
+    
 
     /**
      * Reverse the migrations.

@@ -14,8 +14,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //
+        $recentRegisters = Register::orderBy('created_at', 'desc')->take(5)->get();
+        $registers = Register::all(); // Fetch all registered users
+        return view('dashboard', compact('registers', 'recentRegisters'));
     }
+    
 
       
     public function getTotalVehicle()
@@ -24,6 +27,12 @@ class DashboardController extends Controller
     
         return $totalVehicle;
     }
+
+    public function dashregister()
+{
+    $registers = Register::all(); // Fetch all registered users
+    return view('dashboard', compact('registers')); // Pass the $registers variable to the view
+}
 
     
     public function getTotalReported()
@@ -245,18 +254,11 @@ public function getLastYearReports()
     }
 
 
-    public function recentRegisters()
-{
-    // Fetch the recent registered users, ordered by their creation date
-    $recentRegisters = Register::orderBy('created_at', 'desc')->take(5)->get();
-    
-    return view('dashboard')->with('recentRegisters', $recentRegisters);
-}
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id) 
     {
         //
     }

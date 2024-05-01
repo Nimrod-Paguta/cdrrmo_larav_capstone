@@ -254,7 +254,7 @@
                                 
                                     <div class="modal-footer">
                                         <a href="/reporting/${report_id}">
-                                            <button type="button" class="btn btn-danger">Proceed to Report</button>
+                                            <button type="button" class="btn btn-danger">Next</button>
                                         </a>
                                     </div>
                                 </div>
@@ -341,12 +341,15 @@
 <!-- this is the sidevar  -->
     
     <div class="d-flex flex-column flex-shrink-0 p-3 text-white sidecolor" style="width: 240px; height: auto; ">
-  <a href="{{ route('dashboard') }}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+ 
     <div class="sidebar-brand-text mx-3"><img src="{{ asset('img/register/logo_cdrrmo-new.png') }}" alt="Description of the image"></div>
   </a>
   <h2 style="text-align: center;"><b>CDRRMO</b></h2>
   <hr>
+
+  
   <ul class="nav nav-pills flex-column mb-auto">
+    @role('admin')
     <li style="padding-top: 5px;">
       <a  href="/dashboard" class="nav-link text-white {{ Request::is('dashboard') ? 'active' : '' }}" >
         <svg class="bi me-2" width="16" height="9"><use xlink:href="#speedometer2"/></svg>
@@ -361,6 +364,7 @@
         Reporting
       </a>
     </li>
+
     <li style="padding-top: 10px;">
       <a href="/registerpage" class="nav-link text-white {{ Request::is('registerpage') ? 'active' : '' }}">
         <svg class="bi me-2" width="16" height="9"><use xlink:href="#grid"/></svg>
@@ -368,14 +372,13 @@
         Register
       </a>
     </li>
+
     <li style="padding-top: 10px;">
       <a href="/barangay" class="nav-link text-white {{ Request::is('barangay') ? 'active' : '' }}">
         <svg class="bi me-2" width="16" height="9"><use xlink:href="#grid"/></svg>
-      
-        <i class="fa-solid fa-house-flag" style="padding-right: 16px;"></i>
-        Barangay
-      </a>
+        <i class="fa-solid fa-house-flag" style="padding-right: 14px;"></i>Barangay</a>
     </li>
+    @endrole
   </ul>
 </div>
 

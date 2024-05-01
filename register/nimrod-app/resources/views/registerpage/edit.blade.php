@@ -9,7 +9,13 @@
 <div class = "hayt">
     
 <h2>Update Information</h2>
+@role('admin')
 <button type="button" class="btn btn-outline-primary ms-1 mb-3" onclick="window.location.href='/registerpage'">Back</button>
+@endrole
+@role('driver')
+<button type="button" class="btn btn-outline-primary ms-1 mb-3" onclick="window.location.href='/dashboard'">Back</button>
+@endrole
+
 
 
 <div id="update-form-div">
@@ -38,6 +44,18 @@
                             <input type="text" class="form-control" value="{{ $registers->lastname }}" name="lastname" required>
                             <div class="invalid-feedback">
                                 Please enter a valid last name.
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="type" class="form-label">Gender</label>
+                            <select class="form-control" value="{{ $registers->gender}}" name="gender" required>
+                                <option value=""></option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a Type.  
                             </div>
                         </div>
                         <div class="col-md-4">

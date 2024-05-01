@@ -1,3 +1,4 @@
+@role('admin')
 <x-app-layout>
     <style>
        
@@ -107,6 +108,44 @@
                                 Please enter a valid last name.
                             </div>
                         </div>
+
+                        <div class="col-md-4">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" name="email" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid email.
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" required>
+                    <div class="invalid-feedback">
+                        Please enter a valid password.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="password_confirmation" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" name="password_confirmation" required>
+                    <div class="invalid-feedback">
+                        Please confirm your password.
+                    </div>
+                </div>
+
+
+                                    <div class="col-md-4">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select class="form-select" name="gender" required>
+                                        <option value="">Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a gender.
+                                    </div>
+                                </div>
+
+
                         <div class="col-md-4">
                             <label for="postal_code" class="form-label">Barangay</label>
                             <input type="text" class="form-control" name="barangay" required>
@@ -313,4 +352,8 @@
                 };
             </script>
 </div>
-</x-app-layout> 
+</x-app-layout>
+@endrole
+@role('driver')
+<center><h1>404 - Page Not Found</h1></center>
+@endrole 

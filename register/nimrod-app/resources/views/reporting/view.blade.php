@@ -1,3 +1,4 @@
+@role('admin')
 <x-app-layout>
     <style>
         .hayt {
@@ -270,3 +271,7 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap"
                     type="text/javascript"></script>
 </x-app-layout>
+@endrole
+@role('driver')
+<center><h1>404 - Page Not Found</h1></center>
+@endrole

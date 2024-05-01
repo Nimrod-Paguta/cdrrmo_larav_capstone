@@ -15,8 +15,13 @@
    <div class="col-lg-4">
      <div class="card mb-4">
        <div class="card-body text-center">
-       <center>  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-          style="width: 350px;"></center>
+       <center>
+                            @if($register->gender == 'Male')
+                                <img src="{{ asset('img/register/man.png') }}" style="width: 300px; height: 250px;">
+                            @elseif($register->gender == 'Female')
+                                <img src="{{ asset('img/register/woman.png') }}" style="width: 300px; height: 250px;">
+                            @endif
+                        </center>
          <h5 class="my-3">{{ $register->name }}</h5>
          <p class="text-muted mb-1">Registered Driver of CDRRMO</p>
          <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
@@ -30,7 +35,7 @@
    </div>
    
    <div class="col-lg-8">
-   <h3>Driver's Profile</h3>
+   <h3>Owner's Profile</h3>
      <div class="card mb-4">
        <div class="card-body">
          <div class="row">
@@ -42,6 +47,28 @@
            </div>
          </div>
          <hr>
+
+         <div class="row">
+           <div class="col-sm-3">
+             <p class="mb-0">Gender:</p>
+           </div>
+           <div class="col-sm-9">
+             <p class="text-muted mb-0">{{ $register->gender }}</p>
+           </div>
+         </div>
+         <hr>
+
+         <div class="row">
+           <div class="col-sm-3">
+             <p class="mb-0">Email:</p>
+           </div>
+           <div class="col-sm-9">
+             <p class="text-muted mb-0">{{ $register->email }}</p>
+           </div>
+         </div>
+         <hr>
+         
+         
          <div class="row">
            <div class="col-sm-3">
              <p class="mb-0">Address:</p>

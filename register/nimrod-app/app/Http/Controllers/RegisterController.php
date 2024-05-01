@@ -4,7 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Register;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules;
+use Spatie\Permission\Models\Role;
+
+
 
 class RegisterController extends Controller
 {
@@ -128,9 +138,11 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            
             'name' => 'required|string',
             'middlename' => 'nullable|string',
             'lastname' => 'required|string',
+            'email' => 'required|string',
             'barangay' => 'required|string',
             'municipality' => 'required|string',
             'province' => 'required|string',
@@ -142,16 +154,37 @@ class RegisterController extends Controller
             'vehiclelicense' => 'required|string',
             'color' => 'required|string',
             'type' => 'required|string',
+            'gender' => 'required|string',
+            'password' => ['required', 'confirmed',  \Illuminate\Validation\Rules\Password::defaults()],
+           
         ]);
 
-        $user = Register::create($validatedData);
+        $register = Register::create($validatedData);
+        $registerId = $register->id; 
+        $user = User::create([
+            'name' => $register->name,
+            'email' => $register->email,
+            'password' => Hash::make($request->password),
+            'register_id' => $registerId,
+        ]);
+
+        // Assign the role 'driver' to the user
+        $driverRole = Role::where('name', 'driver')->first();
+        if ($driverRole) {
+            $user->assignRole($driverRole);
+        }
+
+        // Dispatch Registered event
+        event(new Registered($user));
+
+       
     
-        // Process the data as needed (e.g., store in the database)
-        // ...
-    // dd($validatedData); 
+        // Redirect back with success message
         return redirect()->back()->with('success', 'Owner information saved successfully.');
+       
     
     }
+
 
     /**
      * Display the specified resource.
@@ -191,12 +224,18 @@ class RegisterController extends Controller
             'vehiclelicense' => 'required|string',
             'color' => 'required|string',
             'type' => 'required|string',
+            'gender' => 'required|string',
+            
+
         ]);
 
         $registers = Register::findOrFail($id);
         $registers->update($request->all());
 
-        return redirect()->route('registerpage')->with('success', 'Student updated successfully!');
+        return redirect()->back()->with('success', 'Owner information saved successfully.');
+
+
+
     }
 
     /**
@@ -204,11 +243,22 @@ class RegisterController extends Controller
      */
     public function destroy($id)
     {
-        $registers = Register::findOrFail($id);
-        $registers->delete();
+        // Find the register by ID
+        $register = Register::findOrFail($id);
+        
+        // Delete associated users where register_id matches
+        User::where('register_id', $id)->delete();
+        
+        // Delete the register
+        $register->delete();
     
-        return redirect()->route('registerpage')->with('success', 'Student deleted successfully!');
+        // Redirect with success message
+        return redirect()->route('registerpage')->with('success', 'Register and associated users deleted successfully!');
     }
+
+
+
+
 
     public function getUserInfo(Request $request){
 

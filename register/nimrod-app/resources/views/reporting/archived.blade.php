@@ -1,3 +1,4 @@
+@role('admin')
 <x-app-layout>
     <style>
         /* Custom CSS to adjust the button width */
@@ -84,3 +85,7 @@
 
 
 </x-app-layout>
+@endrole
+@role('driver')
+<center><h1>404 - Page Not Found</h1></center>
+@endrole

@@ -57,7 +57,7 @@ Route::prefix('reporting')->group(function () {
     Route::get('/users', function () {
         // Matches The "/admin/users" URL
     });
-});
+}); 
 
 
 
@@ -92,7 +92,7 @@ Route::put('/registerpage/{id}', [RegisterController::class, 'update'])->name('r
 Route::delete('/registerpage/{id}', [RegisterController::class, 'destroy'])->name('registerpage.destroy'); 
 Route::get('/registerpage/{id}', [RegisterController::class, 'show'])->name('registerpage.view');
 
-Route::get('/dashboard', [DashboardController::class, 'recentRegisters'])->name('dashboard');
+
 
 Route::get('/all-time-report-dashboard', [DashboardController::class, 'getAllTimeReports'])->name('all-time-report-dashboard');
 Route::get('/this-week-report-dashboard', [DashboardController::class, 'getThisWeekReports'])->name('this-week-report-dashboard');
@@ -129,6 +129,11 @@ Route::delete('/reports/{id}', [ReportController::class, 'delete'])->name('repor
 
 Route::get('/reports/{id}/restore', [ReportController::class, 'restore'])->name('reports.restore');
 Route::get('/archived', [ReportController::class, 'archived'])->name('reporting.archived');
+
+
+Route::resource('dashboard', DashboardController::class);
+
+
 
 });
 require __DIR__.'/auth.php';
