@@ -134,7 +134,7 @@ Route::get('/archived', [ReportController::class, 'archived'])->name('reporting.
 Route::resource('dashboard', DashboardController::class);
 
 
-Route::get('send-email', [MailController::class, 'index']); 
+// Route::get('send-email', [MailController::class, 'index']); 
     
 
 

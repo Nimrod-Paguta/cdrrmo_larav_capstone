@@ -117,22 +117,6 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" required>
-                    <div class="invalid-feedback">
-                        Please enter a valid password.
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <label for="password_confirmation" class="form-label">Confirm Password</label>
-                    <input type="password" class="form-control" name="password_confirmation" required>
-                    <div class="invalid-feedback">
-                        Please confirm your password.
-                    </div>
-                </div>
-
-
                                     <div class="col-md-4">
                                     <label for="gender" class="form-label">Gender</label>
                                     <select class="form-select" name="gender" required>

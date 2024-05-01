@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Spatie\Permission\Models\Role;
 use App\Mail\HelloMail; 
-use Illuminate\Support\Facades\Mail; 
-
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\ValidationException;
 
 
 class RegisterController extends Controller
@@ -139,6 +139,7 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
+        $plainPassword = Str::random(10);
         $validatedData = $request->validate([
             
             'name' => 'required|string',
@@ -156,18 +157,34 @@ class RegisterController extends Controller
             'vehiclelicense' => 'required|string',
             'color' => 'required|string',
             'type' => 'required|string',
-            'gender' => 'required|string',
-            'password' => ['required', 'confirmed',  \Illuminate\Validation\Rules\Password::defaults()],
-           
+            'gender' => 'required|string',           
         ]);
 
         try { 
-        $register = Register::create($validatedData);
+        $register = Register::create([
+            'name' => $request->name,
+            'middlename' => $request->middlename,
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+            'barangay' => $request->barangay,
+            'municipality' => $request->municipality,
+            'province' => $request->province,
+            'contactnumber' => $request->contactnumber,
+            'emergencynumber' => $request->emergencynumber,
+            'medicalcondition' => $request->medicalcondition,
+            'brand' => $request->brand,
+            'model' => $request->model,
+            'vehiclelicense' => $request->vehiclelicense,
+            'color' => $request->color,
+            'type' => $request->type,
+            'gender' => $request->gender,
+            'password' => Hash::make($plainPassword)
+        ]);
         $registerId = $register->id; 
         $user = User::create([
             'name' => $register->name,
             'email' => $register->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($plainPassword),
             'register_id' => $registerId,
         ]);
 
@@ -181,7 +198,7 @@ class RegisterController extends Controller
             'title' => 'Welcome to our platform!',
             'body' => 'Your account has been created successfully.',
             'name' => $request->name, // Pass name here
-            'password' => $request->password, // Pass password here
+            'password' => $plainPassword, // Pass password here
         ];
      
              // Send email
