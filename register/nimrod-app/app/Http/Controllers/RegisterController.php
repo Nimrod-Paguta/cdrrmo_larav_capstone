@@ -13,6 +13,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 use Spatie\Permission\Models\Role;
+use App\Mail\HelloMail; 
+use Illuminate\Support\Facades\Mail; 
 
 
 
@@ -159,6 +161,7 @@ class RegisterController extends Controller
            
         ]);
 
+        try { 
         $register = Register::create($validatedData);
         $registerId = $register->id; 
         $user = User::create([
@@ -174,14 +177,33 @@ class RegisterController extends Controller
             $user->assignRole($driverRole);
         }
 
+        $mailData = [
+            'title' => 'Welcome to our platform!',
+            'body' => 'Your account has been created successfully.',
+            'name' => $request->name, // Pass name here
+            'password' => $request->password, // Pass password here
+        ];
+     
+             // Send email
+             Mail::to($request->email)->send(new HelloMail($mailData));
+     
+           
+     
+
         // Dispatch Registered event
         event(new Registered($user));
 
-       
-    
-        // Redirect back with success message
+        
+          
+                 // Redirect back with success message
         return redirect()->back()->with('success', 'Owner information saved successfully.');
        
+    
+         } catch (ValidationException $e) {
+             // If email validation fails due to uniqueness, show an alert
+             return back()->withErrors(['email' => 'The email address already exists.'])->withInput();
+         }
+    
     
     }
 
