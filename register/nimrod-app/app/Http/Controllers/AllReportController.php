@@ -107,6 +107,24 @@ $fpdf->Cell(0, 10, 'CGDH I (CDRRMO)', 0,0,'L');
         $this->index($reports, $stamp);
     }
 
+    public function allPublicVehicles(){
+        $reports = Report::whereHas('registereduserid', function ($query) {
+            $query->where('type', 'Public');
+        })->get();
+        
+        $stamp = 'Public Vehicles';
+        $this->index($reports, $stamp);
+    }
+
+    public function allPrivateVehicles(){
+        $reports = Report::whereHas('registereduserid', function ($query) {
+            $query->where('type', 'Private');
+        })->get();
+        
+        $stamp = 'Private Vehicles';
+        $this->index($reports, $stamp);
+    }
+
     public function thisWeek()
     {
         // Get the start and end dates of the current week

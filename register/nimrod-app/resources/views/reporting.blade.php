@@ -64,7 +64,9 @@
                 <option value="4">This Year</option>
                 <option value="5">Last Year</option>
             </select>
-            <a href="/archived" class="btn btn-success" style="margin-left: 10px">Archived</a>
+            <a href="/archived" class="btn btn-danger" style="margin-left: 10px; width: 90px">Archived</a>
+            <a href="/public-vehicles" class="btn btn-success" style="margin-left: 10px; width: 90px">Public</a>
+            <a href="/private-vehicles" class="btn btn-success" style="margin-left: 10px; width: 90px">Private</a>
 
 
         </div>

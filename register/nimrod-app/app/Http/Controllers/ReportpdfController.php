@@ -98,6 +98,18 @@ class ReportpdfController extends Controller
         $fpdf->SetFont('Arial', '', 12);
         $fpdf->Cell(40, 0, '' . $report->created_at->format('Y-m-d'), 0, 0, 'L');
         $fpdf->Ln(10);
+
+        $fpdf->SetFont('Arial', 'B', 12);
+        $fpdf->Cell(38, 0, 'No. of Passenger: ', 0, 0, 'L');
+        $fpdf->SetFont('Arial', '', 12);
+        if ($report->passenger_no !== null) {
+            $fpdf->Cell(49, 0, $report->passenger_no, 0, 0, 'L');
+        } else {
+            $fpdf->Cell(49, 0, 'No passenger', 0, 0, 'L');
+        }
+        $fpdf->Ln(10);
+        
+
         $fpdf->SetFont('Arial', 'B', 12);
         $fpdf->Cell(15,0,'Time: ',0,0,'L');
         $fpdf->SetFont('Arial', '', 12);
@@ -138,6 +150,8 @@ class ReportpdfController extends Controller
         $fpdf->Cell(24,5,'Longitude: ',0,0,'L');
         $fpdf->SetFont('Arial', '', 12);
         $fpdf->Cell(19,5,$report->longitude,0,0,'L');
+
+        
 
 
 

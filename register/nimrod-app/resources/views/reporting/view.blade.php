@@ -27,7 +27,7 @@
     </style>
     <div class="hayt">
             <h3>Reporting Details</h3>
-                    <button type="submit" class="btn btn-outline-primary ms-1 mb-3" onclick="openModal()" style="background-color: red; border-color: blue; color: white;">Send Notification</button>
+                    <!-- <button type="submit" class="btn btn-outline-primary ms-1 mb-3" onclick="openModal()" style="background-color: red; border-color: blue; color: white;">Send Notification</button> -->
                     <a href="{{ route('reports', ['id' => $report->id]) }}" target="_blank" class="btn btn-outline-primary ms-1 mb-3" >
                         <i class="fas fa-download fa-sm text-white-70"></i>
                         Generate Report</a>

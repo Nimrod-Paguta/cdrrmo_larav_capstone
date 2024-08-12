@@ -120,6 +120,8 @@ Route::get('/reports-thismonth', [AllReportController::class, 'thisMonth'])->nam
 Route::get('/reports-lastmonth', [AllReportController::class, 'lastMonth'])->name('reports-lastmonth');
 Route::get('/reports-thisyear', [AllReportController::class, 'thisYear'])->name('reports-thisyear');
 Route::get('/reports-lastyear', [AllReportController::class, 'lastYear'])->name('reports-lastyear');
+Route::get('/public-vehicles', [AllReportController::class, 'allPublicVehicles'])->name('public-vehicles');
+Route::get('/private-vehicles', [AllReportController::class, 'allPrivateVehicles'])->name('private-vehicles');
 
 Route::get('/individualreport/{id}', [IndividualReportController::class, 'index'])->name('individualreport');
 

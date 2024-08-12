@@ -93,6 +93,8 @@
             const currentMonth = currentDate.getMonth() + 1;
             const initialLocation = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
             let severity;
+            
+            console.log('ID:', userid);
 
             if (Math.abs(parseFloat(gforce)) > 0 && Math.abs(parseFloat(gforce)) < 4) {
                 severity = 'Safe';
@@ -133,6 +135,10 @@
             // Alert the accident data
             function proceed(data, accidentData){
 
+                console.log(accidentData)
+                console.log(data)
+                console.log(initialLocation)
+
                 fetch('/location', {
                 method: 'POST',
                 headers: {
@@ -144,10 +150,14 @@
                 .then(response => response.json())
                 .then(accidentLocation => {
                     
+                    console.log("POPOO")
                     console.log(accidentLocation)
-                    const barangay = accidentLocation.address.quarter
-                    const city = accidentLocation.address.city
+                    const barangay = accidentLocation.components.suburb ? accidentLocation.components.suburb : accidentLocation.components.quarter;
+                    const city = accidentLocation.components.city
                     const CRASHWATCH_CITY = accidentLocation.crashwatch_city;
+
+                    console.log("papapapa")
+                    console.log(barangay)
 
                     if (city === CRASHWATCH_CITY) {
                         console.log('City is defined');
@@ -163,10 +173,10 @@
                             month: currentMonth,
                             barangay: barangay,
                             city: city,
-                            address: accidentLocation.display_name,
+                            address: accidentLocation.formatted,
                         }
 
-                        console.log(report)
+                        console.log("abot nako diri chuy")
 
                         storeReport(report, accidentLocation, data)
                     } else {
@@ -180,6 +190,8 @@
             }
 
             function storeReport(report, accidentLocation, data){
+                console.log(JSON.stringify(report))
+
                 fetch('/post_report', {
                 method: 'POST',
                 headers: {
@@ -210,7 +222,7 @@
                                             <div id="info-accident">
                                                 <i class="fa-solid fa-triangle-exclamation fa-5x" id="mark"></i>
                                                 <h2><b>ACCIDENT ALERT!</b></h2>
-                                                <h5><b>${accidentLocation.display_name}</b></h5>
+                                                <h5><b>${accidentLocation.formatted}</b></h5>
                                             </div>
                                             <div>
                                                 <table id="table-accident" style="margin-top: 30px;">

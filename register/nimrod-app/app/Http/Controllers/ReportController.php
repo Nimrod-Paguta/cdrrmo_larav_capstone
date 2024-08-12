@@ -5,6 +5,7 @@ use App\Models\Report;
 use App\Models\Register; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ReportController extends Controller
 {
@@ -122,7 +123,8 @@ class ReportController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+{
+    try {
         $validatedData = $request->validate([
             'registereduserid' => 'required|exists:registers,id',
             'latitude' => 'nullable|numeric',
@@ -133,14 +135,21 @@ class ReportController extends Controller
             'month' => 'required|numeric',
             'barangay' => 'required|string',
             'city' => 'required|string',
-            'address' => 'required|string', 
+            'address' => 'nullable|string', 
             'passenger_no' => 'nullable|numeric'
         ]);
 
-        $report = Report::create($validatedData);
-    
+        $report = Report::create($validatedData); // Use $validatedData here
+
         return response()->json(['success' => true, 'report' => $report], 200);
+    } catch (ValidationException $e) {
+        Log::error('Validation Error: ' . $e->getMessage(), ['errors' => $e->errors()]);
+        return response()->json(['success' => false, 'message' => 'Validation failed'], 422);
+    } catch (\Exception $e) {
+        Log::error('Unexpected Error: ' . $e->getMessage());
+        return response()->json(['success' => false, 'message' => 'An unexpected error occurred'], 500);
     }
+}
 
     /**
      * Display the specified resource.
