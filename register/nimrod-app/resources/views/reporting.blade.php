@@ -107,11 +107,13 @@
                         </td>
                         <td class="text-center">
                             <!-- Add text-center class to center content -->
-                            <form method="POST" action="{{ route('reports.delete', ['id' => $report->id]) }}" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger actions-buttons">Archive</button>
-                            </form>
+                              <!-- Archive button triggers the modal -->
+                        <button 
+                            type="button" 
+                            class="btn btn-danger actions-buttons" 
+                            onclick="showArchiveModal({{ $report->id }})">
+                            Archive
+                        </button>
 
 
                             <a href="{{ route('reporting.view', ['id' => $report->id]) }}">
@@ -138,6 +140,30 @@
                 <!-- Add other rows as needed -->
             </tbody>
         </table>
+
+                <!-- Archive Confirmation Modal -->
+                <div id="archiveModal" class="modal fade" tabindex="-1" aria-labelledby="archiveModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- <div class="modal-header">
+                        <h5 class="modal-title" id="archiveModalLabel">Archive Confirmation</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div> -->
+                    <div class="modal-body">
+                        Are you sure you want to archive this report?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <form id="archiveForm" method="POST" action="">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Archive</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Include jQuery -->
         <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -216,6 +242,20 @@
                 }
         
             });
+
+            // Initialize DataTable
+            $(document).ready(function () {
+                $('#yourDataTableID').DataTable();
+            });
+
+            // Show the archive modal and set the form action dynamically
+            function showArchiveModal(reportId) {
+                const form = document.getElementById('archiveForm');
+                form.action = `/reports/${reportId}`; // Update the form action URL
+                const modal = new bootstrap.Modal(document.getElementById('archiveModal'));
+                modal.show();
+            }
+
         </script>
     </div>
 

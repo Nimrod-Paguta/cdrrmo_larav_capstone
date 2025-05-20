@@ -62,7 +62,7 @@
 <body class="font-sans antialiased">
 
     <script>
-        const socket = io('ws://192.168.1.239:8765');
+        const socket = io('ws://192.168.1.240:8765');
 
         socket.on('connect', function() {
             // Emit a message after the connection is established
@@ -152,11 +152,15 @@
                     
                     console.log("POPOO")
                     console.log(accidentLocation)
-                    const barangay = accidentLocation.components.suburb ? accidentLocation.components.suburb : accidentLocation.components.quarter;
+
+                    let barangay = accidentLocation.components.suburb ? accidentLocation.components.suburb : accidentLocation.components.quarter ? accidentLocation.components.quarter : accidentLocation.components.village
                     const city = accidentLocation.components.city
                     const CRASHWATCH_CITY = accidentLocation.crashwatch_city;
 
-                    console.log("papapapa")
+                    if(typeof barangay == "undefined"){
+                        barangay = "Unprovided"
+                    }
+
                     console.log(barangay)
 
                     if (city === CRASHWATCH_CITY) {
@@ -168,12 +172,12 @@
                             latitude: parseFloat(latitude),
                             longitude: parseFloat(longitude),
                             time: message.time,
-                            gforce: Math.abs(gforce),
+                            gforce: gforce,
                             status: "unread",
                             month: currentMonth,
                             barangay: barangay,
                             city: city,
-                            address: accidentLocation.formatted,
+                            address: accidentLocation.components.village ? accidentLocation.components.village + ", " + accidentLocation.formatted : accidentLocation.formatted,
                         }
 
                         console.log("abot nako diri chuy")
@@ -222,13 +226,13 @@
                                             <div id="info-accident">
                                                 <i class="fa-solid fa-triangle-exclamation fa-5x" id="mark"></i>
                                                 <h2><b>ACCIDENT ALERT!</b></h2>
-                                                <h5><b>${accidentLocation.formatted}</b></h5>
+                                                <h5><b>${accidentLocation.components.village ? accidentLocation.components.village + ", " + accidentLocation.formatted : accidentLocation.formatted}</b></h5>
                                             </div>
                                             <div>
                                                 <table id="table-accident" style="margin-top: 30px;">
                                                     <tbody>
                                                         <tr>
-                                                            <td>Driver</td>
+                                                            <td>Vehicle Owner</td>
                                                             <td><b>${data.name} ${data.middlename} ${data.lastname}</b></td>
                                                         </tr>
                                                         <tr>
@@ -252,7 +256,7 @@
                                                             <td><b>${message.date} ${currentDate.getHours()}:${currentDate.getMinutes()}</b></td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Direction</td>
+                                                            <td>Angle Of Impact</td>
                                                             <td><b>${direction}</b></td>
                                                         </tr>
                                                     </tbody>
